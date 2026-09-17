@@ -31,3 +31,8 @@ desktop.ini
 
 # Ignore duplicate root-level CSV files (structured data lives in data/)
 /*.csv
+
+# Browser automation persistent profile caches
+data/browser_profiles/
+.browser_profiles/
+

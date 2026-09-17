@@ -13,28 +13,56 @@ def scrape_techzone_with_browser():
 
     print(f"Starting browser crawl: {BASE_URL}")
 
+    import os
+    profile_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data", "browser_profiles", "techzone")
+    os.makedirs(profile_dir, exist_ok=True)
+
     with sync_playwright() as p:
-        # Browser එක launch කිරීම (headless=False මඟින් Cloudflare challenge සාර්ථකව pass වේ)
-        browser = p.chromium.launch(headless=False)
-        context = browser.new_context(
-            user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
-        )
-        browser_page = context.new_page()
+        browser_context = None
+        for channel in ["chrome", None]:
+            try:
+                kwargs = {
+                    "user_data_dir": profile_dir,
+                    "headless": False,
+                    "args": ["--disable-blink-features=AutomationControlled", "--no-default-browser-check"],
+                    "viewport": {"width": 1280, "height": 800}
+                }
+                if channel:
+                    kwargs["channel"] = channel
+                browser_context = p.chromium.launch_persistent_context(**kwargs)
+                break
+            except Exception:
+                continue
+
+        if not browser_context:
+            print("Failed to launch browser.")
+            return
+
+        browser_page = browser_context.pages[0] if browser_context.pages else browser_context.new_page()
+        browser_page.add_init_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined});")
 
         while True:
             page_url = BASE_URL if page == 1 else f"{BASE_URL.rstrip('/')}/page/{page}/"
             print(f"\n[+] Loading Page {page}: {page_url}")
 
             try:
-                # පිටුවට පිවිසීම සහ Load වන තෙක් බලා සිටීම
                 response = browser_page.goto(page_url, wait_until="domcontentloaded", timeout=45000)
-                
-                # Cloudflare check එක සම්පූර්ණ වීමට සුළු වේලාවක් ලබා දීම
-                time.sleep(3)
-
-                if response and response.status in [404, 403]:
-                    print(f"Reached end of category or blocked (Status: {response.status}).")
+                if response and response.status == 404:
+                    print("Reached 404 end of category.")
                     break
+
+                # Cloudflare check එක සම්පූර්ණ වීමට බලා සිටීම
+                start_cf = time.time()
+                while time.time() - start_cf < 25:
+                    title = browser_page.title()
+                    if "Just a moment" not in title and "Security" not in title and title.strip():
+                        break
+                    time.sleep(1)
+
+                try:
+                    browser_page.wait_for_selector("li.product, div.product-small, .product-item, .type-product", timeout=8000)
+                except Exception:
+                    pass
 
                 html_content = browser_page.content()
                 soup = BeautifulSoup(html_content, "html.parser")

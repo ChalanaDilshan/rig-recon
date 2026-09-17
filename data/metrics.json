@@ -1,77 +1,77 @@
 {
-  "total_skus": 8251,
-  "active_stores": 10,
+  "total_skus": 8483,
+  "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 4836,
-  "in_stock_rate": 58.6,
+  "in_stock_skus": 5022,
+  "in_stock_rate": 59.2,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3430,
-      "avg_price": 27247.0,
+      "count": 3452,
+      "avg_price": 27212.0,
       "min_price": 150.0,
       "max_price": 1039000.0
     },
     {
       "Category": "Laptop",
-      "count": 906,
-      "avg_price": 253131.0,
+      "count": 926,
+      "avg_price": 258113.0,
       "min_price": 800.0,
       "max_price": 2399000.0
     },
     {
       "Category": "Monitor",
-      "count": 623,
-      "avg_price": 99678.0,
+      "count": 647,
+      "avg_price": 98771.0,
       "min_price": 5500.0,
       "max_price": 785000.0
     },
     {
       "Category": "Motherboard",
-      "count": 493,
-      "avg_price": 75219.0,
+      "count": 517,
+      "avg_price": 74612.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
     {
       "Category": "GPU",
-      "count": 454,
-      "avg_price": 203363.0,
+      "count": 478,
+      "avg_price": 204266.0,
       "min_price": 3600.0,
       "max_price": 1975000.0
     },
     {
       "Category": "CPU",
-      "count": 327,
-      "avg_price": 89228.0,
+      "count": 351,
+      "avg_price": 87920.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
     {
       "Category": "RAM",
-      "count": 322,
-      "avg_price": 53134.0,
+      "count": 346,
+      "avg_price": 54065.0,
       "min_price": 1000.0,
       "max_price": 499000.0
     },
     {
       "Category": "Storage",
-      "count": 316,
-      "avg_price": 37486.0,
+      "count": 340,
+      "avg_price": 37471.0,
       "min_price": 850.0,
       "max_price": 264000.0
     },
     {
       "Category": "PSU",
-      "count": 270,
-      "avg_price": 42374.0,
+      "count": 289,
+      "avg_price": 41496.0,
       "min_price": 2700.0,
       "max_price": 572000.0
     },
     {
       "Category": "Casing",
-      "count": 194,
-      "avg_price": 32679.0,
+      "count": 218,
+      "avg_price": 31887.0,
       "min_price": 1850.0,
       "max_price": 185000.0
     }
@@ -112,6 +112,12 @@
       "total": 339,
       "in_stock": 339,
       "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Techzone",
+      "total": 232,
+      "in_stock": 186,
+      "in_stock_rate": 80.2
     },
     {
       "Source_Store": "Galle Laptop",
