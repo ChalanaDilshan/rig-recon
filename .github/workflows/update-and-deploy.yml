@@ -30,10 +30,10 @@ permissions:
   pages: write
   id-token: write
 
-# Prevent concurrent jobs from racing or conflicting
+# Prevent concurrent deployments from colliding by queuing them until previous finishes
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-update:
