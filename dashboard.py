@@ -4,10 +4,13 @@ FastAPI + SQLite + Pure HTML/CSS/JS Frontend
 """
 
 import os
+import time
 import sqlite3
+import threading
+from collections import defaultdict
+from typing import Optional, List
 import pandas as pd
-from typing import Optional
-from fastapi import FastAPI, Query, HTTPException
+from fastapi import FastAPI, Query, HTTPException, Request, Header
 from fastapi.responses import FileResponse, JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
@@ -19,13 +22,75 @@ STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 
 app = FastAPI(title="Sri Lanka PC Hardware Market Intelligence")
 
+# ---------------------------------------------------------------------------
+# Security & CORS Hardening:
+# Strict origin parsing from env, credentials explicitly False for wildcard compliance.
+# ---------------------------------------------------------------------------
+raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000,http://localhost:3000")
+allowed_origins_list = [o.strip() for o in raw_origins.split(",") if o.strip()]
+is_wildcard = "*" in allowed_origins_list
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=["*"] if is_wildcard else allowed_origins_list,
+    allow_credentials=False,  # Spec compliant: cannot combine wildcard with credentials=True
+    allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
+
+# ---------------------------------------------------------------------------
+# Rate Limiting & Concurrency State:
+# In-memory sliding window rate limiter per IP, and concurrency lock for /api/trigger-merge.
+# ---------------------------------------------------------------------------
+rate_limit_records = defaultdict(lambda: defaultdict(list))
+rate_limit_lock = threading.Lock()
+
+merge_lock = threading.Lock()
+last_merge_timestamp: float = 0.0
+MERGE_COOLDOWN_SECONDS = 30
+ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
+
+
+def check_rate_limit(ip: str, bucket: str, limit: int, window_seconds: int = 60) -> bool:
+    """Sliding window rate limit checker per IP."""
+    now = time.time()
+    with rate_limit_lock:
+        timestamps = rate_limit_records[ip][bucket]
+        cutoff = now - window_seconds
+        valid_timestamps = [t for t in timestamps if t > cutoff]
+        if len(valid_timestamps) >= limit:
+            rate_limit_records[ip][bucket] = valid_timestamps
+            return False
+        valid_timestamps.append(now)
+        rate_limit_records[ip][bucket] = valid_timestamps
+        return True
+
+
+@app.middleware("http")
+async def rate_limiting_middleware(request: Request, call_next):
+    """Protects all API endpoints from abusive traffic and DoS attacks."""
+    if request.url.path.startswith("/api/"):
+        client_ip = request.client.host if request.client else "unknown"
+
+        # General API limit: 120 req/min
+        if not check_rate_limit(client_ip, "general_api", limit=120, window_seconds=60):
+            return JSONResponse(
+                status_code=429,
+                content={"error": "Too Many Requests", "detail": "Rate limit exceeded. Please wait a moment."},
+                headers={"Retry-After": "60"}
+            )
+
+        # Specific limit for heavy LIKE searches (/api/compare): 45 req/min
+        if request.url.path.startswith("/api/compare"):
+            if not check_rate_limit(client_ip, "compare_api", limit=45, window_seconds=60):
+                return JSONResponse(
+                    status_code=429,
+                    content={"error": "Too Many Requests", "detail": "Price comparison query limit reached. Please wait."},
+                    headers={"Retry-After": "30"}
+                )
+
+    return await call_next(request)
+
 
 if os.path.exists(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
@@ -117,30 +182,32 @@ def get_products(
     params = []
 
     if q:
-        keywords = q.strip().split()
+        # Sanitize length and bound max keywords to protect database performance
+        sanitized_q = q[:100].strip()
+        keywords = sanitized_q.split()[:8]
         for kw in keywords:
             conditions.append("Title LIKE ?")
             params.append(f"%{kw}%")
 
     if category and category != "All":
         conditions.append("Category = ?")
-        params.append(category)
+        params.append(category[:50])
 
     if store and store != "All":
         conditions.append("Source_Store = ?")
-        params.append(store)
+        params.append(store[:50])
 
     if stock and stock != "All":
         conditions.append("Stock_Status = ?")
-        params.append(stock)
+        params.append(stock[:50])
 
     if min_price is not None:
         conditions.append("Cleaned_Price_LKR >= ?")
-        params.append(min_price)
+        params.append(max(0.0, float(min_price)))
 
     if max_price is not None:
         conditions.append("Cleaned_Price_LKR <= ?")
-        params.append(max_price)
+        params.append(max(0.0, float(max_price)))
 
     where_clause = " AND ".join(conditions)
 
@@ -149,7 +216,7 @@ def get_products(
     cursor.execute(count_sql, params)
     total_items = cursor.fetchone()[0]
 
-    # Sorting
+    # Strictly whitelist sort options to ensure SQL safety
     sort_map = {
         "price_asc": "Cleaned_Price_LKR ASC",
         "price_desc": "Cleaned_Price_LKR DESC",
@@ -183,23 +250,25 @@ def get_products(
 
 @app.get("/api/compare")
 def compare_models(
-    model: str = Query(..., min_length=2, description="Model to compare, e.g. 'RTX 4060'"),
+    model: str = Query(..., min_length=2, max_length=80, description="Model to compare, e.g. 'RTX 4060'"),
     category: Optional[str] = Query(None, description="Optional category filter (e.g. 'GPU', 'Laptop', 'CPU')")
 ):
     """Cross-store price comparison matrix with comparative savings calculation."""
     conn = get_db()
     cursor = conn.cursor()
 
-    keywords = model.strip().split()
+    # Sanitize and bound keywords
+    sanitized_model = model[:80].strip()
+    keywords = sanitized_model.split()[:6]
     conditions = ["Title LIKE ?"] * len(keywords)
     params = [f"%{kw}%" for kw in keywords]
 
     if category and category != "All":
         conditions.append("Category = ?")
-        params.append(category)
+        params.append(category[:50])
     else:
         # If user searches for a GPU model like 'RTX 4060', exclude Laptops and Prebuilt PCs unless specifically asked
-        m_lower = model.lower()
+        m_lower = sanitized_model.lower()
         if any(k in m_lower for k in ["rtx", "gtx", "rx 6", "rx 7", "rx 9", "radeon", "geforce"]) and not any(k in m_lower for k in ["laptop", "notebook"]):
             conditions.append("Category = 'GPU'")
 
@@ -217,7 +286,7 @@ def compare_models(
 
     if not results:
         return {
-            "query": model,
+            "query": sanitized_model,
             "matches": 0,
             "results": [],
             "cheapest": None,
@@ -244,7 +313,7 @@ def compare_models(
         r["diff_pct"] = pct
 
     return {
-        "query": model,
+        "query": sanitized_model,
         "matches": len(results),
         "cheapest": cheapest,
         "min_price": min_p,
@@ -257,13 +326,64 @@ def compare_models(
 
 
 @app.post("/api/trigger-merge")
-def trigger_merge():
-    """Triggers cleaner + merger to refresh database."""
+def trigger_merge(
+    request: Request,
+    x_admin_key: Optional[str] = Header(None, alias="X-Admin-Key")
+):
+    """
+    Triggers cleaner + merger to refresh database.
+    Hardened against DoS with:
+    1. Concurrency lock (prevents overlapping builds).
+    2. Minimum cooldown period between runs.
+    3. Per-IP rate limiting.
+    4. Optional ADMIN_API_KEY verification for production security.
+    """
+    global last_merge_timestamp
+    client_ip = request.client.host if request.client else "unknown"
+
+    # Rate limiting on merge endpoint: max 2 requests per 5 minutes per IP
+    if not check_rate_limit(client_ip, "merge_api", limit=2, window_seconds=300):
+        raise HTTPException(
+            status_code=429,
+            detail="Rate limit exceeded. Database compilation can only be requested up to twice every 5 minutes."
+        )
+
+    # If ADMIN_API_KEY is configured in the environment, require authentication
+    if ADMIN_API_KEY and x_admin_key != ADMIN_API_KEY:
+        raise HTTPException(
+            status_code=401,
+            detail="Unauthorized: Valid X-Admin-Key required to trigger database compilation."
+        )
+
+    # Check cooldown
+    now = time.time()
+    if now - last_merge_timestamp < MERGE_COOLDOWN_SECONDS:
+        remaining = int(MERGE_COOLDOWN_SECONDS - (now - last_merge_timestamp))
+        raise HTTPException(
+            status_code=429,
+            detail=f"Cooldown active. Please wait {remaining} seconds before re-triggering database compilation."
+        )
+
+    # Non-blocking concurrency lock to ensure single compilation at a time
+    acquired = merge_lock.acquire(blocking=False)
+    if not acquired:
+        raise HTTPException(
+            status_code=409,
+            detail="A master database compilation is currently in progress. Please wait."
+        )
+
     try:
         df = compile_master_dataset()
-        return {"status": "SUCCESS", "message": f"Compiled {len(df):,} items into master database."}
+        last_merge_timestamp = time.time()
+        return {
+            "status": "SUCCESS",
+            "message": f"Compiled {len(df):,} items into master database.",
+            "timestamp": time.strftime("%Y-%m-%d %H:%M:%S")
+        }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        raise HTTPException(status_code=500, detail=f"Compilation error: {str(e)}")
+    finally:
+        merge_lock.release()
 
 
 @app.get("/api/scrapers")
