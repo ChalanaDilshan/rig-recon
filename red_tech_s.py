@@ -116,10 +116,10 @@ class RedtechFullCrawler:
                         price = match.group(0) if match else "N/A"
 
                     # 3. Product URL
-                    link_el = card.select_one("a[href]")
-                    product_url = urljoin(BASE_URL, link_el["href"]).split("?")[0] if link_el else "N/A"
+                    link_el = card.select_one("a.product-loop-title, a.woocommerce-LoopProduct-link, h2 a, h3 a, a[href*='/product/']")
+                    product_url = urljoin(BASE_URL, link_el["href"]).split("?")[0] if (link_el and link_el.get("href")) else "N/A"
 
-                    if product_url in self.seen_product_urls:
+                    if not link_el or product_url == "N/A" or product_url in self.seen_product_urls:
                         continue
 
                     # 4. Stock Status

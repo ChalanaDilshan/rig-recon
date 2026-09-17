@@ -89,11 +89,11 @@ SCRAPER_REGISTRY: Dict[str, Dict[str, Any]] = {
     "redtech": {
         "name": "Red Tech",
         "module": "scrapers.redtech",
-        "type": "Playwright Woodmart",
-        "engine": "Playwright Chromium",
+        "type": "Requests / SSR",
+        "engine": "Requests / BeautifulSoup",
         "url": "https://redtech.lk",
-        "csv_pattern": "redtech",
-        "description": "Redtech.lk Woodmart theme scraper"
+        "csv_pattern": "red_tech",
+        "description": "Redtech.lk Woodmart catalog scraper"
     },
     "gallelaptop": {
         "name": "Galle Laptop",

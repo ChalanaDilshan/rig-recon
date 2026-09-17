@@ -3,12 +3,12 @@
     "total_scrapers": 11,
     "operational_scrapers": 11,
     "operational_rate": 100.0,
-    "total_harvested_skus": 8483,
-    "total_raw_data_formatted": "1.60 MB",
-    "playwright_engines": 6,
-    "http_engines": 5,
+    "total_harvested_skus": 9515,
+    "total_raw_data_formatted": "1.81 MB",
+    "playwright_engines": 5,
+    "http_engines": 6,
     "schedule": "Twice Daily at 07:30 AM & 07:30 PM SLST (02:00 & 14:00 UTC)",
-    "last_sync": "2026-09-17 14:58:29"
+    "last_sync": "2026-09-17 22:04:39"
   },
   "scrapers": [
     {
@@ -27,16 +27,16 @@
         "in_stock_skus": 1726,
         "out_of_stock_skus": 1938,
         "in_stock_rate": 47.1,
-        "market_share_pct": 43.2,
+        "market_share_pct": 38.5,
         "categories_count": 10,
         "min_price_lkr": 150.0,
         "max_price_lkr": 1680000.0,
         "avg_price_lkr": 59597.0,
         "raw_file_count": 2,
-        "raw_total_bytes": 715671,
-        "raw_size_formatted": "698.9 KB",
-        "primary_raw_file": "mdcomputers_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "raw_total_bytes": 719350,
+        "raw_size_formatted": "702.5 KB",
+        "primary_raw_file": "mdcomputers_all_products.csv",
+        "last_scraped": "2026-09-16 22:37"
       }
     },
     {
@@ -55,16 +55,44 @@
         "in_stock_skus": 1008,
         "out_of_stock_skus": 863,
         "in_stock_rate": 53.9,
-        "market_share_pct": 22.1,
+        "market_share_pct": 19.7,
         "categories_count": 10,
         "min_price_lkr": 500.0,
         "max_price_lkr": 2399000.0,
         "avg_price_lkr": 112733.0,
         "raw_file_count": 5,
-        "raw_total_bytes": 397534,
-        "raw_size_formatted": "388.2 KB",
-        "primary_raw_file": "nanotek_gpus.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "raw_total_bytes": 399536,
+        "raw_size_formatted": "390.2 KB",
+        "primary_raw_file": "nanotek_all_products.csv",
+        "last_scraped": "2026-09-17 17:20"
+      }
+    },
+    {
+      "id": "redtech",
+      "name": "Red Tech",
+      "type": "Requests / SSR",
+      "engine": "Requests / BeautifulSoup",
+      "url": "https://redtech.lk",
+      "description": "Redtech.lk Woodmart catalog scraper",
+      "status": "Operational",
+      "status_badge": "healthy",
+      "health_score": 100,
+      "is_playwright": false,
+      "telemetry": {
+        "total_skus": 1042,
+        "in_stock_skus": 563,
+        "out_of_stock_skus": 479,
+        "in_stock_rate": 54.0,
+        "market_share_pct": 11.0,
+        "categories_count": 10,
+        "min_price_lkr": 440.0,
+        "max_price_lkr": 3255000.0,
+        "avg_price_lkr": 156753.0,
+        "raw_file_count": 1,
+        "raw_total_bytes": 207301,
+        "raw_size_formatted": "202.4 KB",
+        "primary_raw_file": "red_tech_all_products.csv",
+        "last_scraped": "2026-09-17 22:04"
       }
     },
     {
@@ -83,16 +111,16 @@
         "in_stock_skus": 892,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 10.5,
+        "market_share_pct": 9.4,
         "categories_count": 10,
         "min_price_lkr": 300.0,
         "max_price_lkr": 445900.0,
         "avg_price_lkr": 57639.0,
         "raw_file_count": 1,
-        "raw_total_bytes": 132553,
-        "raw_size_formatted": "129.4 KB",
+        "raw_total_bytes": 133457,
+        "raw_size_formatted": "130.3 KB",
         "primary_raw_file": "tulip_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-16 23:59"
       }
     },
     {
@@ -111,16 +139,16 @@
         "in_stock_skus": 147,
         "out_of_stock_skus": 535,
         "in_stock_rate": 21.6,
-        "market_share_pct": 8.0,
+        "market_share_pct": 7.2,
         "categories_count": 8,
         "min_price_lkr": 2500.0,
         "max_price_lkr": 1499000.0,
         "avg_price_lkr": 149490.0,
         "raw_file_count": 1,
-        "raw_total_bytes": 179874,
-        "raw_size_formatted": "175.7 KB",
+        "raw_total_bytes": 180699,
+        "raw_size_formatted": "176.5 KB",
         "primary_raw_file": "chamacomputers_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-16 23:08"
       }
     },
     {
@@ -139,16 +167,16 @@
         "in_stock_skus": 445,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 5.2,
+        "market_share_pct": 4.7,
         "categories_count": 10,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
         "avg_price_lkr": 0,
         "raw_file_count": 1,
-        "raw_total_bytes": 78958,
-        "raw_size_formatted": "77.1 KB",
+        "raw_total_bytes": 79404,
+        "raw_size_formatted": "77.5 KB",
         "primary_raw_file": "game_street_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-17 14:46"
       }
     },
     {
@@ -167,16 +195,16 @@
         "in_stock_skus": 339,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 4.0,
+        "market_share_pct": 3.6,
         "categories_count": 6,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
         "avg_price_lkr": 0,
         "raw_file_count": 1,
-        "raw_total_bytes": 80336,
-        "raw_size_formatted": "78.5 KB",
+        "raw_total_bytes": 80838,
+        "raw_size_formatted": "78.9 KB",
         "primary_raw_file": "pcbuilders_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-16 23:25"
       }
     },
     {
@@ -195,7 +223,7 @@
         "in_stock_skus": 186,
         "out_of_stock_skus": 46,
         "in_stock_rate": 80.2,
-        "market_share_pct": 2.7,
+        "market_share_pct": 2.4,
         "categories_count": 10,
         "min_price_lkr": 3500.0,
         "max_price_lkr": 1820000.0,
@@ -204,7 +232,7 @@
         "raw_total_bytes": 37282,
         "raw_size_formatted": "36.4 KB",
         "primary_raw_file": "techzone_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-17 20:25"
       }
     },
     {
@@ -223,7 +251,7 @@
         "in_stock_skus": 182,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 2.1,
+        "market_share_pct": 1.9,
         "categories_count": 9,
         "min_price_lkr": 850.0,
         "max_price_lkr": 346400.0,
@@ -232,7 +260,7 @@
         "raw_total_bytes": 29523,
         "raw_size_formatted": "28.8 KB",
         "primary_raw_file": "galle_laptop_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-17 18:08"
       }
     },
     {
@@ -251,16 +279,16 @@
         "in_stock_skus": 35,
         "out_of_stock_skus": 73,
         "in_stock_rate": 32.4,
-        "market_share_pct": 1.3,
+        "market_share_pct": 1.1,
         "categories_count": 10,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
         "avg_price_lkr": 0,
         "raw_file_count": 1,
-        "raw_total_bytes": 20854,
-        "raw_size_formatted": "20.4 KB",
+        "raw_total_bytes": 20963,
+        "raw_size_formatted": "20.5 KB",
         "primary_raw_file": "redlinetech_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
+        "last_scraped": "2026-09-16 23:52"
       }
     },
     {
@@ -279,44 +307,16 @@
         "in_stock_skus": 52,
         "out_of_stock_skus": 6,
         "in_stock_rate": 89.7,
-        "market_share_pct": 0.7,
+        "market_share_pct": 0.6,
         "categories_count": 5,
         "min_price_lkr": 1000.0,
         "max_price_lkr": 285000.0,
         "avg_price_lkr": 40681.0,
         "raw_file_count": 1,
-        "raw_total_bytes": 9348,
-        "raw_size_formatted": "9.1 KB",
+        "raw_total_bytes": 9407,
+        "raw_size_formatted": "9.2 KB",
         "primary_raw_file": "mskcomputers_all_products.csv",
-        "last_scraped": "2026-09-17 14:58"
-      }
-    },
-    {
-      "id": "redtech",
-      "name": "Red Tech",
-      "type": "Playwright Woodmart",
-      "engine": "Playwright Chromium",
-      "url": "https://redtech.lk",
-      "description": "Redtech.lk Woodmart theme scraper",
-      "status": "Operational",
-      "status_badge": "healthy",
-      "health_score": 95,
-      "is_playwright": true,
-      "telemetry": {
-        "total_skus": 10,
-        "in_stock_skus": 10,
-        "out_of_stock_skus": 0,
-        "in_stock_rate": 100.0,
-        "market_share_pct": 0.1,
-        "categories_count": 5,
-        "min_price_lkr": 3600.0,
-        "max_price_lkr": 165000.0,
-        "avg_price_lkr": 73678.0,
-        "raw_file_count": 0,
-        "raw_total_bytes": 0,
-        "raw_size_formatted": "0 B",
-        "primary_raw_file": "None",
-        "last_scraped": "No Data"
+        "last_scraped": "2026-09-16 23:20"
       }
     }
   ]
