@@ -4,9 +4,16 @@ Engine: curl_cffi (impersonate="chrome120") + BeautifulSoup with Playwright fall
 Pagination: /page/{n}/
 """
 
+import sys
+import os
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
-from scrapers.base_scraper import BaseScraper
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from scrapers.base_scraper import BaseScraper
+except ModuleNotFoundError:
+    from base_scraper import BaseScraper
 
 try:
     from curl_cffi import requests as c_requests

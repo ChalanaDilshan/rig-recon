@@ -1,22 +1,31 @@
 """
 scrapers/redtech.py - Red Tech Modular Scraper
-Engine: Playwright (WooCommerce / Woodmart Theme with Cloudflare challenge handling)
+Engine: Playwright (WooCommerce / Woodmart Theme)
 Selectors: .product-grid-item, .wd-entities-title
 """
 
+import sys
+import os
 import re
 import time
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
 from playwright.sync_api import sync_playwright
-from scrapers.base_scraper import BaseScraper
+
+# Resilient import allowing direct execution from scrapers/ or workspace root
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+try:
+    from scrapers.base_scraper import BaseScraper
+except ModuleNotFoundError:
+    from base_scraper import BaseScraper
 
 CATEGORIES = [
-    ("GPU", "https://redtech.lk/product-category/pc-components/gpu/"),
-    ("CPU", "https://redtech.lk/product-category/pc-components/processors/"),
+    ("GPU", "https://redtech.lk/product-category/pc-components/gpu/consumer-graphic-cards/"),
+    ("CPU", "https://redtech.lk/product-category/pc-components/processors/intel-processors/"),
+    ("CPU", "https://redtech.lk/product-category/pc-components/processors/amd-processors/"),
     ("Motherboard", "https://redtech.lk/product-category/pc-components/motherboard/"),
-    ("RAM", "https://redtech.lk/product-category/pc-components/ram/"),
-    ("Storage", "https://redtech.lk/product-category/pc-components/storage/"),
+    ("RAM", "https://redtech.lk/product-category/pc-components/ram/desktop-ram/"),
+    ("Storage", "https://redtech.lk/product-category/pc-components/storage/internal-ssd/"),
     ("PSU", "https://redtech.lk/product-category/pc-components/power-supply/"),
     ("Casing", "https://redtech.lk/product-category/pc-components/casing/"),
     ("Monitor", "https://redtech.lk/product-category/monitors/"),
@@ -29,7 +38,7 @@ class RedTechScraper(BaseScraper):
         super().__init__(store_name="Red Tech", base_url="https://redtech.lk")
         self.headless = headless
 
-    def scrape(self, max_pages_per_category: int = 6):
+    def scrape(self, max_pages_per_category: int = 4):
         print(f"\n[+] Starting Red Tech Scraper...")
 
         with sync_playwright() as p:
@@ -76,6 +85,10 @@ class RedTechScraper(BaseScraper):
                             price = price_el.get_text(strip=True) if price_el else "N/A"
                             url = urljoin(self.base_url, link_el["href"]).split("?")[0] if link_el else ""
 
+                            # Skip sub-category cards that lack prices
+                            if not price_el or price == "N/A":
+                                continue
+
                             card_classes = " ".join(card.get("class", []))
                             card_text = card.get_text(separator=" ", strip=True).lower()
                             if "out-of-stock" in card_classes or "out of stock" in card_text:
@@ -104,10 +117,10 @@ class RedTechScraper(BaseScraper):
         return self.save_csv()
 
 
-def run(max_pages: int = 6, headless: bool = True):
+def run(max_pages: int = 4, headless: bool = True):
     scraper = RedTechScraper(headless=headless)
     return scraper.scrape(max_pages_per_category=max_pages)
 
 
 if __name__ == "__main__":
-    run(max_pages=1)
+    run(max_pages=2)
