@@ -23,8 +23,31 @@ STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
 app = FastAPI(title="Sri Lanka PC Hardware Market Intelligence")
 
 # ---------------------------------------------------------------------------
+# Network & IP Utilities:
+# ---------------------------------------------------------------------------
+LOOPBACK_IPS = {"127.0.0.1", "::1", "localhost", "testclient"}
+
+
+def get_client_ip(request: Request) -> str:
+    """Extracts client IP, respecting X-Forwarded-For if deployed behind a proxy."""
+    forwarded = request.headers.get("x-forwarded-for")
+    if forwarded:
+        # First entry in X-Forwarded-For is the originating client IP
+        return forwarded.split(",")[0].strip()
+    if request.client and request.client.host:
+        return request.client.host
+    return "unknown"
+
+
+def escape_like(s: str) -> str:
+    r"""Escapes SQLite LIKE wildcards (% and _) as well as the escape character (\)."""
+    return s.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+
+
+# ---------------------------------------------------------------------------
 # Security & CORS Hardening:
-# Strict origin parsing from env, credentials explicitly False for wildcard compliance.
+# Strict origin parsing from env; credentials explicitly False to guarantee
+# compliance with W3C / fetch standards (wildcard cannot combine with credentials=True).
 # ---------------------------------------------------------------------------
 raw_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:8000,http://127.0.0.1:8000,http://localhost:3000")
 allowed_origins_list = [o.strip() for o in raw_origins.split(",") if o.strip()]
@@ -33,17 +56,20 @@ is_wildcard = "*" in allowed_origins_list
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"] if is_wildcard else allowed_origins_list,
-    allow_credentials=False,  # Spec compliant: cannot combine wildcard with credentials=True
+    allow_credentials=False,  # Enforce False: prevents illegal wildcard + credential combination
     allow_methods=["GET", "POST", "OPTIONS"],
     allow_headers=["*"],
 )
 
 # ---------------------------------------------------------------------------
 # Rate Limiting & Concurrency State:
-# In-memory sliding window rate limiter per IP, and concurrency lock for /api/trigger-merge.
+# Sliding-window rate limiter per IP with automatic memory cleanup to prevent memory exhaustion,
+# plus concurrency locks for database synchronization.
 # ---------------------------------------------------------------------------
 rate_limit_records = defaultdict(lambda: defaultdict(list))
 rate_limit_lock = threading.Lock()
+last_rate_limit_cleanup: float = 0.0
+RATE_LIMIT_CLEANUP_INTERVAL = 300.0  # Prune every 5 minutes
 
 merge_lock = threading.Lock()
 last_merge_timestamp: float = 0.0
@@ -52,9 +78,33 @@ ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
 
 
 def check_rate_limit(ip: str, bucket: str, limit: int, window_seconds: int = 60) -> bool:
-    """Sliding window rate limit checker per IP."""
+    """
+    Sliding window rate limit checker per IP with memory leak prevention.
+    Periodically purges inactive IPs from rate_limit_records.
+    """
+    global last_rate_limit_cleanup
     now = time.time()
     with rate_limit_lock:
+        # Memory cleanup: purge stale IP buckets if interval passed or table exceeds 1000 IPs
+        if now - last_rate_limit_cleanup > RATE_LIMIT_CLEANUP_INTERVAL or len(rate_limit_records) > 1000:
+            stale_cutoff = now - 600.0  # Inactive for > 10 minutes
+            stale_ips = []
+            for recorded_ip, buckets in list(rate_limit_records.items()):
+                empty_buckets = []
+                for b_name, timestamps in list(buckets.items()):
+                    fresh = [t for t in timestamps if t > stale_cutoff]
+                    if not fresh:
+                        empty_buckets.append(b_name)
+                    else:
+                        buckets[b_name] = fresh
+                for b_name in empty_buckets:
+                    del buckets[b_name]
+                if not buckets:
+                    stale_ips.append(recorded_ip)
+            for s_ip in stale_ips:
+                del rate_limit_records[s_ip]
+            last_rate_limit_cleanup = now
+
         timestamps = rate_limit_records[ip][bucket]
         cutoff = now - window_seconds
         valid_timestamps = [t for t in timestamps if t > cutoff]
@@ -68,20 +118,40 @@ def check_rate_limit(ip: str, bucket: str, limit: int, window_seconds: int = 60)
 
 @app.middleware("http")
 async def rate_limiting_middleware(request: Request, call_next):
-    """Protects all API endpoints from abusive traffic and DoS attacks."""
-    if request.url.path.startswith("/api/"):
-        client_ip = request.client.host if request.client else "unknown"
+    """Protects all application and API endpoints from abusive traffic and DoS attacks."""
+    client_ip = get_client_ip(request)
+    path = request.url.path
 
+    # Root / UI rate limit: 60 req/min
+    if path in ("/", "/index.html"):
+        if not check_rate_limit(client_ip, "ui_root", limit=60, window_seconds=60):
+            return JSONResponse(
+                status_code=429,
+                content={"error": "Too Many Requests", "detail": "UI request limit exceeded. Please wait a moment."},
+                headers={"Retry-After": "30"}
+            )
+
+    # API endpoints rate limiting
+    if path.startswith("/api/"):
         # General API limit: 120 req/min
         if not check_rate_limit(client_ip, "general_api", limit=120, window_seconds=60):
             return JSONResponse(
                 status_code=429,
-                content={"error": "Too Many Requests", "detail": "Rate limit exceeded. Please wait a moment."},
+                content={"error": "Too Many Requests", "detail": "API rate limit exceeded. Please wait a moment."},
                 headers={"Retry-After": "60"}
             )
 
-        # Specific limit for heavy LIKE searches (/api/compare): 45 req/min
-        if request.url.path.startswith("/api/compare"):
+        # Specific limit for product search: 60 req/min
+        if path.startswith("/api/products"):
+            if not check_rate_limit(client_ip, "products_search", limit=60, window_seconds=60):
+                return JSONResponse(
+                    status_code=429,
+                    content={"error": "Too Many Requests", "detail": "Product catalog search rate limit reached. Please wait."},
+                    headers={"Retry-After": "30"}
+                )
+
+        # Specific limit for heavy LIKE comparison searches (/api/compare): 45 req/min
+        if path.startswith("/api/compare"):
             if not check_rate_limit(client_ip, "compare_api", limit=45, window_seconds=60):
                 return JSONResponse(
                     status_code=429,
@@ -182,12 +252,12 @@ def get_products(
     params = []
 
     if q:
-        # Sanitize length and bound max keywords to protect database performance
+        # Sanitize length, escape SQL LIKE wildcards (% and _), and bound max keywords
         sanitized_q = q[:100].strip()
         keywords = sanitized_q.split()[:8]
         for kw in keywords:
-            conditions.append("Title LIKE ?")
-            params.append(f"%{kw}%")
+            conditions.append("Title LIKE ? ESCAPE '\\'")
+            params.append(f"%{escape_like(kw)}%")
 
     if category and category != "All":
         conditions.append("Category = ?")
@@ -257,11 +327,11 @@ def compare_models(
     conn = get_db()
     cursor = conn.cursor()
 
-    # Sanitize and bound keywords
+    # Sanitize, escape SQL LIKE wildcards (% and _), and bound keywords
     sanitized_model = model[:80].strip()
     keywords = sanitized_model.split()[:6]
-    conditions = ["Title LIKE ?"] * len(keywords)
-    params = [f"%{kw}%" for kw in keywords]
+    conditions = ["Title LIKE ? ESCAPE '\\'"] * len(keywords)
+    params = [f"%{escape_like(kw)}%" for kw in keywords]
 
     if category and category != "All":
         conditions.append("Category = ?")
@@ -333,29 +403,46 @@ def trigger_merge(
     """
     Triggers cleaner + merger to refresh database.
     Hardened against DoS with:
-    1. Concurrency lock (prevents overlapping builds).
-    2. Minimum cooldown period between runs.
-    3. Per-IP rate limiting.
-    4. Optional ADMIN_API_KEY verification for production security.
+    1. Localhost-only restriction for unauthenticated calls (rejects remote calls if no ADMIN_API_KEY).
+    2. Mandatory ADMIN_API_KEY verification for remote/external requests.
+    3. Concurrency lock (prevents overlapping builds).
+    4. Minimum cooldown period between runs.
+    5. Per-IP rate limiting (2 requests per 5 minutes).
     """
     global last_merge_timestamp
-    client_ip = request.client.host if request.client else "unknown"
+    client_ip = get_client_ip(request)
 
-    # Rate limiting on merge endpoint: max 2 requests per 5 minutes per IP
+    # 1. Access Control: Loopback vs Remote
+    is_loopback = client_ip in LOOPBACK_IPS
+
+    if not is_loopback:
+        # Remote request - strictly require configured ADMIN_API_KEY
+        if not ADMIN_API_KEY:
+            raise HTTPException(
+                status_code=403,
+                detail="Forbidden: Master database compilation is restricted to localhost. Set ADMIN_API_KEY to allow authenticated remote rebuilds."
+            )
+        if x_admin_key != ADMIN_API_KEY:
+            raise HTTPException(
+                status_code=401,
+                detail="Unauthorized: Valid X-Admin-Key header is required for remote database compilation."
+            )
+    else:
+        # Localhost request: if key was provided and ADMIN_API_KEY is set, ensure it is not invalid
+        if ADMIN_API_KEY and x_admin_key and x_admin_key != ADMIN_API_KEY:
+            raise HTTPException(
+                status_code=401,
+                detail="Unauthorized: Invalid X-Admin-Key provided."
+            )
+
+    # 2. Rate limiting on merge endpoint: max 2 requests per 5 minutes per IP
     if not check_rate_limit(client_ip, "merge_api", limit=2, window_seconds=300):
         raise HTTPException(
             status_code=429,
             detail="Rate limit exceeded. Database compilation can only be requested up to twice every 5 minutes."
         )
 
-    # If ADMIN_API_KEY is configured in the environment, require authentication
-    if ADMIN_API_KEY and x_admin_key != ADMIN_API_KEY:
-        raise HTTPException(
-            status_code=401,
-            detail="Unauthorized: Valid X-Admin-Key required to trigger database compilation."
-        )
-
-    # Check cooldown
+    # 3. Check cooldown
     now = time.time()
     if now - last_merge_timestamp < MERGE_COOLDOWN_SECONDS:
         remaining = int(MERGE_COOLDOWN_SECONDS - (now - last_merge_timestamp))

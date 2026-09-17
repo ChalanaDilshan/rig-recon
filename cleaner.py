@@ -53,6 +53,28 @@ STORE_MAPPINGS = {
     "galle": "Galle Laptop"
 }
 
+# ---------------------------------------------------------------------------
+# Precompiled Regular Expressions for Performance and ReDoS Protection:
+# Prevents repeated regex parsing and eliminates catastrophic backtracking on untrusted scraped text.
+# ---------------------------------------------------------------------------
+RE_PRICE_INSTALLMENT = re.compile(r"\bor\s+\d+\s*[xX]", re.IGNORECASE)
+RE_NUM_EXTRACT = re.compile(r"[\d,]+(?:\.\d{1,2})?")
+
+RE_LEAKED_CART_PRICE = re.compile(r"[\d,]+(?:\.\d{2})?\s*\+\s*Add to Cart.*$", re.IGNORECASE)
+RE_LEAKED_CART = re.compile(r"\bAdd to Cart\b.*$", re.IGNORECASE)
+RE_SKU_PREFIX = re.compile(r"^\d{4,6}\s*-\s*")
+RE_STOCK_BADGE = re.compile(r"^(In Stock|Out of Stock|Sale|New|Hot|Special Offer|Featured)\s*[-:]?\s*", re.IGNORECASE)
+RE_WHITESPACE = re.compile(r"\s+")
+
+RE_PC_INDICATOR = re.compile(r'\b(rtx|gtx|rx\s*\d{3,4})\b.*?\b(pc|desktop)\b', re.IGNORECASE)
+RE_MOBO_CHIPSET = re.compile(r"\b(b550|b650|b760|b660|z790|z690|x670|x870|a520|a620|h610|h510)\b", re.IGNORECASE)
+RE_SCREEN_SIZE = re.compile(r'\b(13\.3|14|14\.0|15\.6|16|16\.0|16\.1|17|17\.3|18)\s*(["\'”″]|inch|-inch|\s*fhd|\s*qhd|\s*wqxga|\s*oled|\s*ips)\b', re.IGNORECASE)
+RE_MOBILE_CPU = re.compile(r'\b(\d{4,5}(h|hx)|core\s*7\s*240h|ultra\s*[579][-\s]\d{3}h|ryzen\s*[3579]\s*[-]?\d{4}(hs|hx|u)|ryzen\s*ai\s*9\s*hx\d{3}|8845hs|8945hs|8645hs|7840hs|7940hs|7735hs|7535hs|7445hs)\b', re.IGNORECASE)
+RE_MOBILE_GPU = re.compile(r'\b(rtx\s*4070\s*8gb|rtx4070\s*8gb|rtx\s*4050|rtx4050|rtx\s*3050\s*4gb|rtx3050\s*4gb|rtx\s*2050|rtx2050|rtx\s*5050)\b', re.IGNORECASE)
+RE_GPU_MODEL = re.compile(r"\b(rtx|gtx|radeon rx|geforce|arc a)\s*\d{3,4}", re.IGNORECASE)
+RE_RAM_SPECS_1 = re.compile(r"\b(16gb|8gb|32gb|64gb|4gb)\s*(ddr4|ddr5|ddr3)\b", re.IGNORECASE)
+RE_RAM_SPECS_2 = re.compile(r"\b(ddr4|ddr5|ddr3)\s*(16gb|8gb|32gb|64gb|4gb)\b", re.IGNORECASE)
+
 
 def clean_price(raw_price: Optional[str]) -> Tuple[Optional[float], str]:
     """
@@ -72,10 +94,10 @@ def clean_price(raw_price: Optional[str]) -> Tuple[Optional[float], str]:
         return None, "N/A"
 
     # Step 1: Remove installment noise like 'or 3 XRs:186.67with'
-    cleaned = re.split(r"\bor\s+\d+\s*[xX]", raw_str, flags=re.IGNORECASE)[0].strip()
+    cleaned = RE_PRICE_INSTALLMENT.split(raw_str)[0].strip()
 
     # Step 2: Handle concatenated prices -> extract first valid number
-    num_matches = re.findall(r"[\d,]+(?:\.\d{1,2})?", cleaned)
+    num_matches = RE_NUM_EXTRACT.findall(cleaned)
 
     for match in num_matches:
         digits_only = match.replace(",", "")
@@ -100,14 +122,15 @@ def clean_title(title: Optional[str], raw_category: Optional[str] = None) -> str
     if not title:
         return "Unknown Product"
 
-    cleaned = str(title).strip()
+    # Truncate untrusted input string to safe bound (500 chars)
+    cleaned = str(title).strip()[:500]
 
     # Remove leaked trailing price + Add to Cart text
-    cleaned = re.sub(r"[\d,]+(?:\.\d{2})?\s*\+\s*Add to Cart.*$", "", cleaned, flags=re.IGNORECASE).strip()
-    cleaned = re.sub(r"\bAdd to Cart\b.*$", "", cleaned, flags=re.IGNORECASE).strip()
+    cleaned = RE_LEAKED_CART_PRICE.sub("", cleaned).strip()
+    cleaned = RE_LEAKED_CART.sub("", cleaned).strip()
 
     # Remove leading SKU codes like '21279-'
-    cleaned = re.sub(r"^\d{4,6}\s*-\s*", "", cleaned).strip()
+    cleaned = RE_SKU_PREFIX.sub("", cleaned).strip()
 
     # Remove repeated category prefixes
     prefixes_to_strip = [
@@ -123,15 +146,10 @@ def clean_title(title: Optional[str], raw_category: Optional[str] = None) -> str
                 break
 
     # Remove leading stock/promo badges
-    cleaned = re.sub(
-        r"^(In Stock|Out of Stock|Sale|New|Hot|Special Offer|Featured)\s*[-:]?\s*",
-        "",
-        cleaned,
-        flags=re.IGNORECASE
-    ).strip()
+    cleaned = RE_STOCK_BADGE.sub("", cleaned).strip()
 
     # Clean double spaces
-    cleaned = re.sub(r"\s+", " ", cleaned).strip()
+    cleaned = RE_WHITESPACE.sub(" ", cleaned).strip()
 
     return cleaned if cleaned else "Unknown Product"
 
@@ -143,8 +161,9 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
     (RAM, CPU, GPU, Storage) due to listed specifications, and prevents monitors/motherboards/GPUs
     from being misclassified as laptops.
     """
-    raw_cat = str(raw_category or "").strip().lower()
-    t = str(title or "").strip().lower()
+    raw_cat = str(raw_category or "").strip().lower()[:100]
+    # Bound untrusted title string length (300 chars) to prevent ReDoS on unconstrained text
+    t = str(title or "").strip().lower()[:300]
 
     # 1. System Accessories & Parts Exclusion (e.g., GPU Holders, Laptop Bags, Cables, Mounts)
     accessory_markers = [
@@ -172,7 +191,7 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
     is_pc_system = (
         any(m in t for m in prebuilt_indicators) or
         (t.endswith(" pc") and any(k in t for k in ["ryzen", "core", "intel", "amd", "rtx", "gtx", "gen"])) or
-        bool(re.search(r'\b(rtx|gtx|rx\s*\d{3,4})\b.*?\b(pc|desktop)\b', t))
+        bool(RE_PC_INDICATOR.search(t))
     )
     is_pc_excluded_part = any(comp in t for comp in [
         "casing", "pc case", "chassis", "power supply", "psu", "for pc build only",
@@ -195,7 +214,7 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
     is_mobo = any(m in raw_cat for m in ["motherboard", "motherboards", "mainboard"]) or any(m in t for m in ["motherboard", "mainboard", "mobo"])
     if is_mobo and not has_laptop_chassis_word:
         return "Motherboard"
-    if re.search(r"\b(b550|b650|b760|b660|z790|z690|x670|x870|a520|a620|h610|h510)\b", t) and any(
+    if RE_MOBO_CHIPSET.search(t) and any(
         x in t for x in ["wifi", "plus", "pro", "gaming", "aorus", "tomahawk", "steel legend", "prime", "ax"]
     ) and not has_laptop_chassis_word:
         return "Motherboard"
@@ -236,15 +255,15 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
         return "Laptop"
 
     # Mobile Screen Size Indicators: e.g. 15.6", 14", 16", 17.3", 18", 15.6 inch, FHD 144Hz, WQXGA
-    has_screen = bool(re.search(r'\b(13\.3|14|14\.0|15\.6|16|16\.0|16\.1|17|17\.3|18)\s*(["\'”″]|inch|-inch|\s*fhd|\s*qhd|\s*wqxga|\s*oled|\s*ips)\b', t))
+    has_screen = bool(RE_SCREEN_SIZE.search(t))
     has_display_phrase = any(x in t for x in ["fhd ips", "wqxga 240hz", "wqxga 165hz", "oled 3k", "oled 240hz", "fhd 144hz", "144hz display", "ips display", "thin bezel display"])
 
     # Mobile CPU Processor Suffixes: e.g. 13620H, 14650HX, 8845HS, 8945HS, 7735HS, Ultra 7, Ultra 9
-    has_mobile_cpu = bool(re.search(r'\b(\d{4,5}(h|hx)|core\s*7\s*240h|ultra\s*[579][-\s]\d{3}h|ryzen\s*[3579]\s*[-]?\d{4}(hs|hx|u)|ryzen\s*ai\s*9\s*hx\d{3}|8845hs|8945hs|8645hs|7840hs|7940hs|7735hs|7535hs|7445hs)\b', t))
+    has_mobile_cpu = bool(RE_MOBILE_CPU.search(t))
 
     # Explicit Mobile-Only GPU designations: e.g. RTX 4070 8GB mobile, RTX 4050, RTX 3050 4GB, RTX 2050, RTX 5050
     # Note: RTX 3050 6GB is a desktop card, so only 4GB is mobile-only.
-    has_mobile_gpu = bool(re.search(r'\b(rtx\s*4070\s*8gb|rtx4070\s*8gb|rtx\s*4050|rtx4050|rtx\s*3050\s*4gb|rtx3050\s*4gb|rtx\s*2050|rtx2050|rtx\s*5050)\b', t))
+    has_mobile_gpu = bool(RE_MOBILE_GPU.search(t))
 
     # Combined system specs (RAM + NVMe/SSD + CPU/GPU)
     has_multi_spec = (
@@ -276,7 +295,7 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
         return "GPU"
     if any(m in t for m in ["graphics card", "graphic card", "video card", "vga card"]):
         return "GPU"
-    if re.search(r"\b(rtx|gtx|radeon rx|geforce|arc a)\s*\d{3,4}", t):
+    if RE_GPU_MODEL.search(t):
         if not any(x in t for x in ["holder", "bracket", "cooler", "waterblock", "riser", "support"]):
             return "GPU"
 
@@ -295,7 +314,7 @@ def normalize_category(raw_category: Optional[str], title: Optional[str] = None)
         return "RAM"
     if any(m in t for m in ["desktop memory", "dimm ddr", "ddr4 ram", "ddr5 ram", "ddr3 ram", "rgb ram", "udimm", "u-dimm"]):
         return "RAM"
-    if re.search(r"\b(16gb|8gb|32gb|64gb|4gb)\s*(ddr4|ddr5|ddr3)\b", t) or re.search(r"\b(ddr4|ddr5|ddr3)\s*(16gb|8gb|32gb|64gb|4gb)\b", t):
+    if RE_RAM_SPECS_1.search(t) or RE_RAM_SPECS_2.search(t):
         return "RAM"
     if any(brand in t for brand in ["fury beast", "corsair vengeance", "xpg lancer", "t-force delta", "g.skill ripjaws", "trident z"]):
         if not any(comp in t for comp in ["casing", "cooler", "psu", "motherboard", "ssd"]):
