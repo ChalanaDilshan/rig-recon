@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lanka PC Intel - Sri Lanka Hardware Market Pricing Intelligence</title>
+  <meta name="description" content="Executive B2B Competitor Pricing Intelligence & Scraping Portal for Sri Lankan PC Hardware Stores." />
+
+  <!-- Google Fonts: Outfit (Headings), Inter (Body), JetBrains Mono (Code/Prices) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Vanilla CSS Stylesheet -->
+  <link rel="stylesheet" href="/static/css/style.css" />
+</head>
+<body>
+  <!-- Ambient Animated Lighting & Grid Background -->
+  <div class="ambient-background" aria-hidden="true">
+    <div class="ambient-orb orb-1"></div>
+    <div class="ambient-orb orb-2"></div>
+    <div class="ambient-orb orb-3"></div>
+    <div class="ambient-grid"></div>
+  </div>
+
+  <div class="app-wrapper">
+    <!-- Sticky Glassmorphic Header -->
+    <header class="app-header">
+      <div class="header-inner">
+        <a href="/" class="brand-section" title="Lanka PC Intelligence">
+          <div class="brand-logo-icon">
+            <div class="logo-inner">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="18" height="18" x="3" y="3" rx="2"/>
+                <path d="m9 8 3 3-3 3"/>
+                <path d="m15 8-3 3 3 3"/>
+              </svg>
+            </div>
+          </div>
+          <div class="brand-details">
+            <h1 class="brand-title">LANKA PC INTEL</h1>
+            <div class="brand-subtitle">
+              <span>Sri Lanka Hardware Pricing Intelligence</span>
+              <span>•</span>
+              <span id="systemStatusBadge" class="status-badge">
+                <span class="pulsing-dot"></span>
+                <span>Live Intelligence</span>
+              </span>
+            </div>
+          </div>
+        </a>
+
+        <!-- Header Actions -->
+        <div class="header-actions">
+          <button id="syncDbBtn" class="btn btn-glass" title="Recompile dataset from scraped store CSVs">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+            Sync Database
+          </button>
+          <a href="#compare" class="btn btn-primary" onclick="window.switchTab('compare')">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M21 3 14 10"/><path d="M3 21l7-7"/></svg>
+            Price Comparison
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+      <!-- Executive KPI Cards -->
+      <section class="kpi-grid" aria-label="Executive Metrics">
+        <div class="kpi-card" style="--border-color: #00f2fe; --icon-bg: rgba(0, 242, 254, 0.12); --icon-color: #00f2fe;">
+          <div class="kpi-top">
+            <span class="kpi-label">Total Indexed SKUs</span>
+            <div class="kpi-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span id="kpiTotalSkus" class="kpi-value">8,049</span>
+            <span class="kpi-unit">Products</span>
+          </div>
+          <div class="kpi-footer">
+            <span class="trend-pill trend-up">Active Index</span> Across 8 major Sri Lankan vendors
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--border-color: #38bdf8; --icon-bg: rgba(56, 189, 248, 0.12); --icon-color: #38bdf8;">
+          <div class="kpi-top">
+            <span class="kpi-label">Monitored Vendors</span>
+            <div class="kpi-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span id="kpiActiveStores" class="kpi-value">8</span>
+            <span class="kpi-unit">Stores</span>
+          </div>
+          <div class="kpi-footer">
+            <span>Nanotek, MD, Chama, Redline, Tulip +</span>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--border-color: #10b981; --icon-bg: rgba(16, 185, 129, 0.12); --icon-color: #10b981;">
+          <div class="kpi-top">
+            <span class="kpi-label">In-Stock Rate</span>
+            <div class="kpi-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span id="kpiInStockRate" class="kpi-value">73.2%</span>
+            <span class="kpi-unit">Availability</span>
+          </div>
+          <div class="progress-track">
+            <div id="kpiStockProgress" class="progress-bar" style="width: 73.2%;"></div>
+          </div>
+        </div>
+
+        <div class="kpi-card" style="--border-color: #818cf8; --icon-bg: rgba(129, 140, 248, 0.12); --icon-color: #818cf8;">
+          <div class="kpi-top">
+            <span class="kpi-label">Categories Tracked</span>
+            <div class="kpi-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            </div>
+          </div>
+          <div class="kpi-value-row">
+            <span id="kpiCategories" class="kpi-value">14</span>
+            <span class="kpi-unit">Hardware Classes</span>
+          </div>
+          <div class="kpi-footer">
+            <span>GPUs, CPUs, RAM, Storage, Monitors</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tab Navigation Bar -->
+      <nav class="tabs-nav-wrapper" aria-label="Portal Navigation">
+        <div class="tabs-group">
+          <button class="tab-btn active" data-tab="catalog">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M9 21V9"/></svg>
+            <span>Live Catalog</span>
+            <span class="tab-count">8K</span>
+          </button>
+
+          <button class="tab-btn" data-tab="compare">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5"/><path d="M8 21H3v-5"/><path d="M21 3 14 10"/><path d="M3 21l7-7"/></svg>
+            <span>Price Comparison</span>
+          </button>
+
+          <button class="tab-btn" data-tab="stores">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            <span>Store Intelligence</span>
+          </button>
+
+          <button class="tab-btn" data-tab="categories">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+            <span>Category Index</span>
+          </button>
+
+          <button class="tab-btn" data-tab="scrapers">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <span>Scraper Hub</span>
+          </button>
+        </div>
+
+        <div class="tab-meta-controls">
+          <button id="viewGridBtn" class="view-toggle-btn active" title="Grid View">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+          </button>
+          <button id="viewTableBtn" class="view-toggle-btn" title="Table View">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg>
+          </button>
+        </div>
+      </nav>
+
+      <!-- ================================================================== -->
+      <!-- TAB 1: Live Market Catalog -->
+      <!-- ================================================================== -->
+      <section id="tab-catalog" class="tab-content active">
+        <!-- Search & Filters Toolbar -->
+        <div class="catalog-toolbar">
+          <div class="search-main-row">
+            <div class="search-input-box">
+              <span class="search-icon-decor">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input id="catalogSearch" type="text" class="search-input" placeholder="Search 8,000+ products (e.g. RTX 4070, Ryzen 7600, Corsair 32GB, B650)..." />
+              <span class="search-key-hint">/</span>
+            </div>
+
+            <select id="storeFilter" class="filter-select" style="min-width: 190px;">
+              <option value="All">All Competitor Stores</option>
+            </select>
+
+            <select id="categoryFilter" class="filter-select" style="min-width: 190px;">
+              <option value="All">All Hardware Categories</option>
+            </select>
+
+            <button id="exportCsvBtn" class="btn btn-glass" title="Export current results as CSV">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export CSV
+            </button>
+          </div>
+
+          <!-- Secondary Filters Row -->
+          <div class="filter-pills-row">
+            <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase;">Stock:</span>
+            <div class="stock-toggle-group">
+              <button class="stock-toggle-btn active" data-val="All">All Items</button>
+              <button class="stock-toggle-btn" data-val="In Stock">In Stock Only</button>
+              <button class="stock-toggle-btn" data-val="Out of Stock">Out of Stock</button>
+            </div>
+
+            <span style="font-size: 0.76rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; margin-left: 0.75rem;">Sort:</span>
+            <select id="sortSelect" class="filter-select" style="height: 34px;">
+              <option value="price_asc">Price: Low to High</option>
+              <option value="price_desc">Price: High to Low</option>
+              <option value="title_asc">Name: A to Z</option>
+              <option value="title_desc">Name: Z to A</option>
+            </select>
+
+            <button id="resetFiltersBtn" class="reset-filters-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/></svg>
+              Reset Filters
+            </button>
+          </div>
+        </div>
+
+        <!-- Catalog Header Results Summary -->
+        <div class="catalog-header-bar">
+          <div id="resultsCount" class="results-count-text">
+            Loading hardware catalog...
+          </div>
+        </div>
+
+        <!-- Dynamic Product Display: Grid View -->
+        <div id="catalogGrid" class="catalog-grid"></div>
+
+        <!-- Dynamic Product Display: Table View -->
+        <div id="catalogTableContainer" class="catalog-table-wrapper" style="display: none;">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Vendor</th>
+                <th>Hardware Product Name</th>
+                <th>Stock Status</th>
+                <th style="text-align: right;">Price (LKR)</th>
+                <th style="text-align: center;">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="catalogTableBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Dynamic Pagination Controls -->
+        <div id="paginationWrapper" class="pagination-row"></div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 2: Cross-Store Price Comparison Matrix -->
+      <!-- ================================================================== -->
+      <section id="tab-compare" class="tab-content">
+        <div class="compare-container">
+          <div class="compare-hero-card">
+            <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; margin-bottom: 0.35rem;">
+              Cross-Store Price Comparison Engine
+            </h2>
+            <p style="font-size: 0.86rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+              Instantly compare identical GPU, CPU, and Component SKUs across all 8 vendors to pinpoint the lowest price and maximum market spread.
+            </p>
+
+            <div class="compare-search-row">
+              <div class="search-input-box" style="flex: 1;">
+                <span class="search-icon-decor">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                </span>
+                <input id="compareInput" type="text" class="search-input" value="RTX 4060" placeholder="Enter hardware model to compare (e.g. RTX 4060, RTX 4070, 7800X3D, i5 13400)..." />
+              </div>
+              <button id="compareSubmitBtn" class="btn btn-primary">Compare Prices</button>
+            </div>
+
+            <!-- Quick Comparison Preset Chips -->
+            <div class="quick-compare-chips">
+              <span class="quick-chip-label">Popular Hardware:</span>
+              <button class="chip-btn active" data-model="RTX 4060" onclick="window.setCompareChip('RTX 4060')">RTX 4060</button>
+              <button class="chip-btn" data-model="RTX 4070" onclick="window.setCompareChip('RTX 4070')">RTX 4070</button>
+              <button class="chip-btn" data-model="RX 7800 XT" onclick="window.setCompareChip('RX 7800 XT')">RX 7800 XT</button>
+              <button class="chip-btn" data-model="7800X3D" onclick="window.setCompareChip('7800X3D')">Ryzen 7 7800X3D</button>
+              <button class="chip-btn" data-model="13400" onclick="window.setCompareChip('13400')">Intel i5 13400</button>
+              <button class="chip-btn" data-model="DDR5 32GB" onclick="window.setCompareChip('DDR5 32GB')">32GB DDR5</button>
+              <button class="chip-btn" data-model="1TB NVMe" onclick="window.setCompareChip('1TB NVMe')">1TB NVMe Gen4</button>
+            </div>
+          </div>
+
+          <!-- Comparison Results Render Target -->
+          <div id="compareResultsArea"></div>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 3: Competitor Store Intelligence -->
+      <!-- ================================================================== -->
+      <section id="tab-stores" class="tab-content">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;">
+            Monitored Competitor Stores (Sri Lanka)
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Real-time catalog volume, in-stock availability rates, and scraper connectivity per store.
+          </p>
+        </div>
+        <div id="storesGridContainer" class="stores-grid"></div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 4: Hardware Taxonomy & Pricing Index -->
+      <!-- ================================================================== -->
+      <section id="tab-categories" class="tab-content">
+        <div style="margin-bottom: 1.5rem;">
+          <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;">
+            Hardware Taxonomy Pricing Index
+          </h2>
+          <p style="font-size: 0.85rem; color: var(--text-secondary);">
+            Distribution analysis: average, minimum, and maximum market prices across hardware categories.
+          </p>
+        </div>
+        <div class="catalog-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Hardware Category</th>
+                <th style="text-align: right;">Indexed SKUs</th>
+                <th style="text-align: right;">Average Price (LKR)</th>
+                <th style="text-align: right;">Minimum Price</th>
+                <th style="text-align: right;">Maximum Price</th>
+              </tr>
+            </thead>
+            <tbody id="categoryTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================================================================== -->
+      <!-- TAB 5: Scraper Operations Hub -->
+      <!-- ================================================================== -->
+      <section id="tab-scrapers" class="tab-content">
+        <div class="scraper-hub-container">
+          <div class="scraper-hub-banner">
+            <div>
+              <h2 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">
+                Scraper Operations & Ingestion Pipeline
+              </h2>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 600px;">
+                Manage the 11 targeted scrapers spanning CSR, SSR, and Playwright browsers. Trigger one-click master dataset recompilation and SQLite DB synchronization.
+              </p>
+            </div>
+            <button id="recompileTriggerBtn" class="btn btn-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+              Re-Index & Compile Master Database
+            </button>
+          </div>
+
+          <div id="scraperGrid" class="scraper-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Product Quick View Modal Dialog -->
+    <div id="productModal" class="modal-backdrop" aria-hidden="true">
+      <div class="modal-window">
+        <div class="modal-header">
+          <h3 id="modalTitle" class="modal-title">Product Details</h3>
+          <button id="modalCloseBtn" class="modal-close-btn" title="Close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="modalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Notifications Floating Container -->
+    <div id="toastContainer" class="toast-container" aria-live="polite"></div>
+
+    <!-- Application Footer -->
+    <footer class="app-footer">
+      <div class="footer-inner">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <strong style="color: var(--text-primary);">Lanka PC Intel</strong>
+          <span>•</span>
+          <span>B2B Market Pricing Intelligence Platform</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span>FastAPI + SQLite + Pure HTML/CSS/JS</span>
+          <span>•</span>
+          <span style="color: #34d399; font-weight: 600;">Optimal Performance</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Pure Vanilla JavaScript Application Logic -->
+  <script src="/static/js/app.js"></script>
+</body>
+</html>
