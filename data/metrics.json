@@ -1,8 +1,8 @@
 {
-  "total_skus": 8049,
+  "total_skus": 8059,
   "active_stores": 8,
   "total_categories": 10,
-  "in_stock_skus": 4639,
+  "in_stock_skus": 4644,
   "in_stock_rate": 57.6,
   "categories": [
     {
@@ -42,8 +42,8 @@
     },
     {
       "Category": "CPU",
-      "count": 313,
-      "avg_price": 88799.0,
+      "count": 323,
+      "avg_price": 89842.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1861,
-      "in_stock": 1003,
+      "total": 1871,
+      "in_stock": 1008,
       "in_stock_rate": 53.9
     },
     {
