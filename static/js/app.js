@@ -620,7 +620,7 @@ function renderProductTable(items) {
           <span class="stock-pill ${stockClass}">${escapeHtml(item.Stock_Status || 'Unknown')}</span>
         </td>
         <td style="width: 150px; text-align: right;">
-          <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-cyan); font-size: 1rem;">
+          <span style="font-family: var(--font-mono); font-weight: 700; color: var(--text-primary); font-size: 1rem;">
             ${formatLKR(item.Cleaned_Price_LKR)}
           </span>
         </td>
@@ -852,7 +852,7 @@ function renderStoresTab(stores) {
 
   elements.storesGridContainer.innerHTML = stores.map(store => {
     const rate = store.in_stock_rate !== undefined ? store.in_stock_rate : 0;
-    const rateColor = rate >= 70 ? '#10b981' : rate >= 50 ? '#f59e0b' : '#f43f5e';
+    const rateColor = rate >= 70 ? '#86efac' : rate >= 50 ? '#fcd34d' : '#94a3b8';
 
     return `
       <div class="store-intel-card">
