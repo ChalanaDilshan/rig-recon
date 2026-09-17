@@ -30,10 +30,10 @@ permissions:
   pages: write
   id-token: write
 
-# Prevent concurrent deployments from colliding by queuing them until previous finishes
+# Prevent concurrent deployments from colliding by cancelling in-progress runs when a newer commit arrives
 concurrency:
   group: 'pages'
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-update:
@@ -72,6 +72,7 @@ jobs:
           python merger.py
 
       - name: Commit & push updated market intelligence data
+        if: github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_scrapers == 'true')
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
