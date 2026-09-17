@@ -1,0 +1,129 @@
+{
+  "total_skus": 8049,
+  "active_stores": 8,
+  "total_categories": 10,
+  "in_stock_skus": 4639,
+  "in_stock_rate": 57.6,
+  "categories": [
+    {
+      "Category": "Accessories / Other",
+      "count": 3428,
+      "avg_price": 27253.0,
+      "min_price": 150.0,
+      "max_price": 1039000.0
+    },
+    {
+      "Category": "Laptop",
+      "count": 893,
+      "avg_price": 253921.0,
+      "min_price": 800.0,
+      "max_price": 2399000.0
+    },
+    {
+      "Category": "Monitor",
+      "count": 622,
+      "avg_price": 99753.0,
+      "min_price": 5500.0,
+      "max_price": 785000.0
+    },
+    {
+      "Category": "Motherboard",
+      "count": 474,
+      "avg_price": 76261.0,
+      "min_price": 3500.0,
+      "max_price": 470000.0
+    },
+    {
+      "Category": "GPU",
+      "count": 437,
+      "avg_price": 205644.0,
+      "min_price": 4200.0,
+      "max_price": 1975000.0
+    },
+    {
+      "Category": "CPU",
+      "count": 313,
+      "avg_price": 88799.0,
+      "min_price": 1400.0,
+      "max_price": 1100000.0
+    },
+    {
+      "Category": "RAM",
+      "count": 279,
+      "avg_price": 59070.0,
+      "min_price": 1000.0,
+      "max_price": 499000.0
+    },
+    {
+      "Category": "Storage",
+      "count": 272,
+      "avg_price": 42497.0,
+      "min_price": 2500.0,
+      "max_price": 264000.0
+    },
+    {
+      "Category": "PSU",
+      "count": 235,
+      "avg_price": 46097.0,
+      "min_price": 2700.0,
+      "max_price": 572000.0
+    },
+    {
+      "Category": "Casing",
+      "count": 181,
+      "avg_price": 34380.0,
+      "min_price": 2000.0,
+      "max_price": 185000.0
+    }
+  ],
+  "stores": [
+    {
+      "Source_Store": "Md Computers",
+      "total": 3664,
+      "in_stock": 1726,
+      "in_stock_rate": 47.1
+    },
+    {
+      "Source_Store": "Nanotek",
+      "total": 1861,
+      "in_stock": 1003,
+      "in_stock_rate": 53.9
+    },
+    {
+      "Source_Store": "Tulip Computers",
+      "total": 892,
+      "in_stock": 892,
+      "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Chama Computers",
+      "total": 682,
+      "in_stock": 147,
+      "in_stock_rate": 21.6
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 445,
+      "in_stock": 445,
+      "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Pc Builders",
+      "total": 339,
+      "in_stock": 339,
+      "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Redline Technologies",
+      "total": 108,
+      "in_stock": 35,
+      "in_stock_rate": 32.4
+    },
+    {
+      "Source_Store": "MSK Computers",
+      "total": 58,
+      "in_stock": 52,
+      "in_stock_rate": 89.7
+    }
+  ]
+}

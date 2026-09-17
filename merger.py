@@ -109,6 +109,13 @@ def compile_master_dataset(raw_dir: str = DATA_RAW_DIR) -> pd.DataFrame:
     # Ingest into SQLite Database
     save_to_sqlite(df_master, DB_PATH)
 
+    # Pre-render static JSON datasets for GitHub Pages
+    try:
+        from export_static import export_static_data
+        export_static_data(DB_PATH)
+    except Exception as e:
+        print(f"[!] Warning: static JSON export skipped: {e}")
+
     # Print Summary Report
     print_market_summary(df_master)
 

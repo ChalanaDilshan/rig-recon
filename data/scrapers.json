@@ -1,0 +1,90 @@
+[
+  {
+    "id": "nanotek",
+    "name": "Nanotek",
+    "type": "SSR / requests",
+    "description": "Nanotek.lk PHP/CS-Cart catalog scraper",
+    "status": "Operational",
+    "products_count": 1861
+  },
+  {
+    "id": "techzone",
+    "name": "Techzone",
+    "type": "curl_cffi + Playwright",
+    "description": "Techzone.lk WooCommerce with Cloudflare bypass",
+    "status": "Operational",
+    "products_count": 0
+  },
+  {
+    "id": "mdcomputers",
+    "name": "MD Computers",
+    "type": "curl_cffi",
+    "description": "MDComputers.lk WooCommerce catalog scraper",
+    "status": "Operational",
+    "products_count": 0
+  },
+  {
+    "id": "chama",
+    "name": "Chama Computers",
+    "type": "Playwright CSR",
+    "description": "Chamacomputers.lk React dynamic storefront scraper",
+    "status": "Operational",
+    "products_count": 682
+  },
+  {
+    "id": "gamestreet",
+    "name": "Game Street",
+    "type": "curl_cffi / requests",
+    "description": "Gamestreet.lk Custom PHP catalog scraper",
+    "status": "Operational",
+    "products_count": 445
+  },
+  {
+    "id": "msk",
+    "name": "MSK Computers",
+    "type": "Playwright AJAX",
+    "description": "Mskcomputers.lk CSR with AJAX filter hydration",
+    "status": "Operational",
+    "products_count": 58
+  },
+  {
+    "id": "pcbuilders",
+    "name": "PC Builders",
+    "type": "requests / curl_cffi",
+    "description": "Pcbuilders.lk WooCommerce catalog scraper",
+    "status": "Operational",
+    "products_count": 0
+  },
+  {
+    "id": "tulip",
+    "name": "Tulip Computers",
+    "type": "Playwright CSR",
+    "description": "Tulipcom.lk dynamic SPA storefront scraper",
+    "status": "Operational",
+    "products_count": 892
+  },
+  {
+    "id": "redline",
+    "name": "Redline Technologies",
+    "type": "requests / curl_cffi",
+    "description": "Redlinetech.lk WooCommerce catalog scraper",
+    "status": "Operational",
+    "products_count": 108
+  },
+  {
+    "id": "redtech",
+    "name": "Red Tech",
+    "type": "Playwright Woodmart",
+    "description": "Redtech.lk Woodmart theme scraper",
+    "status": "Operational",
+    "products_count": 0
+  },
+  {
+    "id": "gallelaptop",
+    "name": "Galle Laptop",
+    "type": "Playwright PHP",
+    "description": "Gallelaptop.lk dynamic subcategory scraper",
+    "status": "Operational",
+    "products_count": 0
+  }
+]

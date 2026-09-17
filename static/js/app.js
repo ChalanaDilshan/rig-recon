@@ -9,8 +9,10 @@
 // ============================================================================
 
 const CONFIG = {
-  // Auto-detect base API origin or default to local backend
-  apiBase: window.location.protocol.startsWith('http') ? '' : 'http://127.0.0.1:8000',
+  // Auto-detect if running on GitHub Pages, file protocol, or local backend
+  isGitHubPages: window.location.hostname.includes('github.io') || window.location.protocol === 'file:',
+  apiBase: (window.location.protocol.startsWith('http') && !window.location.hostname.includes('github.io')) ? '' : 'http://127.0.0.1:8000',
+  staticDataBase: 'data',
   defaultCompare: 'RTX 4060',
   debounceDelay: 280,
   toastDuration: 4000
@@ -28,12 +30,14 @@ const state = {
   page: 1,
   limit: 48,
   // Cached datasets
+  allProducts: null, // Full catalog for client-side search & filtering
   metrics: null,
   productsData: { items: [], total: 0, total_pages: 1 },
   compareData: null,
   scrapers: [],
   selectedProduct: null,
-  isApiOnline: true
+  isApiOnline: true,
+  isStaticMode: false
 };
 
 // ============================================================================
@@ -146,7 +150,34 @@ function showToast(message, type = 'info') {
 // API Client Layer with Fallback Resilience
 // ============================================================================
 
+// ============================================================================
+// Data Layer: Hybrid API Client & Client-Side Static Intelligence
+// Supports both live FastAPI server and 100% static hosting on GitHub Pages
+// ============================================================================
+
+async function ensureAllProductsLoaded() {
+  if (state.allProducts && state.allProducts.length > 0) {
+    return state.allProducts;
+  }
+  try {
+    const res = await fetch(`${CONFIG.staticDataBase}/products.json`);
+    if (!res.ok) throw new Error(`Could not load products.json (${res.status})`);
+    state.allProducts = await res.json();
+    return state.allProducts;
+  } catch (e) {
+    console.error('[Static Data] Error loading products catalog:', e);
+    return [];
+  }
+}
+
 async function fetchJson(endpoint, options = {}) {
+  // If hosted on GitHub Pages or file protocol, run client-side intelligence
+  if (CONFIG.isGitHubPages) {
+    state.isStaticMode = true;
+    updateOnlineBadge(true, true);
+    return await handleStaticQuery(endpoint);
+  }
+
   const url = `${CONFIG.apiBase}${endpoint}`;
   try {
     const res = await fetch(url, options);
@@ -154,19 +185,182 @@ async function fetchJson(endpoint, options = {}) {
       throw new Error(`HTTP Error ${res.status}: ${res.statusText}`);
     }
     state.isApiOnline = true;
-    updateOnlineBadge(true);
+    state.isStaticMode = false;
+    updateOnlineBadge(true, false);
     return await res.json();
   } catch (err) {
-    console.warn(`[API] Could not connect to ${url}:`, err);
+    console.warn(`[API] Could not connect to ${url}, falling back to static data:`, err);
     state.isApiOnline = false;
-    updateOnlineBadge(false);
-    return getFallbackData(endpoint);
+    state.isStaticMode = true;
+    updateOnlineBadge(true, true);
+    return await handleStaticQuery(endpoint);
   }
 }
 
-function updateOnlineBadge(online) {
+async function handleStaticQuery(endpoint) {
+  // 1. Metrics Endpoint
+  if (endpoint.startsWith('/api/metrics')) {
+    try {
+      const res = await fetch(`${CONFIG.staticDataBase}/metrics.json`);
+      if (res.ok) return await res.json();
+    } catch (e) {
+      console.warn('[Static] Failed to load metrics.json:', e);
+    }
+  }
+
+  // 2. Products Endpoint
+  if (endpoint.startsWith('/api/products')) {
+    const products = await ensureAllProductsLoaded();
+    const urlObj = new URL('http://dummy.local' + endpoint);
+    const q = (urlObj.searchParams.get('q') || '').trim().toLowerCase();
+    const category = urlObj.searchParams.get('category') || 'All';
+    const store = urlObj.searchParams.get('store') || 'All';
+    const stock = urlObj.searchParams.get('stock') || 'All';
+    const sort = urlObj.searchParams.get('sort') || 'price_asc';
+    const page = parseInt(urlObj.searchParams.get('page') || '1', 10);
+    const limit = parseInt(urlObj.searchParams.get('limit') || '48', 10);
+
+    let filtered = products;
+
+    if (q) {
+      const keywords = q.split(/\s+/).filter(Boolean);
+      filtered = filtered.filter(item => {
+        const title = (item.Title || '').toLowerCase();
+        return keywords.every(kw => title.includes(kw));
+      });
+    }
+
+    if (category && category !== 'All') {
+      filtered = filtered.filter(item => item.Category === category);
+    }
+
+    if (store && store !== 'All') {
+      filtered = filtered.filter(item => item.Source_Store === store);
+    }
+
+    if (stock && stock !== 'All') {
+      filtered = filtered.filter(item => item.Stock_Status === stock);
+    }
+
+    // Sorting
+    filtered = filtered.slice().sort((a, b) => {
+      const priceA = a.Cleaned_Price_LKR != null ? a.Cleaned_Price_LKR : Infinity;
+      const priceB = b.Cleaned_Price_LKR != null ? b.Cleaned_Price_LKR : Infinity;
+
+      if (sort === 'price_asc') return priceA - priceB;
+      if (sort === 'price_desc') return (b.Cleaned_Price_LKR || 0) - (a.Cleaned_Price_LKR || 0);
+      if (sort === 'title_asc') return (a.Title || '').localeCompare(b.Title || '');
+      if (sort === 'title_desc') return (b.Title || '').localeCompare(a.Title || '');
+      return priceA - priceB;
+    });
+
+    const total = filtered.length;
+    const offset = (page - 1) * limit;
+    const pageItems = filtered.slice(offset, offset + limit);
+
+    return {
+      items: pageItems,
+      total: total,
+      page: page,
+      limit: limit,
+      total_pages: Math.max(1, Math.ceil(total / limit))
+    };
+  }
+
+  // 3. Price Comparison Endpoint
+  if (endpoint.startsWith('/api/compare')) {
+    const products = await ensureAllProductsLoaded();
+    const urlObj = new URL('http://dummy.local' + endpoint);
+    const model = (urlObj.searchParams.get('model') || '').trim();
+    const category = urlObj.searchParams.get('category');
+
+    const keywords = model.toLowerCase().split(/\s+/).filter(Boolean);
+    const isGpuQuery = keywords.some(k => ['rtx', 'gtx', 'rx', 'radeon', 'geforce'].some(gpu => k.includes(gpu)))
+      && !keywords.some(k => ['laptop', 'notebook'].includes(k));
+
+    let results = products.filter(item => {
+      if (item.Cleaned_Price_LKR == null || item.Cleaned_Price_LKR <= 0) return false;
+      const title = (item.Title || '').toLowerCase();
+      const matchesKeywords = keywords.every(kw => title.includes(kw));
+      if (!matchesKeywords) return false;
+
+      if (category && category !== 'All') {
+        return item.Category === category;
+      } else if (isGpuQuery) {
+        return item.Category === 'GPU';
+      }
+      return true;
+    });
+
+    results.sort((a, b) => a.Cleaned_Price_LKR - b.Cleaned_Price_LKR);
+
+    if (results.length === 0) {
+      return {
+        query: model,
+        matches: 0,
+        results: [],
+        cheapest: null,
+        min_price: 0,
+        max_price: 0,
+        avg_price: 0,
+        savings_lkr: 0,
+        savings_pct: 0
+      };
+    }
+
+    const cheapest = results[0];
+    const prices = results.map(r => r.Cleaned_Price_LKR);
+    const min_p = Math.min(...prices);
+    const max_p = Math.max(...prices);
+    const avg_p = Math.round(prices.reduce((s, p) => s + p, 0) / prices.length);
+    const savings_lkr = Math.round(max_p - min_p);
+    const savings_pct = max_p > 0 ? Math.round((savings_lkr / max_p) * 1000) / 10 : 0;
+
+    const decoratedResults = results.map(r => {
+      const diff = Math.round(r.Cleaned_Price_LKR - min_p);
+      const pct = min_p > 0 ? Math.round((diff / min_p) * 1000) / 10 : 0;
+      return {
+        ...r,
+        diff_from_cheapest_lkr: diff,
+        diff_pct: pct
+      };
+    });
+
+    return {
+      query: model,
+      matches: results.length,
+      cheapest: cheapest,
+      min_price: min_p,
+      max_price: max_p,
+      avg_price: avg_p,
+      savings_lkr: savings_lkr,
+      savings_pct: savings_pct,
+      results: decoratedResults
+    };
+  }
+
+  // 4. Scrapers Registry Endpoint
+  if (endpoint.startsWith('/api/scrapers')) {
+    try {
+      const res = await fetch(`${CONFIG.staticDataBase}/scrapers.json`);
+      if (res.ok) return await res.json();
+    } catch (e) {
+      console.warn('[Static] Failed to load scrapers.json:', e);
+    }
+  }
+
+  return {};
+}
+
+function updateOnlineBadge(online, isStatic = false) {
   if (!elements.systemStatusBadge) return;
-  if (online) {
+  if (isStatic) {
+    elements.systemStatusBadge.innerHTML = `
+      <span class="pulsing-dot" style="background:#00f2fe;box-shadow:0 0 10px #00f2fe;"></span>
+      <span>GitHub Pages Intel</span>
+    `;
+    elements.systemStatusBadge.style.borderColor = 'rgba(0, 242, 254, 0.4)';
+  } else if (online) {
     elements.systemStatusBadge.innerHTML = `
       <span class="pulsing-dot"></span>
       <span>API Connected</span>
@@ -179,104 +373,6 @@ function updateOnlineBadge(online) {
     `;
     elements.systemStatusBadge.style.borderColor = 'rgba(245, 158, 11, 0.4)';
   }
-}
-
-// Offline fallback sample generator
-function getFallbackData(endpoint) {
-  if (endpoint.includes('/api/metrics')) {
-    return {
-      total_skus: 8049,
-      active_stores: 8,
-      total_categories: 14,
-      in_stock_skus: 5892,
-      in_stock_rate: 73.2,
-      stores: [
-        { Source_Store: "Nanotek", total: 1845, in_stock: 1420, in_stock_rate: 77.0 },
-        { Source_Store: "MD Computers", total: 1612, in_stock: 1210, in_stock_rate: 75.1 },
-        { Source_Store: "Chama Computers", total: 1290, in_stock: 940, in_stock_rate: 72.9 },
-        { Source_Store: "Redline Technologies", total: 980, in_stock: 750, in_stock_rate: 76.5 },
-        { Source_Store: "Tulip Computers", total: 820, in_stock: 580, in_stock_rate: 70.7 },
-        { Source_Store: "PC Builders", total: 710, in_stock: 510, in_stock_rate: 71.8 },
-        { Source_Store: "Game Street", total: 540, in_stock: 360, in_stock_rate: 66.7 },
-        { Source_Store: "MSK Computers", total: 252, in_stock: 122, in_stock_rate: 48.4 }
-      ],
-      categories: [
-        { Category: "Graphics Cards", count: 1420, avg_price: 215000, min_price: 42000, max_price: 995000 },
-        { Category: "Processors", count: 980, avg_price: 98000, min_price: 18000, max_price: 365000 },
-        { Category: "Motherboards", count: 1120, avg_price: 76000, min_price: 22000, max_price: 295000 },
-        { Category: "Memory (RAM)", count: 1240, avg_price: 28500, min_price: 6500, max_price: 145000 },
-        { Category: "Storage (SSD/HDD)", count: 1310, avg_price: 34000, min_price: 4500, max_price: 185000 },
-        { Category: "Power Supplies", count: 680, avg_price: 42000, min_price: 11000, max_price: 190000 },
-        { Category: "Casing / Chassis", count: 590, avg_price: 26000, min_price: 7500, max_price: 120000 },
-        { Category: "Laptops & Notebooks", count: 709, avg_price: 310000, min_price: 85000, max_price: 1450000 }
-      ]
-    };
-  }
-
-  if (endpoint.includes('/api/compare')) {
-    return {
-      query: "RTX 4060",
-      matches: 6,
-      min_price: 114000,
-      max_price: 138000,
-      avg_price: 124500,
-      savings_lkr: 24000,
-      savings_pct: 17.4,
-      cheapest: {
-        Source_Store: "Nanotek",
-        Title: "MSI GeForce RTX 4060 Ventus 2X Black 8GB OC",
-        Cleaned_Price_LKR: 114000,
-        Stock_Status: "In Stock",
-        Product_URL: "https://nanotek.lk"
-      },
-      results: [
-        { Source_Store: "Nanotek", Title: "MSI GeForce RTX 4060 Ventus 2X Black 8GB OC", Cleaned_Price_LKR: 114000, Stock_Status: "In Stock", Product_URL: "https://nanotek.lk", diff_from_cheapest_lkr: 0, diff_pct: 0 },
-        { Source_Store: "MD Computers", Title: "ASUS Dual GeForce RTX 4060 EVO OC 8GB", Cleaned_Price_LKR: 118500, Stock_Status: "In Stock", Product_URL: "https://mdcomputers.lk", diff_from_cheapest_lkr: 4500, diff_pct: 3.9 },
-        { Source_Store: "Chama Computers", Title: "Gigabyte GeForce RTX 4060 Eagle OC 8G", Cleaned_Price_LKR: 122000, Stock_Status: "In Stock", Product_URL: "https://chamacomputers.lk", diff_from_cheapest_lkr: 8000, diff_pct: 7.0 },
-        { Source_Store: "Redline Technologies", Title: "ZOTAC GAMING GeForce RTX 4060 Twin Edge 8GB", Cleaned_Price_LKR: 125000, Stock_Status: "In Stock", Product_URL: "https://redlinetech.lk", diff_from_cheapest_lkr: 11000, diff_pct: 9.6 },
-        { Source_Store: "Tulip Computers", Title: "Palit GeForce RTX 4060 Dual 8GB GDDR6", Cleaned_Price_LKR: 129000, Stock_Status: "In Stock", Product_URL: "https://tulipcom.lk", diff_from_cheapest_lkr: 15000, diff_pct: 13.2 },
-        { Source_Store: "PC Builders", Title: "Inno3D GeForce RTX 4060 Twin X2 8GB", Cleaned_Price_LKR: 138000, Stock_Status: "Out of Stock", Product_URL: "https://pcbuilders.lk", diff_from_cheapest_lkr: 24000, diff_pct: 21.1 }
-      ]
-    };
-  }
-
-  if (endpoint.includes('/api/products')) {
-    const dummyItems = [
-      { Source_Store: "Nanotek", Category: "Graphics Cards", Title: "MSI GeForce RTX 4060 Ventus 2X Black 8GB OC", Cleaned_Price_LKR: 114000, Stock_Status: "In Stock", Product_URL: "https://nanotek.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "MD Computers", Category: "Processors", Title: "AMD Ryzen 7 7800X3D 8-Core 16-Thread Gaming Processor", Cleaned_Price_LKR: 148500, Stock_Status: "In Stock", Product_URL: "https://mdcomputers.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "Chama Computers", Category: "Processors", Title: "Intel Core i5-13400F 10-Core Processor Tray", Cleaned_Price_LKR: 64500, Stock_Status: "In Stock", Product_URL: "https://chamacomputers.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "Redline Technologies", Category: "Graphics Cards", Title: "Gigabyte GeForce RTX 4070 SUPER Windforce OC 12GB", Cleaned_Price_LKR: 235000, Stock_Status: "In Stock", Product_URL: "https://redlinetech.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "Tulip Computers", Category: "Motherboards", Title: "MSI B650M Gaming Plus WiFi Motherboard", Cleaned_Price_LKR: 68000, Stock_Status: "In Stock", Product_URL: "https://tulipcom.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "PC Builders", Category: "Memory (RAM)", Title: "Corsair Vengeance RGB 32GB (2x16GB) DDR5 6000MHz CL30", Cleaned_Price_LKR: 46000, Stock_Status: "In Stock", Product_URL: "https://pcbuilders.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "Game Street", Category: "Storage (SSD/HDD)", Title: "Samsung 990 PRO NVMe M.2 SSD 1TB Gen4", Cleaned_Price_LKR: 39500, Stock_Status: "In Stock", Product_URL: "https://gamestreet.lk", Scraped_Date: "2026-09-17" },
-      { Source_Store: "MSK Computers", Category: "Power Supplies", Title: "Corsair RM750e 750W 80+ Gold Fully Modular ATX 3.0", Cleaned_Price_LKR: 44000, Stock_Status: "Out of Stock", Product_URL: "https://mskcomputers.lk", Scraped_Date: "2026-09-17" }
-    ];
-    return {
-      items: dummyItems,
-      total: 8049,
-      page: 1,
-      limit: 48,
-      total_pages: 168
-    };
-  }
-
-  if (endpoint.includes('/api/scrapers')) {
-    return [
-      { id: "nanotek", name: "Nanotek", type: "SSR / requests", description: "Nanotek.lk PHP/CS-Cart catalog scraper", status: "Operational", products_count: 1845 },
-      { id: "techzone", name: "Techzone", type: "curl_cffi + Playwright", description: "Techzone.lk WooCommerce with Cloudflare bypass", status: "Operational", products_count: 940 },
-      { id: "mdcomputers", name: "MD Computers", type: "curl_cffi", description: "MDComputers.lk WooCommerce catalog scraper", status: "Operational", products_count: 1612 },
-      { id: "chama", name: "Chama Computers", type: "Playwright CSR", description: "Chamacomputers.lk React dynamic storefront scraper", status: "Operational", products_count: 1290 },
-      { id: "gamestreet", name: "Game Street", type: "curl_cffi / requests", description: "Gamestreet.lk Custom PHP catalog scraper", status: "Operational", products_count: 540 },
-      { id: "msk", name: "MSK Computers", type: "Playwright AJAX", description: "Mskcomputers.lk CSR with AJAX filter hydration", status: "Operational", products_count: 252 },
-      { id: "pcbuilders", name: "PC Builders", type: "requests / curl_cffi", description: "Pcbuilders.lk WooCommerce catalog scraper", status: "Operational", products_count: 710 },
-      { id: "tulip", name: "Tulip Computers", type: "Playwright CSR", description: "Tulipcom.lk dynamic SPA storefront scraper", status: "Operational", products_count: 820 },
-      { id: "redline", name: "Redline Technologies", type: "requests / curl_cffi", description: "Redlinetech.lk WooCommerce catalog scraper", status: "Operational", products_count: 980 },
-      { id: "redtech", name: "Red Tech", type: "Playwright Woodmart", description: "Redtech.lk Woodmart theme scraper", status: "Operational", products_count: 420 },
-      { id: "gallelaptop", name: "Galle Laptop", type: "Playwright PHP", description: "Gallelaptop.lk dynamic subcategory scraper", status: "Operational", products_count: 360 }
-    ];
-  }
-
-  return {};
 }
 
 // ============================================================================
@@ -855,6 +951,11 @@ function renderScrapersGrid(scrapers) {
 }
 
 async function triggerDatabaseMerge() {
+  if (state.isStaticMode || CONFIG.isGitHubPages) {
+    showToast('Static Mode (GitHub Pages): Catalog updates run automatically via scheduled GitHub Actions workflow.', 'info');
+    return;
+  }
+
   showToast('Initiating Master Dataset compilation and SQLite indexing...', 'info');
   if (elements.recompileTriggerBtn) {
     elements.recompileTriggerBtn.disabled = true;
@@ -862,6 +963,10 @@ async function triggerDatabaseMerge() {
       <svg class="animate-spin" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="animation: spin 1s linear infinite;"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
       Compiling Master DB...
     `;
+  }
+  if (elements.syncDbBtn) {
+    elements.syncDbBtn.disabled = true;
+    elements.syncDbBtn.style.opacity = '0.6';
   }
 
   try {
@@ -879,6 +984,10 @@ async function triggerDatabaseMerge() {
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
         Re-Index & Compile Master Database
       `;
+    }
+    if (elements.syncDbBtn) {
+      elements.syncDbBtn.disabled = false;
+      elements.syncDbBtn.style.opacity = '1';
     }
   }
 }
