@@ -102,8 +102,8 @@ def compile_master_dataset(raw_dir: str = DATA_RAW_DIR) -> pd.DataFrame:
 
     print(f"\n[OK] Aggregation complete: {initial_count} records merged -> {final_count} unique items.")
 
-    # Save to Master CSV
-    df_master.to_csv(MASTER_CSV_PATH, index=False, encoding="utf-8-sig")
+    # Save to Master CSV (explicit LF line terminator for cross-OS git consistency)
+    df_master.to_csv(MASTER_CSV_PATH, index=False, encoding="utf-8-sig", lineterminator="\n")
     print(f"[OK] Master CSV saved: {MASTER_CSV_PATH}")
 
     # Ingest into SQLite Database

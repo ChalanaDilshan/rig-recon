@@ -22,6 +22,7 @@ on:
     paths-ignore:
       - 'README.md'
       - '.gitignore'
+      - '.gitattributes'
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages and data commits
 permissions:
@@ -29,10 +30,10 @@ permissions:
   pages: write
   id-token: write
 
-# Allow one concurrent deployment
+# Prevent concurrent jobs from racing or conflicting
 concurrency:
   group: 'pages'
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build-and-update:
@@ -76,9 +77,12 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           if git status --porcelain data/ | grep -q .; then
-            echo "Changes detected in data/. Committing and pushing..."
+            echo "Changes detected in data/. Committing..."
             git commit -m "chore(catalog): auto-update hardware market prices [skip ci]"
-            git push
+            echo "Pushing changes with rebase synchronization..."
+            for i in 1 2 3; do
+              git pull --rebase origin main && git push origin main && echo "Successfully pushed data updates!" && break || (echo "Push race detected, retrying in 5s ($i/3)..." && sleep 5)
+            done || echo "Warning: Non-critical push retry limit reached. Continuing to Pages deployment."
           else
             echo "No data changes detected. Skipping git push."
           fi

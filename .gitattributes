@@ -1,0 +1,20 @@
+# Set default behavior to automatically normalize line endings
+* text=auto eol=lf
+
+# Explicitly ensure data and source files use LF
+*.csv text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.md text eol=lf
+
+# Binary files
+*.db binary
+*.png binary
+*.webp binary
+*.jpg binary
+*.ico binary
