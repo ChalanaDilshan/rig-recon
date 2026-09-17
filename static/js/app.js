@@ -35,6 +35,9 @@ const state = {
   productsData: { items: [], total: 0, total_pages: 1 },
   compareData: null,
   scrapers: [],
+  scrapersPayload: null,
+  scraperFilter: 'all',
+  scraperQuery: '',
   selectedProduct: null,
   isApiOnline: true,
   isStaticMode: false
@@ -84,9 +87,23 @@ const elements = {
   storesGridContainer: document.getElementById('storesGridContainer'),
   categoryTableBody: document.getElementById('categoryTableBody'),
 
-  // Scraper Hub
+  // Scraper Fleet Health & Monitoring Hub
   scraperGrid: document.getElementById('scraperGrid'),
   recompileTriggerBtn: document.getElementById('recompileTriggerBtn'),
+  fleetStatusPill: document.getElementById('fleetStatusPill'),
+  fleetOperationalValue: document.getElementById('fleetOperationalValue'),
+  fleetOperationalSub: document.getElementById('fleetOperationalSub'),
+  fleetSkusValue: document.getElementById('fleetSkusValue'),
+  fleetRawPayloadSub: document.getElementById('fleetRawPayloadSub'),
+  fleetEnginesValue: document.getElementById('fleetEnginesValue'),
+  fleetScheduleSub: document.getElementById('fleetScheduleSub'),
+  scraperSearch: document.getElementById('scraperSearch'),
+  scraperFilterPills: document.querySelectorAll('.scraper-filter-pill'),
+  scraperTelemetryTableBody: document.getElementById('scraperTelemetryTableBody'),
+  countAllScrapers: document.getElementById('countAllScrapers'),
+  countOpScrapers: document.getElementById('countOpScrapers'),
+  countPwScrapers: document.getElementById('countPwScrapers'),
+  countHttpScrapers: document.getElementById('countHttpScrapers'),
 
   // Modal & Toast
   productModal: document.getElementById('productModal'),
@@ -911,43 +928,230 @@ function renderCategoriesTab(categories) {
 }
 
 // ============================================================================
-// UI Renderers: Scraper Hub
+// UI Renderers: Web Scraper Fleet Health & Monitoring Dashboard
 // ============================================================================
 
 async function loadScrapers() {
   const data = await fetchJson('/api/scrapers');
-  state.scrapers = Array.isArray(data) ? data : [];
-  renderScrapersGrid(state.scrapers);
+  state.scrapersPayload = data || {};
+  state.scrapers = Array.isArray(data) ? data : (data.scrapers || []);
+  renderScrapersHealthDashboard();
 }
 
-function renderScrapersGrid(scrapers) {
-  if (!elements.scraperGrid) return;
+function renderScrapersHealthDashboard() {
+  const payload = state.scrapersPayload || {};
+  const fleet = payload.fleet || {};
+  const allScrapers = state.scrapers || [];
 
-  elements.scraperGrid.innerHTML = scrapers.map(s => {
-    return `
-      <div class="scraper-card">
-        <div>
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.65rem;">
-            <div style="display: flex; align-items: center; gap: 0.5rem;">
-              <span class="scraper-status-dot"></span>
-              <h4 style="font-family: var(--font-display); font-size: 1.05rem; font-weight: 700;">${escapeHtml(s.name)}</h4>
+  // 1. Render Top Fleet Overview KPIs
+  if (elements.fleetOperationalValue) {
+    const opCount = fleet.operational_scrapers != null ? fleet.operational_scrapers : allScrapers.filter(s => (s.telemetry?.total_skus || 0) > 0).length;
+    const totalCount = fleet.total_scrapers || allScrapers.length || 11;
+    elements.fleetOperationalValue.textContent = `${opCount} / ${totalCount} Stores`;
+  }
+  if (elements.fleetOperationalSub) {
+    const rate = fleet.operational_rate != null ? fleet.operational_rate : Math.round((8 / 11) * 1000) / 10;
+    elements.fleetOperationalSub.textContent = `${rate}% Active Coverage`;
+  }
+  if (elements.fleetSkusValue) {
+    const skus = fleet.total_harvested_skus != null ? fleet.total_harvested_skus : allScrapers.reduce((acc, s) => acc + (s.telemetry?.total_skus || 0), 0);
+    elements.fleetSkusValue.textContent = Number(skus).toLocaleString('en-US');
+  }
+  if (elements.fleetRawPayloadSub) {
+    elements.fleetRawPayloadSub.textContent = `${fleet.total_raw_data_formatted || '1.55 MB'} Raw Store Payloads`;
+  }
+  if (elements.fleetEnginesValue) {
+    const pw = fleet.playwright_engines != null ? fleet.playwright_engines : allScrapers.filter(s => s.is_playwright).length;
+    const http = fleet.http_engines != null ? fleet.http_engines : allScrapers.length - pw;
+    elements.fleetEnginesValue.textContent = `${pw} Browser • ${http} HTTP`;
+  }
+  if (elements.fleetScheduleSub && fleet.schedule) {
+    elements.fleetScheduleSub.textContent = fleet.schedule;
+  }
+
+  // Update filter pill counters
+  const opScrapersCount = allScrapers.filter(s => (s.telemetry?.total_skus || 0) > 0).length;
+  const pwScrapersCount = allScrapers.filter(s => s.is_playwright).length;
+  const httpScrapersCount = allScrapers.length - pwScrapersCount;
+
+  if (elements.countAllScrapers) elements.countAllScrapers.textContent = allScrapers.length;
+  if (elements.countOpScrapers) elements.countOpScrapers.textContent = opScrapersCount;
+  if (elements.countPwScrapers) elements.countPwScrapers.textContent = pwScrapersCount;
+  if (elements.countHttpScrapers) elements.countHttpScrapers.textContent = httpScrapersCount;
+
+  // 2. Filter scrapers based on active filter and search query
+  let filtered = allScrapers.slice();
+
+  if (state.scraperFilter === 'operational') {
+    filtered = filtered.filter(s => (s.telemetry?.total_skus || 0) > 0);
+  } else if (state.scraperFilter === 'playwright') {
+    filtered = filtered.filter(s => s.is_playwright);
+  } else if (state.scraperFilter === 'http') {
+    filtered = filtered.filter(s => !s.is_playwright);
+  }
+
+  if (state.scraperQuery) {
+    const q = state.scraperQuery.toLowerCase().trim();
+    filtered = filtered.filter(s => 
+      (s.name || '').toLowerCase().includes(q) ||
+      (s.engine || '').toLowerCase().includes(q) ||
+      (s.type || '').toLowerCase().includes(q) ||
+      (s.description || '').toLowerCase().includes(q)
+    );
+  }
+
+  // 3. Render Scraper Health Cards
+  if (elements.scraperGrid) {
+    if (filtered.length === 0) {
+      elements.scraperGrid.innerHTML = `
+        <div style="grid-column: 1 / -1; padding: 3rem; text-align: center; color: var(--text-muted);">
+          <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="margin-bottom: 0.75rem; opacity: 0.5;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <p style="font-size: 0.95rem; margin: 0;">No scrapers matching "<strong>${escapeHtml(state.scraperQuery)}</strong>"</p>
+        </div>
+      `;
+    } else {
+      elements.scraperGrid.innerHTML = filtered.map(s => {
+        const t = s.telemetry || {};
+        const initials = (s.name || 'SC').split(' ').map(w => w[0]).join('').slice(0, 2).toUpperCase();
+        const statusBadge = s.status_badge || (t.total_skus > 0 ? 'healthy' : 'idle');
+        const statusLabel = s.status || (t.total_skus > 0 ? 'Operational' : 'Standby / Ready');
+        const totalSkusStr = (t.total_skus || 0).toLocaleString('en-US');
+        const inStockRate = t.in_stock_rate != null ? t.in_stock_rate : 0;
+        const inStockSkusStr = (t.in_stock_skus || 0).toLocaleString('en-US');
+        const rawSize = t.raw_size_formatted || '0 B';
+        const lastScraped = t.last_scraped || 'No Runs';
+        const sharePct = t.market_share_pct || 0;
+
+        return `
+          <div class="scraper-card">
+            <div>
+              <div class="scraper-card-top">
+                <div class="scraper-card-store">
+                  <div class="scraper-store-avatar">${escapeHtml(initials)}</div>
+                  <div>
+                    <div class="scraper-card-title">
+                      <span>${escapeHtml(s.name)}</span>
+                    </div>
+                    ${s.url ? `
+                      <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" class="scraper-card-url" title="Visit ${escapeHtml(s.name)} storefront">
+                        <span>${escapeHtml(s.url.replace(/^https?:\/\/(www\.)?/, ''))}</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                      </a>
+                    ` : ''}
+                  </div>
+                </div>
+                <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;">
+                  <span class="scraper-status-pill ${statusBadge}">
+                    <span class="scraper-status-dot ${statusBadge}"></span>
+                    <span>${escapeHtml(statusLabel)}</span>
+                  </span>
+                  <span class="store-tech-pill" style="font-size: 0.68rem;">${escapeHtml(s.engine || s.type)}</span>
+                </div>
+              </div>
+
+              <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.45; margin: 1rem 0 0.85rem;">
+                ${escapeHtml(s.description || 'Automated price and inventory scraper')}
+              </p>
+
+              <!-- Metrics Mini-Grid -->
+              <div class="scraper-stats-grid">
+                <div class="scraper-stat-item">
+                  <span class="scraper-stat-label">Harvested SKUs</span>
+                  <span class="scraper-stat-value" style="color: #00f2fe;">${totalSkusStr}</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted);">${sharePct}% market share</span>
+                </div>
+                <div class="scraper-stat-item">
+                  <span class="scraper-stat-label">In-Stock Rate</span>
+                  <span class="scraper-stat-value" style="color: #10b981;">${inStockRate}%</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted);">${inStockSkusStr} available</span>
+                </div>
+                <div class="scraper-stat-item">
+                  <span class="scraper-stat-label">Raw Store Payload</span>
+                  <span class="scraper-stat-value">${escapeHtml(rawSize)}</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted);">${t.raw_file_count || 0} CSV batch(es)</span>
+                </div>
+                <div class="scraper-stat-item">
+                  <span class="scraper-stat-label">Last Ingested</span>
+                  <span class="scraper-stat-value" style="font-size: 0.85rem; font-weight: 600;">${escapeHtml(lastScraped)}</span>
+                  <span style="font-size: 0.68rem; color: var(--text-muted);">${t.categories_count || 0} hardware classes</span>
+                </div>
+              </div>
             </div>
-            <span class="store-tech-pill">${escapeHtml(s.type)}</span>
-          </div>
-          <p style="font-size: 0.78rem; color: var(--text-secondary); line-height: 1.4; margin-bottom: 1rem;">
-            ${escapeHtml(s.description)}
-          </p>
-        </div>
 
-        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(255,255,255,0.05); padding-top: 0.75rem;">
-          <span style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono);">
-            Status: <strong style="color: #34d399;">${escapeHtml(s.status || 'Ready')}</strong>
-          </span>
-          <button class="btn btn-glass btn-sm" onclick="filterByStore('${escapeHtml(s.name)}')">View Products</button>
-        </div>
-      </div>
-    `;
-  }).join('');
+            <!-- Card Actions -->
+            <div class="scraper-card-footer">
+              <span style="font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-muted);">
+                ${t.primary_raw_file ? escapeHtml(t.primary_raw_file) : 'No raw dataset'}
+              </span>
+              <div style="display: flex; gap: 0.5rem;">
+                ${t.total_skus > 0 ? `
+                  <button class="btn btn-glass btn-sm" onclick="filterByStore('${escapeHtml(s.name)}')">
+                    View Catalog (${totalSkusStr})
+                  </button>
+                ` : `
+                  <button class="btn btn-glass btn-sm" disabled style="opacity: 0.5;">Standby</button>
+                `}
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+  }
+
+  // 4. Render Deep Telemetry Matrix Table
+  if (elements.scraperTelemetryTableBody) {
+    elements.scraperTelemetryTableBody.innerHTML = allScrapers.map(s => {
+      const t = s.telemetry || {};
+      const statusBadge = s.status_badge || (t.total_skus > 0 ? 'healthy' : 'idle');
+      const statusLabel = s.status || (t.total_skus > 0 ? 'Operational' : 'Standby');
+      const totalSkusStr = (t.total_skus || 0).toLocaleString('en-US');
+      const inStockRate = t.in_stock_rate != null ? t.in_stock_rate : 0;
+      const rawSize = t.raw_size_formatted || '0 B';
+      const lastScraped = t.last_scraped || 'Never';
+
+      return `
+        <tr>
+          <td>
+            <div style="display: flex; align-items: center; gap: 0.6rem;">
+              <strong>${escapeHtml(s.name)}</strong>
+              ${s.url ? `
+                <a href="${escapeHtml(s.url)}" target="_blank" rel="noopener noreferrer" style="color: var(--text-muted);" title="Visit Website">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </a>
+              ` : ''}
+            </div>
+          </td>
+          <td>
+            <span class="store-tech-pill" style="font-size: 0.72rem;">${escapeHtml(s.engine || s.type)}</span>
+          </td>
+          <td>
+            <span class="scraper-status-pill ${statusBadge}">
+              <span class="scraper-status-dot ${statusBadge}"></span>
+              <span>${escapeHtml(statusLabel)}</span>
+            </span>
+          </td>
+          <td style="text-align: right; font-family: var(--font-mono); font-weight: 700; color: #00f2fe;">
+            ${totalSkusStr}
+          </td>
+          <td style="text-align: right; font-family: var(--font-mono); font-weight: 600; color: #10b981;">
+            ${inStockRate}%
+          </td>
+          <td style="text-align: right; font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-muted);">
+            ${escapeHtml(rawSize)}
+          </td>
+          <td style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">
+            ${escapeHtml(lastScraped)}
+          </td>
+          <td style="text-align: center;">
+            ${t.total_skus > 0 ? `
+              <button class="btn btn-glass btn-sm" onclick="filterByStore('${escapeHtml(s.name)}')">View</button>
+            ` : '-'}
+          </td>
+        </tr>
+      `;
+    }).join('');
+  }
 }
 
 async function triggerDatabaseMerge() {
@@ -1205,6 +1409,25 @@ function setupEventListeners() {
   }
   if (elements.syncDbBtn) {
     elements.syncDbBtn.addEventListener('click', triggerDatabaseMerge);
+  }
+
+  // Scraper Fleet Filters & Search
+  if (elements.scraperSearch) {
+    elements.scraperSearch.addEventListener('input', debounce((e) => {
+      state.scraperQuery = e.target.value;
+      renderScrapersHealthDashboard();
+    }, 200));
+  }
+
+  if (elements.scraperFilterPills) {
+    elements.scraperFilterPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        elements.scraperFilterPills.forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        state.scraperFilter = pill.dataset.filter || 'all';
+        renderScrapersHealthDashboard();
+      });
+    });
   }
 
   // Keyboard Shortcuts: '/' focuses search, 'Esc' closes modals, '1'-'5' switches tabs

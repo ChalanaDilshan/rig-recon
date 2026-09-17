@@ -388,21 +388,17 @@ def trigger_merge(
 
 @app.get("/api/scrapers")
 def get_scrapers():
-    """Returns registry of scrapers and their active status."""
+    """Returns comprehensive health, telemetry, and catalog statistics for all scrapers."""
     try:
-        from scrapers import SCRAPER_REGISTRY
-        scrapers_list = []
-        for key, val in SCRAPER_REGISTRY.items():
-            scrapers_list.append({
-                "id": key,
-                "name": val.get("name", key),
-                "type": val.get("type", "Web Scraper"),
-                "description": val.get("description", ""),
-                "status": "Operational"
-            })
-        return scrapers_list
+        from export_static import get_scraper_telemetry
+        return get_scraper_telemetry(DB_PATH)
     except Exception as e:
-        return []
+        scrapers_json_path = os.path.join(os.path.dirname(__file__), "data", "scrapers.json")
+        if os.path.exists(scrapers_json_path):
+            import json
+            with open(scrapers_json_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        return {"fleet": {}, "scrapers": []}
 
 
 @app.get("/", response_class=FileResponse)

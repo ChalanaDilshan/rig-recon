@@ -326,25 +326,128 @@
         </div>
       </section>
 
-      <!-- TAB 5: Scraper Operations Hub -->
+      <!-- TAB 5: Web Scraper Fleet Health & Monitoring Dashboard -->
       <section id="tab-scrapers" class="tab-content">
         <div class="scraper-hub-container">
+          <!-- Hub Header Banner -->
           <div class="scraper-hub-banner">
             <div>
-              <h2 style="font-family: var(--font-display); font-size: 1.35rem; font-weight: 700; margin-bottom: 0.25rem;">
-                Scraper Operations & Ingestion Pipeline
-              </h2>
-              <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 600px;">
-                Manage the 11 targeted scrapers spanning CSR, SSR, and Playwright browsers. Trigger one-click master dataset recompilation and SQLite DB synchronization.
+              <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.35rem;">
+                <h2 style="font-family: var(--font-display); font-size: 1.4rem; font-weight: 700;">
+                  Web Scraper Fleet Health & Telemetry
+                </h2>
+                <span id="fleetStatusPill" class="scraper-status-pill healthy">
+                  <span class="scraper-status-dot healthy"></span>
+                  <span>Fleet Operational</span>
+                </span>
+              </div>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); max-width: 680px; margin: 0;">
+                Live operational health monitoring, data ingestion metrics, and automated scheduling for the Sri Lankan PC hardware scraper fleet.
               </p>
             </div>
-            <button id="recompileTriggerBtn" class="btn btn-primary">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
-              Re-Index & Compile Master Database
-            </button>
+            <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+              <button id="recompileTriggerBtn" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 21h5v-5"/></svg>
+                Sync Master Database
+              </button>
+            </div>
           </div>
 
+          <!-- Fleet Overview KPI Row -->
+          <div class="scraper-kpi-row">
+            <div class="scraper-kpi-card">
+              <div class="scraper-kpi-icon icon-cyan">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
+              </div>
+              <div class="scraper-kpi-info">
+                <span class="scraper-kpi-label">Operational Fleet</span>
+                <span id="fleetOperationalValue" class="scraper-kpi-val">8 / 11 Stores</span>
+                <span id="fleetOperationalSub" class="scraper-kpi-sub">72.7% Active Coverage</span>
+              </div>
+            </div>
+
+            <div class="scraper-kpi-card">
+              <div class="scraper-kpi-icon icon-emerald">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+              </div>
+              <div class="scraper-kpi-info">
+                <span class="scraper-kpi-label">Harvested Catalog SKUs</span>
+                <span id="fleetSkusValue" class="scraper-kpi-val">8,059</span>
+                <span id="fleetRawPayloadSub" class="scraper-kpi-sub">1.55 MB Raw Store Payloads</span>
+              </div>
+            </div>
+
+            <div class="scraper-kpi-card">
+              <div class="scraper-kpi-icon icon-violet">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h10"/><path d="M7 12h10"/><path d="M7 17h10"/></svg>
+              </div>
+              <div class="scraper-kpi-info">
+                <span class="scraper-kpi-label">Scraper Architectures</span>
+                <span id="fleetEnginesValue" class="scraper-kpi-val">6 Browser • 5 HTTP</span>
+                <span class="scraper-kpi-sub">Playwright & Requests/curl_cffi</span>
+              </div>
+            </div>
+
+            <div class="scraper-kpi-card">
+              <div class="scraper-kpi-icon icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="scraper-kpi-info">
+                <span class="scraper-kpi-label">Extraction Schedule</span>
+                <span class="scraper-kpi-val">Twice Daily</span>
+                <span id="fleetScheduleSub" class="scraper-kpi-sub">07:30 AM & 07:30 PM SLST</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Filter & View Controls -->
+          <div class="scraper-filter-bar">
+            <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+              <span style="font-size: 0.74rem; font-weight: 600; color: var(--text-muted); text-transform: uppercase;">Filter Fleet:</span>
+              <button class="scraper-filter-pill active" data-filter="all">All Scrapers (<span id="countAllScrapers">11</span>)</button>
+              <button class="scraper-filter-pill" data-filter="operational">Operational (<span id="countOpScrapers">8</span>)</button>
+              <button class="scraper-filter-pill" data-filter="playwright">Playwright (<span id="countPwScrapers">6</span>)</button>
+              <button class="scraper-filter-pill" data-filter="http">HTTP / Requests (<span id="countHttpScrapers">5</span>)</button>
+            </div>
+            <div class="search-input-box" style="width: 250px;">
+              <span class="search-icon-decor">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              </span>
+              <input id="scraperSearch" type="text" class="search-input" style="height: 34px;" placeholder="Search scrapers..." />
+            </div>
+          </div>
+
+          <!-- Scraper Detailed Health Cards Grid -->
           <div id="scraperGrid" class="scraper-grid"></div>
+
+          <!-- Deep Telemetry Matrix Table -->
+          <div class="scraper-table-section">
+            <div style="margin-bottom: 1.25rem;">
+              <h3 style="font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem;">
+                Fleet Operational Telemetry Matrix
+              </h3>
+              <p style="font-size: 0.8rem; color: var(--text-secondary); margin: 0;">
+                Payload sizes, catalog yield, and last ingestion timestamps across all competitor targets.
+              </p>
+            </div>
+            <div class="catalog-table-wrapper">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Store / Target</th>
+                    <th>Scraper Engine</th>
+                    <th>Health Status</th>
+                    <th style="text-align: right;">Harvested SKUs</th>
+                    <th style="text-align: right;">In-Stock Rate</th>
+                    <th style="text-align: right;">Raw Payload</th>
+                    <th>Last Scraped</th>
+                    <th style="text-align: center;">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="scraperTelemetryTableBody"></tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </section>
     </main>
