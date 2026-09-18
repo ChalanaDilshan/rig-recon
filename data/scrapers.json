@@ -3,12 +3,12 @@
     "total_scrapers": 11,
     "operational_scrapers": 11,
     "operational_rate": 100.0,
-    "total_harvested_skus": 9522,
-    "total_raw_data_formatted": "1.80 MB",
+    "total_harvested_skus": 9381,
+    "total_raw_data_formatted": "1.78 MB",
     "playwright_engines": 5,
     "http_engines": 6,
     "schedule": "Twice Daily at 07:30 AM & 07:30 PM SLST (02:00 & 14:00 UTC)",
-    "last_sync": "2026-09-18 16:02:08"
+    "last_sync": "2026-09-18 17:45:53"
   },
   "scrapers": [
     {
@@ -27,7 +27,7 @@
         "in_stock_skus": 1726,
         "out_of_stock_skus": 1938,
         "in_stock_rate": 47.1,
-        "market_share_pct": 38.5,
+        "market_share_pct": 39.1,
         "categories_count": 10,
         "min_price_lkr": 150.0,
         "max_price_lkr": 1680000.0,
@@ -36,7 +36,7 @@
         "raw_total_bytes": 715671,
         "raw_size_formatted": "698.9 KB",
         "primary_raw_file": "mdcomputers_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -55,7 +55,7 @@
         "in_stock_skus": 1015,
         "out_of_stock_skus": 863,
         "in_stock_rate": 54.0,
-        "market_share_pct": 19.7,
+        "market_share_pct": 20.0,
         "categories_count": 10,
         "min_price_lkr": 500.0,
         "max_price_lkr": 2399000.0,
@@ -64,7 +64,7 @@
         "raw_total_bytes": 398713,
         "raw_size_formatted": "389.4 KB",
         "primary_raw_file": "nanotek_all_products.csv",
-        "last_scraped": "2026-09-18 15:56"
+        "last_scraped": "2026-09-18 17:40"
       }
     },
     {
@@ -83,7 +83,7 @@
         "in_stock_skus": 563,
         "out_of_stock_skus": 479,
         "in_stock_rate": 54.0,
-        "market_share_pct": 10.9,
+        "market_share_pct": 11.1,
         "categories_count": 10,
         "min_price_lkr": 440.0,
         "max_price_lkr": 3255000.0,
@@ -92,7 +92,7 @@
         "raw_total_bytes": 207301,
         "raw_size_formatted": "202.4 KB",
         "primary_raw_file": "red_tech_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -111,7 +111,7 @@
         "in_stock_skus": 892,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 9.4,
+        "market_share_pct": 9.5,
         "categories_count": 10,
         "min_price_lkr": 300.0,
         "max_price_lkr": 445900.0,
@@ -120,7 +120,7 @@
         "raw_total_bytes": 132553,
         "raw_size_formatted": "129.4 KB",
         "primary_raw_file": "tulip_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -139,7 +139,7 @@
         "in_stock_skus": 147,
         "out_of_stock_skus": 535,
         "in_stock_rate": 21.6,
-        "market_share_pct": 7.2,
+        "market_share_pct": 7.3,
         "categories_count": 8,
         "min_price_lkr": 2500.0,
         "max_price_lkr": 1499000.0,
@@ -148,35 +148,7 @@
         "raw_total_bytes": 179874,
         "raw_size_formatted": "175.7 KB",
         "primary_raw_file": "chamacomputers_products.csv",
-        "last_scraped": "2026-09-18 15:54"
-      }
-    },
-    {
-      "id": "gamestreet",
-      "name": "Game Street",
-      "type": "curl_cffi / requests",
-      "engine": "curl_cffi / Requests",
-      "url": "https://gamestreet.lk",
-      "description": "Gamestreet.lk Custom PHP catalog scraper",
-      "status": "Operational",
-      "status_badge": "healthy",
-      "health_score": 100,
-      "is_playwright": false,
-      "telemetry": {
-        "total_skus": 445,
-        "in_stock_skus": 445,
-        "out_of_stock_skus": 0,
-        "in_stock_rate": 100.0,
-        "market_share_pct": 4.7,
-        "categories_count": 10,
-        "min_price_lkr": 0,
-        "max_price_lkr": 0,
-        "avg_price_lkr": 0,
-        "raw_file_count": 1,
-        "raw_total_bytes": 78958,
-        "raw_size_formatted": "77.1 KB",
-        "primary_raw_file": "game_street_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -191,11 +163,11 @@
       "health_score": 100,
       "is_playwright": false,
       "telemetry": {
-        "total_skus": 339,
-        "in_stock_skus": 339,
+        "total_skus": 343,
+        "in_stock_skus": 343,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
-        "market_share_pct": 3.6,
+        "market_share_pct": 3.7,
         "categories_count": 6,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
@@ -204,7 +176,35 @@
         "raw_total_bytes": 80336,
         "raw_size_formatted": "78.5 KB",
         "primary_raw_file": "pcbuilders_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
+      }
+    },
+    {
+      "id": "gamestreet",
+      "name": "Game Street",
+      "type": "curl_cffi / requests",
+      "engine": "curl_cffi / Requests",
+      "url": "https://gamestreet.lk",
+      "description": "Gamestreet.lk Custom PHP catalog scraper",
+      "status": "Operational",
+      "status_badge": "healthy",
+      "health_score": 100,
+      "is_playwright": false,
+      "telemetry": {
+        "total_skus": 300,
+        "in_stock_skus": 300,
+        "out_of_stock_skus": 0,
+        "in_stock_rate": 100.0,
+        "market_share_pct": 3.2,
+        "categories_count": 6,
+        "min_price_lkr": 0,
+        "max_price_lkr": 0,
+        "avg_price_lkr": 0,
+        "raw_file_count": 1,
+        "raw_total_bytes": 54216,
+        "raw_size_formatted": "52.9 KB",
+        "primary_raw_file": "game_street_all_products.csv",
+        "last_scraped": "2026-09-18 17:40"
       }
     },
     {
@@ -223,7 +223,7 @@
         "in_stock_skus": 186,
         "out_of_stock_skus": 46,
         "in_stock_rate": 80.2,
-        "market_share_pct": 2.4,
+        "market_share_pct": 2.5,
         "categories_count": 10,
         "min_price_lkr": 3500.0,
         "max_price_lkr": 1820000.0,
@@ -232,7 +232,7 @@
         "raw_total_bytes": 37282,
         "raw_size_formatted": "36.4 KB",
         "primary_raw_file": "techzone_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -260,7 +260,7 @@
         "raw_total_bytes": 29523,
         "raw_size_formatted": "28.8 KB",
         "primary_raw_file": "galle_laptop_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -279,7 +279,7 @@
         "in_stock_skus": 35,
         "out_of_stock_skus": 73,
         "in_stock_rate": 32.4,
-        "market_share_pct": 1.1,
+        "market_share_pct": 1.2,
         "categories_count": 10,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
@@ -288,7 +288,7 @@
         "raw_total_bytes": 20854,
         "raw_size_formatted": "20.4 KB",
         "primary_raw_file": "redlinetech_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     },
     {
@@ -316,7 +316,7 @@
         "raw_total_bytes": 9348,
         "raw_size_formatted": "9.1 KB",
         "primary_raw_file": "mskcomputers_all_products.csv",
-        "last_scraped": "2026-09-18 15:54"
+        "last_scraped": "2026-09-18 17:37"
       }
     }
   ]
