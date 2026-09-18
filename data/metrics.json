@@ -1,14 +1,14 @@
 {
-  "total_skus": 9515,
+  "total_skus": 9518,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5575,
+  "in_stock_skus": 5578,
   "in_stock_rate": 58.6,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3645,
-      "avg_price": 27289.0,
+      "count": 3647,
+      "avg_price": 27285.0,
       "min_price": 150.0,
       "max_price": 1039000.0
     },
@@ -21,8 +21,8 @@
     },
     {
       "Category": "Monitor",
-      "count": 734,
-      "avg_price": 112534.0,
+      "count": 735,
+      "avg_price": 112447.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1871,
-      "in_stock": 1008,
+      "total": 1874,
+      "in_stock": 1011,
       "in_stock_rate": 53.9
     },
     {
