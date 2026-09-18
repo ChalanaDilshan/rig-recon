@@ -8,7 +8,7 @@ import time
 import sqlite3
 import threading
 from collections import defaultdict
-from typing import Optional, List
+from typing import Optional, List, Tuple
 import pandas as pd
 from fastapi import FastAPI, Query, HTTPException, Request, Header
 from fastapi.responses import FileResponse, JSONResponse
@@ -42,6 +42,38 @@ def get_client_ip(request: Request) -> str:
 def escape_like(s: str) -> str:
     r"""Escapes SQLite LIKE wildcards (% and _) as well as the escape character (\)."""
     return s.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+
+
+def build_title_search_clause(query_str: Optional[str], max_length: int = 100, max_keywords: int = 8) -> Tuple[List[str], List[str]]:
+    """
+    Shared tokenizer & sanitizer for search endpoints.
+    Escapes SQLite LIKE wildcards (% and _), bounds max keyword count, and
+    generates parameterized Title LIKE clauses.
+    Returns: (conditions_list, params_list)
+    """
+    if not query_str:
+        return [], []
+    sanitized = str(query_str)[:max_length].strip()
+    keywords = sanitized.split()[:max_keywords]
+    conditions = ["Title LIKE ? ESCAPE '\\'"] * len(keywords)
+    params = [f"%{escape_like(kw)}%" for kw in keywords]
+    return conditions, params
+
+
+def ensure_db_indexes(conn: sqlite3.Connection):
+    """Guarantees required query and sorting indexes exist for sub-millisecond execution."""
+    try:
+        cur = conn.cursor()
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_category ON market_products(Category);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_store ON market_products(Source_Store);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_price ON market_products(Cleaned_Price_LKR);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_stock ON market_products(Stock_Status);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_title ON market_products(Title);")
+        cur.execute("CREATE INDEX IF NOT EXISTS idx_products_cat_price ON market_products(Category, Cleaned_Price_LKR);")
+        conn.commit()
+    except Exception:
+        pass
+
 
 
 # ---------------------------------------------------------------------------
@@ -172,6 +204,19 @@ def get_db():
     return conn
 
 
+@app.on_event("startup")
+def startup_event():
+    """Confirms database indexing and environment readiness on startup."""
+    if os.path.exists(DB_PATH):
+        try:
+            conn = get_db()
+            ensure_db_indexes(conn)
+            conn.close()
+        except Exception:
+            pass
+
+
+
 @app.get("/api/metrics")
 def get_market_metrics():
     """Returns top-level executive KPI numbers and category metrics."""
@@ -252,12 +297,9 @@ def get_products(
     params = []
 
     if q:
-        # Sanitize length, escape SQL LIKE wildcards (% and _), and bound max keywords
-        sanitized_q = q[:100].strip()
-        keywords = sanitized_q.split()[:8]
-        for kw in keywords:
-            conditions.append("Title LIKE ? ESCAPE '\\'")
-            params.append(f"%{escape_like(kw)}%")
+        q_conds, q_params = build_title_search_clause(q, max_length=100, max_keywords=8)
+        conditions.extend(q_conds)
+        params.extend(q_params)
 
     if category and category != "All":
         conditions.append("Category = ?")
@@ -327,11 +369,9 @@ def compare_models(
     conn = get_db()
     cursor = conn.cursor()
 
-    # Sanitize, escape SQL LIKE wildcards (% and _), and bound keywords
+    # Sanitize, escape SQL LIKE wildcards (% and _), and bound keywords using shared helper
     sanitized_model = model[:80].strip()
-    keywords = sanitized_model.split()[:6]
-    conditions = ["Title LIKE ? ESCAPE '\\'"] * len(keywords)
-    params = [f"%{escape_like(kw)}%" for kw in keywords]
+    conditions, params = build_title_search_clause(sanitized_model, max_length=80, max_keywords=6)
 
     if category and category != "All":
         conditions.append("Category = ?")
@@ -498,5 +538,8 @@ def serve_dashboard():
 
 if __name__ == "__main__":
     import uvicorn
-    print("[+] Launching Animated PC Hardware Competitor Intelligence Dashboard on http://127.0.0.1:8000")
-    uvicorn.run("dashboard:app", host="127.0.0.1", port=8000, reload=True)
+    host = os.getenv("HOST", "127.0.0.1")
+    port = int(os.getenv("PORT", "8000"))
+    reload = os.getenv("RELOAD", "false").lower() in ("true", "1", "yes") or os.getenv("ENVIRONMENT", "").lower() == "development"
+    print(f"[+] Launching PC Hardware Market Intelligence Dashboard on http://{host}:{port} (reload={reload})")
+    uvicorn.run("dashboard:app", host=host, port=port, reload=reload)

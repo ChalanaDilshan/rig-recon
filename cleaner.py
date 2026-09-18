@@ -63,17 +63,19 @@ RE_NUM_EXTRACT = re.compile(r"[\d,]+(?:\.\d{1,2})?")
 RE_LEAKED_CART_PRICE = re.compile(r"[\d,]+(?:\.\d{2})?\s*\+\s*Add to Cart.*$", re.IGNORECASE)
 RE_LEAKED_CART = re.compile(r"\bAdd to Cart\b.*$", re.IGNORECASE)
 RE_SKU_PREFIX = re.compile(r"^\d{4,6}\s*-\s*")
-RE_STOCK_BADGE = re.compile(r"^(In Stock|Out of Stock|Sale|New|Hot|Special Offer|Featured)\s*[-:]?\s*", re.IGNORECASE)
+RE_STOCK_BADGE = re.compile(r"^(?:In Stock|Out of Stock|Sale|New|Hot|Special Offer|Featured)\s*[-:]?\s*", re.IGNORECASE)
 RE_WHITESPACE = re.compile(r"\s+")
 
-RE_PC_INDICATOR = re.compile(r'\b(rtx|gtx|rx\s*\d{3,4})\b.*?\b(pc|desktop)\b', re.IGNORECASE)
-RE_MOBO_CHIPSET = re.compile(r"\b(b550|b650|b760|b660|z790|z690|x670|x870|a520|a620|h610|h510)\b", re.IGNORECASE)
-RE_SCREEN_SIZE = re.compile(r'\b(13\.3|14|14\.0|15\.6|16|16\.0|16\.1|17|17\.3|18)\s*(["\'”″]|inch|-inch|\s*fhd|\s*qhd|\s*wqxga|\s*oled|\s*ips)\b', re.IGNORECASE)
-RE_MOBILE_CPU = re.compile(r'\b(\d{4,5}(h|hx)|core\s*7\s*240h|ultra\s*[579][-\s]\d{3}h|ryzen\s*[3579]\s*[-]?\d{4}(hs|hx|u)|ryzen\s*ai\s*9\s*hx\d{3}|8845hs|8945hs|8645hs|7840hs|7940hs|7735hs|7535hs|7445hs)\b', re.IGNORECASE)
-RE_MOBILE_GPU = re.compile(r'\b(rtx\s*4070\s*8gb|rtx4070\s*8gb|rtx\s*4050|rtx4050|rtx\s*3050\s*4gb|rtx3050\s*4gb|rtx\s*2050|rtx2050|rtx\s*5050)\b', re.IGNORECASE)
-RE_GPU_MODEL = re.compile(r"\b(rtx|gtx|radeon rx|geforce|arc a)\s*\d{3,4}", re.IGNORECASE)
-RE_RAM_SPECS_1 = re.compile(r"\b(16gb|8gb|32gb|64gb|4gb)\s*(ddr4|ddr5|ddr3)\b", re.IGNORECASE)
-RE_RAM_SPECS_2 = re.compile(r"\b(ddr4|ddr5|ddr3)\s*(16gb|8gb|32gb|64gb|4gb)\b", re.IGNORECASE)
+# ReDoS-hardened: bounded length scan [^,\n]{0,50} instead of unbounded .*? to prevent cross-line backtracking
+RE_PC_INDICATOR = re.compile(r'\b(?:rtx|gtx|rx\s*\d{3,4})\b[^,\n]{0,50}\b(?:pc|desktop)\b', re.IGNORECASE)
+RE_MOBO_CHIPSET = re.compile(r"\b(?:b550|b650|b760|b660|z790|z690|x670|x870|a520|a620|h610|h510)\b", re.IGNORECASE)
+RE_SCREEN_SIZE = re.compile(r'\b(?:13\.3|14(?:\.0)?|15\.6|16(?:\.0|\.1)?|17(?:\.3)?|18)\s*(?:["\'”″]|inch|-inch|\s*(?:fhd|qhd|wqxga|oled|ips))\b', re.IGNORECASE)
+RE_MOBILE_CPU = re.compile(r'\b(?:\d{4,5}(?:h|hx)|core\s*7\s*240h|ultra\s*[579][-\s]\d{3}h|ryzen\s*[3579]\s*[-]?\d{4}(?:hs|hx|u)|ryzen\s*ai\s*9\s*hx\d{3}|8845hs|8945hs|8645hs|7840hs|7940hs|7735hs|7535hs|7445hs)\b', re.IGNORECASE)
+# De-duplicated alternations to eliminate NFA branch ambiguity
+RE_MOBILE_GPU = re.compile(r'\b(?:rtx\s*4070\s*8gb|rtx\s*4050|rtx\s*3050\s*4gb|rtx\s*2050|rtx\s*5050)\b', re.IGNORECASE)
+RE_GPU_MODEL = re.compile(r"\b(?:rtx|gtx|radeon rx|geforce|arc a)\s*\d{3,4}", re.IGNORECASE)
+RE_RAM_SPECS_1 = re.compile(r"\b(?:16gb|8gb|32gb|64gb|4gb)\s*(?:ddr4|ddr5|ddr3)\b", re.IGNORECASE)
+RE_RAM_SPECS_2 = re.compile(r"\b(?:ddr4|ddr5|ddr3)\s*(?:16gb|8gb|32gb|64gb|4gb)\b", re.IGNORECASE)
 
 
 def clean_price(raw_price: Optional[str]) -> Tuple[Optional[float], str]:

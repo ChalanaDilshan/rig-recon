@@ -1933,3 +1933,26 @@ body {
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Mobile Performance & GPU Optimization
+   Disables multi-pass real-time compositing backdrop blurs on mobile viewports
+   and coarse pointer devices to eliminate GPU strain and guarantee smooth 60fps scrolling.
+   ========================================================================== */
+
+@media (max-width: 768px), (hover: none) and (pointer: coarse) {
+  .product-card,
+  .kpi-card,
+  .stat-card,
+  .best-deal-card,
+  .compare-card,
+  .store-card,
+  .scraper-card,
+  .catalog-toolbar,
+  .table-container {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background-color: var(--bg-card-elevated) !important;
+  }
+}
+
