@@ -30,10 +30,11 @@ permissions:
   pages: write
   id-token: write
 
-# Prevent concurrent deployments from colliding by cancelling in-progress runs when a newer commit arrives
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# Do NOT cancel in-progress runs so active GitHub Pages backend deployments can finish cleanly.
 concurrency:
   group: 'pages'
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   build-and-update:
