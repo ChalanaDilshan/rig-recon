@@ -182,7 +182,7 @@ def get_scraper_telemetry(db_path: str = DB_PATH) -> Dict[str, Any]:
         "total_raw_data_formatted": format_bytes(fleet_total_raw_bytes),
         "playwright_engines": playwright_count,
         "http_engines": http_count,
-        "schedule": "Twice Daily at 07:30 AM & 07:30 PM SLST (02:00 & 14:00 UTC)",
+        "schedule": "Twice Daily at 07:45 AM & 07:45 PM SLST (02:15 & 14:15 UTC)",
         "last_sync": datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     }
 

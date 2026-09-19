@@ -2,8 +2,9 @@ name: Market Intelligence Pipeline & Pages Deploy
 
 on:
   schedule:
-    # Run twice daily: 02:00 UTC (07:30 AM SLT) and 14:00 UTC (07:30 PM SLT)
-    - cron: '0 2,14 * * *'
+    # Run twice daily at off-peak minutes: 02:15 UTC (07:45 AM SLT) and 14:15 UTC (07:45 PM SLT)
+    # Using minute 15 avoids global GitHub runner queue delays common at minute 0
+    - cron: '15 2,14 * * *'
   workflow_dispatch:
     inputs:
       run_scrapers:
@@ -39,6 +40,7 @@ concurrency:
 jobs:
   build-and-update:
     runs-on: ubuntu-latest
+    timeout-minutes: 45
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -100,6 +102,7 @@ jobs:
   deploy:
     needs: build-and-update
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
