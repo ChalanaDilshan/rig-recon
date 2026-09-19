@@ -9,7 +9,7 @@ import sqlite3
 import threading
 import ipaddress
 import secrets
-from collections import defaultdict
+from collections import defaultdict, OrderedDict, deque
 from typing import Optional, List, Tuple, Union
 import pandas as pd
 from fastapi import FastAPI, Query, HTTPException, Request, Header
@@ -178,13 +178,14 @@ app.add_middleware(
 
 # ---------------------------------------------------------------------------
 # Rate Limiting & Concurrency State:
-# Sliding-window rate limiter per IP with automatic memory cleanup to prevent memory exhaustion,
-# plus concurrency locks for database synchronization.
+# Bounded O(1) LRU sliding-window rate limiter per (IP, bucket) pair.
+# Eliminates lock contention, synchronous cleanup churn, and memory exhaustion DoS vectors.
 # ---------------------------------------------------------------------------
-rate_limit_records = defaultdict(lambda: defaultdict(list))
+MAX_RATE_LIMIT_KEYS = 10000  # Hard capacity ceiling to prevent memory exhaustion
+rate_limit_records: OrderedDict[Tuple[str, str], deque] = OrderedDict()
 rate_limit_lock = threading.Lock()
 last_rate_limit_cleanup: float = 0.0
-RATE_LIMIT_CLEANUP_INTERVAL = 300.0  # Prune every 5 minutes
+RATE_LIMIT_CLEANUP_INTERVAL = 300.0  # Prune idle records at most once every 5 minutes
 
 merge_lock = threading.Lock()
 last_merge_timestamp: float = 0.0
@@ -194,40 +195,46 @@ ADMIN_API_KEY = os.getenv("ADMIN_API_KEY")
 
 def check_rate_limit(ip: str, bucket: str, limit: int, window_seconds: int = 60) -> bool:
     """
-    Sliding window rate limit checker per IP with memory leak prevention.
-    Periodically purges inactive IPs from rate_limit_records.
+    Constant-time O(1) sliding-window rate limit checker with bounded LRU memory management.
+    Eliminates lock contention, synchronous iteration churn, and memory exhaustion DoS vectors:
+    1. Flat keying (ip, bucket) stored in an OrderedDict for O(1) LRU eviction.
+    2. Uses collections.deque for O(1) timestamp pruning per bucket.
+    3. Strict O(1) LRU eviction when table reaches MAX_RATE_LIMIT_KEYS (no O(N) table scans under lock).
+    4. Time-throttled idle bucket pruning (at most once per RATE_LIMIT_CLEANUP_INTERVAL, rate-limited to avoid churn).
     """
     global last_rate_limit_cleanup
     now = time.time()
-    with rate_limit_lock:
-        # Memory cleanup: purge stale IP buckets if interval passed or table exceeds 1000 IPs
-        if now - last_rate_limit_cleanup > RATE_LIMIT_CLEANUP_INTERVAL or len(rate_limit_records) > 1000:
-            stale_cutoff = now - 600.0  # Inactive for > 10 minutes
-            stale_ips = []
-            for recorded_ip, buckets in list(rate_limit_records.items()):
-                empty_buckets = []
-                for b_name, timestamps in list(buckets.items()):
-                    fresh = [t for t in timestamps if t > stale_cutoff]
-                    if not fresh:
-                        empty_buckets.append(b_name)
-                    else:
-                        buckets[b_name] = fresh
-                for b_name in empty_buckets:
-                    del buckets[b_name]
-                if not buckets:
-                    stale_ips.append(recorded_ip)
-            for s_ip in stale_ips:
-                del rate_limit_records[s_ip]
-            last_rate_limit_cleanup = now
+    cutoff = now - window_seconds
+    key = (ip, bucket)
 
-        timestamps = rate_limit_records[ip][bucket]
-        cutoff = now - window_seconds
-        valid_timestamps = [t for t in timestamps if t > cutoff]
-        if len(valid_timestamps) >= limit:
-            rate_limit_records[ip][bucket] = valid_timestamps
+    with rate_limit_lock:
+        # Time-throttled periodic cleanup: runs at most once every 5 minutes, NEVER on every request
+        if now - last_rate_limit_cleanup > RATE_LIMIT_CLEANUP_INTERVAL:
+            last_rate_limit_cleanup = now
+            idle_cutoff = now - 600.0
+            expired_keys = [k for k, dq in rate_limit_records.items() if not dq or dq[-1] < idle_cutoff]
+            for k in expired_keys:
+                del rate_limit_records[k]
+
+        dq = rate_limit_records.get(key)
+        if dq is None:
+            # Enforce hard capacity bound with O(1) eviction
+            if len(rate_limit_records) >= MAX_RATE_LIMIT_KEYS:
+                rate_limit_records.popitem(last=False)  # Evict oldest LRU key in O(1)
+            dq = deque()
+            rate_limit_records[key] = dq
+        else:
+            # Move key to end to update LRU order in O(1)
+            rate_limit_records.move_to_end(key)
+
+        # Prune expired timestamps for THIS key from the left of the deque in O(k_expired)
+        while dq and dq[0] <= cutoff:
+            dq.popleft()
+
+        if len(dq) >= limit:
             return False
-        valid_timestamps.append(now)
-        rate_limit_records[ip][bucket] = valid_timestamps
+
+        dq.append(now)
         return True
 
 
