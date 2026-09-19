@@ -7,8 +7,10 @@ import os
 import time
 import sqlite3
 import threading
+import ipaddress
+import secrets
 from collections import defaultdict
-from typing import Optional, List, Tuple
+from typing import Optional, List, Tuple, Union
 import pandas as pd
 from fastapi import FastAPI, Query, HTTPException, Request, Header
 from fastapi.responses import FileResponse, JSONResponse
@@ -28,15 +30,96 @@ app = FastAPI(title="Sri Lanka PC Hardware Market Intelligence")
 LOOPBACK_IPS = {"127.0.0.1", "::1", "localhost", "testclient"}
 
 
+def parse_trusted_proxies(env_val: str) -> Tuple[List[Union[ipaddress.IPv4Network, ipaddress.IPv6Network]], set]:
+    """Parses TRUSTED_PROXIES environment variable into IP networks and named hosts."""
+    networks = []
+    named_hosts = set()
+    for item in env_val.split(","):
+        item = item.strip()
+        if not item:
+            continue
+        try:
+            networks.append(ipaddress.ip_network(item, strict=False))
+        except ValueError:
+            named_hosts.add(item.lower())
+    return networks, named_hosts
+
+
+TRUSTED_PROXY_NETWORKS, TRUSTED_PROXY_NAMES = parse_trusted_proxies(os.getenv("TRUSTED_PROXIES", ""))
+
+
+def is_trusted_proxy(ip_str: str) -> bool:
+    """Checks if an IP string belongs to configured trusted proxy networks or hosts."""
+    if not ip_str or (not TRUSTED_PROXY_NETWORKS and not TRUSTED_PROXY_NAMES):
+        return False
+    if ip_str.lower() in TRUSTED_PROXY_NAMES:
+        return True
+    try:
+        ip_obj = ipaddress.ip_address(ip_str)
+        return any(ip_obj in net for net in TRUSTED_PROXY_NETWORKS)
+    except ValueError:
+        return False
+
+
 def get_client_ip(request: Request) -> str:
-    """Extracts client IP, respecting X-Forwarded-For if deployed behind a proxy."""
+    """
+    Extracts the verified client IP address.
+    Security hardening:
+    - Never trusts X-Forwarded-For or X-Real-IP unless the direct connection (request.client.host)
+      originates from an explicitly configured trusted reverse proxy (TRUSTED_PROXIES).
+    - When behind a trusted proxy, parses X-Forwarded-For from right to left, selecting
+      the first untrusted IP address in the chain (preventing client-injected spoofed headers).
+    """
+    direct_ip = request.client.host if (request.client and request.client.host) else "unknown"
+
+    # If the direct peer is not a trusted proxy, strictly return direct connection IP
+    if not is_trusted_proxy(direct_ip):
+        return direct_ip
+
+    # If direct peer is a trusted proxy, inspect X-Forwarded-For / X-Real-IP
     forwarded = request.headers.get("x-forwarded-for")
     if forwarded:
-        # First entry in X-Forwarded-For is the originating client IP
-        return forwarded.split(",")[0].strip()
-    if request.client and request.client.host:
-        return request.client.host
-    return "unknown"
+        # Standard XFF format: client, proxy1, proxy2
+        # Parse right-to-left: first IP that is NOT a trusted proxy is the real client
+        raw_ips = [ip.strip() for ip in forwarded.split(",") if ip.strip()]
+        for ip in reversed(raw_ips):
+            if not is_trusted_proxy(ip):
+                return ip
+        # If all IPs in chain are trusted proxies, fall back to leftmost
+        if raw_ips:
+            return raw_ips[0]
+
+    real_ip = request.headers.get("x-real-ip")
+    if real_ip and real_ip.strip():
+        return real_ip.strip()
+
+    return direct_ip
+
+
+def is_loopback_request(request: Request) -> bool:
+    """
+    Validates whether a request originates directly from localhost/loopback.
+    Guards against:
+    - Direct remote connections sending spoofed X-Forwarded-For headers.
+    - Remote requests forwarded through unconfigured local reverse proxies.
+    - Remote requests forwarded through configured reverse proxies.
+    """
+    direct_ip = request.client.host if (request.client and request.client.host) else ""
+    if direct_ip not in LOOPBACK_IPS:
+        return False
+
+    # If proxy forwarding headers exist on a loopback connection:
+    # 1. If direct_ip is NOT a configured trusted proxy, reject loopback assumption
+    #    (prevents unconfigured local reverse proxy from passing external traffic as local).
+    # 2. If direct_ip IS a trusted proxy, ensure resolved originating IP is also loopback.
+    has_forward_header = bool(request.headers.get("x-forwarded-for") or request.headers.get("x-real-ip"))
+    if has_forward_header:
+        if not is_trusted_proxy(direct_ip):
+            return False
+        resolved_ip = get_client_ip(request)
+        return resolved_ip in LOOPBACK_IPS
+
+    return True
 
 
 def escape_like(s: str) -> str:
@@ -452,8 +535,8 @@ def trigger_merge(
     global last_merge_timestamp
     client_ip = get_client_ip(request)
 
-    # 1. Access Control: Loopback vs Remote
-    is_loopback = client_ip in LOOPBACK_IPS
+    # 1. Access Control: Loopback vs Remote (spoofing-hardened)
+    is_loopback = is_loopback_request(request)
 
     if not is_loopback:
         # Remote request - strictly require configured ADMIN_API_KEY
@@ -462,14 +545,14 @@ def trigger_merge(
                 status_code=403,
                 detail="Forbidden: Master database compilation is restricted to localhost. Set ADMIN_API_KEY to allow authenticated remote rebuilds."
             )
-        if x_admin_key != ADMIN_API_KEY:
+        if not x_admin_key or not secrets.compare_digest(x_admin_key, ADMIN_API_KEY):
             raise HTTPException(
                 status_code=401,
                 detail="Unauthorized: Valid X-Admin-Key header is required for remote database compilation."
             )
     else:
-        # Localhost request: if key was provided and ADMIN_API_KEY is set, ensure it is not invalid
-        if ADMIN_API_KEY and x_admin_key and x_admin_key != ADMIN_API_KEY:
+        # Localhost request: if key was provided and ADMIN_API_KEY is set, ensure it is not invalid (timing-safe)
+        if ADMIN_API_KEY and x_admin_key and not secrets.compare_digest(x_admin_key, ADMIN_API_KEY):
             raise HTTPException(
                 status_code=401,
                 detail="Unauthorized: Invalid X-Admin-Key provided."
@@ -541,5 +624,6 @@ if __name__ == "__main__":
     host = os.getenv("HOST", "127.0.0.1")
     port = int(os.getenv("PORT", "8000"))
     reload = os.getenv("RELOAD", "false").lower() in ("true", "1", "yes") or os.getenv("ENVIRONMENT", "").lower() == "development"
-    print(f"[+] Launching PC Hardware Market Intelligence Dashboard on http://{host}:{port} (reload={reload})")
-    uvicorn.run("dashboard:app", host=host, port=port, reload=reload)
+    forwarded_allow_ips = os.getenv("FORWARDED_ALLOW_IPS") or os.getenv("TRUSTED_PROXIES") or "127.0.0.1"
+    print(f"[+] Launching PC Hardware Market Intelligence Dashboard on http://{host}:{port} (reload={reload}, forwarded_allow_ips={forwarded_allow_ips})")
+    uvicorn.run("dashboard:app", host=host, port=port, reload=reload, forwarded_allow_ips=forwarded_allow_ips)
