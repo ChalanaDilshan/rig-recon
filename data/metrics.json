@@ -1,9 +1,9 @@
 {
-  "total_skus": 9381,
+  "total_skus": 9246,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5441,
-  "in_stock_rate": 58.0,
+  "in_stock_skus": 5306,
+  "in_stock_rate": 57.4,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -109,14 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 343,
-      "in_stock": 343,
-      "in_stock_rate": 100.0
-    },
-    {
-      "Source_Store": "Game Street",
-      "total": 300,
-      "in_stock": 300,
+      "total": 354,
+      "in_stock": 354,
       "in_stock_rate": 100.0
     },
     {
@@ -129,6 +123,12 @@
       "Source_Store": "Galle Laptop",
       "total": 182,
       "in_stock": 182,
+      "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 154,
+      "in_stock": 154,
       "in_stock_rate": 100.0
     },
     {
