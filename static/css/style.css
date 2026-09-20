@@ -2166,6 +2166,55 @@ body {
   color: #fb7185;
 }
 
+.build-slot-product-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color var(--trans-fast);
+}
+
+.build-slot-product-link:hover {
+  color: #00f2fe;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.build-slot-product-link .build-link-icon {
+  flex-shrink: 0;
+  opacity: 0.6;
+  transition: opacity var(--trans-fast), transform var(--trans-fast);
+}
+
+.build-slot-product-link:hover .build-link-icon {
+  opacity: 1;
+  transform: translate(1px, -1px);
+}
+
+.build-slot-visit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: rgba(0, 242, 254, 0.08);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+  border-radius: var(--radius-sm);
+  color: #00f2fe;
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  padding: 0.18rem 0.45rem;
+  transition: background var(--trans-fast), border-color var(--trans-fast), color var(--trans-fast), transform var(--trans-fast);
+}
+
+.build-slot-visit-btn:hover {
+  background: rgba(0, 242, 254, 0.18);
+  border-color: rgba(0, 242, 254, 0.5);
+  color: #fff;
+  transform: translateY(-1px);
+}
+
 /* ── Slot Results List ── */
 .build-slot-results {
   display: flex;
@@ -2218,7 +2267,30 @@ body {
 .build-result-store {
   font-size: 0.66rem;
   color: var(--text-muted);
-  margin-top: 0.1rem;
+  margin-top: 0.15rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.build-result-link-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.64rem;
+  padding: 0.08rem 0.35rem;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  transition: color var(--trans-fast), background var(--trans-fast), border-color var(--trans-fast);
+}
+
+.build-result-link-btn:hover {
+  color: #00f2fe;
+  background: rgba(0, 242, 254, 0.1);
+  border-color: rgba(0, 242, 254, 0.3);
 }
 
 .build-result-right {
@@ -2387,6 +2459,36 @@ body {
 
 .build-summary-row.has-item .build-summary-row-name {
   color: var(--text-primary);
+}
+
+.build-summary-link {
+  color: var(--text-primary);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color var(--trans-fast);
+}
+
+.build-summary-link:hover {
+  color: #00f2fe;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.build-summary-link svg {
+  flex-shrink: 0;
+  opacity: 0.55;
+  transition: opacity var(--trans-fast), transform var(--trans-fast);
+}
+
+.build-summary-link:hover svg {
+  opacity: 1;
+  transform: translate(1px, -1px);
 }
 
 .build-summary-row-price {

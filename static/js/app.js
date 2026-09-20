@@ -1550,6 +1550,7 @@ async function initBuildTab() {
 function renderBuildSlotCard(slot) {
   const sel = state.buildSelections[slot.key];
   const isSelected = !!sel;
+  const hasUrl = isSelected && sel.Product_URL && sel.Product_URL.startsWith('http');
 
   return `
     <div class="build-slot-card ${isSelected ? 'is-selected' : ''}" id="buildSlot-${slot.key}">
@@ -1560,11 +1561,26 @@ function renderBuildSlotCard(slot) {
 
       ${isSelected ? `
         <div class="build-slot-selected">
-          <div class="build-slot-selected-title" title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</div>
+          <div class="build-slot-selected-title">
+            ${hasUrl ? `
+              <a href="${escapeHtml(sel.Product_URL)}" target="_blank" rel="noopener noreferrer" class="build-slot-product-link" title="Open product page on ${escapeHtml(sel.Source_Store)}">
+                <span>${escapeHtml(sel.Title)}</span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="build-link-icon"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            ` : `
+              <span title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</span>
+            `}
+          </div>
           <div class="build-slot-selected-meta">
             <span class="build-slot-selected-price">${formatLKR(sel.Cleaned_Price_LKR)}</span>
             <div style="display:flex;align-items:center;gap:0.4rem;">
               <span class="store-badge" data-store="${escapeHtml(sel.Source_Store)}" style="font-size:0.65rem;">${escapeHtml(sel.Source_Store)}</span>
+              ${hasUrl ? `
+                <a href="${escapeHtml(sel.Product_URL)}" target="_blank" rel="noopener noreferrer" class="build-slot-visit-btn" title="Visit ${escapeHtml(sel.Source_Store)} store page">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  <span>Store Page ↗</span>
+                </a>
+              ` : ''}
               <button class="build-slot-clear-btn" type="button" onclick="clearBuildSlot('${slot.key}')">
                 <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 Clear
@@ -1670,11 +1686,20 @@ function searchBuildSlot(slotKey, query) {
 
   resultsEl.innerHTML = top.map((item, i) => {
     const isBest = i === 0;
+    const hasUrl = item.Product_URL && item.Product_URL.startsWith('http');
     return `
       <div class="build-slot-result-item ${isBest ? 'is-best' : ''}" onclick="selectBuildItemByIndex('${slotKey}', ${i})" style="cursor:pointer;" title="Select this ${escapeHtml(slotDef.label)}">
         <div class="build-result-content">
           <div class="build-result-title" title="${escapeHtml(item.Title)}">${escapeHtml(item.Title)}</div>
-          <div class="build-result-store">${escapeHtml(item.Source_Store)}</div>
+          <div class="build-result-store">
+            <span>${escapeHtml(item.Source_Store)}</span>
+            ${hasUrl ? `
+              <a href="${escapeHtml(item.Product_URL)}" target="_blank" rel="noopener noreferrer" class="build-result-link-btn" onclick="event.stopPropagation()" title="View on ${escapeHtml(item.Source_Store)}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                <span>Store Page</span>
+              </a>
+            ` : ''}
+          </div>
         </div>
         <div class="build-result-right">
           <span class="build-result-price">${formatLKR(item.Cleaned_Price_LKR)}</span>
@@ -1736,12 +1761,22 @@ function renderBuildSummary() {
     summaryList.innerHTML = SLOT_DEFS.map(slot => {
       const sel = state.buildSelections[slot.key];
       const hasItem = !!sel;
+      const hasUrl = hasItem && sel.Product_URL && sel.Product_URL.startsWith('http');
       return `
         <div class="build-summary-row ${hasItem ? 'has-item' : ''}">
           <div class="build-summary-row-icon">${slot.icon}</div>
           <div class="build-summary-row-content">
             <div class="build-summary-row-slot">${slot.label}</div>
-            <div class="build-summary-row-name">${hasItem ? escapeHtml(sel.Title) : '— not selected —'}</div>
+            <div class="build-summary-row-name">
+              ${hasItem ? (
+                hasUrl
+                  ? `<a href="${escapeHtml(sel.Product_URL)}" target="_blank" rel="noopener noreferrer" class="build-summary-link" title="Open product page on ${escapeHtml(sel.Source_Store)}">
+                      <span>${escapeHtml(sel.Title)}</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>`
+                  : `<span title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</span>`
+              ) : '— not selected —'}
+            </div>
           </div>
           ${hasItem ? `<div class="build-summary-row-price">${formatLKR(sel.Cleaned_Price_LKR)}</div>` : ''}
         </div>
