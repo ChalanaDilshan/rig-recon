@@ -152,6 +152,12 @@
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
             <span>Scraper Hub</span>
           </button>
+
+          <button class="tab-btn" data-tab="buildpc" id="buildPcTabBtn">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="11" x="4" y="8" rx="2"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/><path d="M12 13v3"/><path d="M10 16h4"/></svg>
+            <span>Build a PC</span>
+            <span class="tab-count" id="buildPcTabBadge">0/7</span>
+          </button>
         </div>
 
         <div class="tab-meta-controls">
@@ -453,6 +459,55 @@
                 </thead>
                 <tbody id="scraperTelemetryTableBody"></tbody>
               </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TAB 6: Build a PC Budget Tool -->
+      <section id="tab-buildpc" class="tab-content">
+        <div class="buildpc-container">
+          <div class="buildpc-hero-card">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;">
+              <div>
+                <h2 style="font-family:var(--font-display);font-size:1.4rem;font-weight:700;margin-bottom:0.35rem;">Build a PC &mdash; Budget Configurator</h2>
+                <p style="font-size:0.86rem;color:var(--text-secondary);max-width:640px;">
+                  Search and pick components for each slot. The tool finds the <strong>cheapest in-stock match</strong> across all 8+ tracked stores in real-time from the live catalog.
+                </p>
+              </div>
+              <div style="display:flex;gap:0.6rem;flex-wrap:wrap;">
+                <button id="buildAutoFillHeaderBtn" class="btn btn-glass" title="Auto-fill all slots with the cheapest available item">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="m13 2-2 2.5h3L12 7"/><path d="M10 14 8.5 9.5l-5 1.5 6-8"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+                  Auto-Fill Cheapest
+                </button>
+                <button id="buildResetBtn" class="btn btn-glass" title="Clear all selected components">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/></svg>
+                  Reset Build
+                </button>
+                <button id="buildExportBtn" class="btn btn-glass" title="Export build list as CSV">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                  Export CSV
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="buildpc-layout">
+            <div id="buildpcSlotGrid" class="buildpc-slot-grid"></div>
+            <div class="build-summary-panel">
+              <div class="build-summary-title">
+                Build Summary
+                <span class="build-slots-filled-badge" id="buildFilledBadge">0 / 7 slots</span>
+              </div>
+              <div class="build-summary-list" id="buildSummaryList"></div>
+              <div class="build-total-section">
+                <div class="build-total-label">Estimated Total Cost</div>
+                <div class="build-total-value" id="buildTotalValue">Rs. &mdash;</div>
+                <div class="build-total-sub" id="buildTotalSub">Select components to calculate total</div>
+              </div>
+              <div class="build-store-dist" id="buildStoreDist" style="display:none;">
+                <div class="build-store-dist-label">Parts by Store</div>
+                <div id="buildStoreDistRows"></div>
+              </div>
             </div>
           </div>
         </div>

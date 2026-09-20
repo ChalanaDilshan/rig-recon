@@ -40,7 +40,10 @@ const state = {
   scraperQuery: '',
   selectedProduct: null,
   isApiOnline: true,
-  isStaticMode: false
+  isStaticMode: false,
+  // Build-a-PC
+  buildSelections: {},   // { slotKey: productObject }
+  buildInitialized: false
 };
 
 // ============================================================================
@@ -1218,6 +1221,8 @@ function switchTab(tabId) {
     runPriceComparison(CONFIG.defaultCompare);
   } else if (tabId === 'scrapers' && (!state.scrapers || state.scrapers.length === 0)) {
     loadScrapers();
+  } else if (tabId === 'buildpc') {
+    initBuildTab();
   }
 }
 
@@ -1443,9 +1448,9 @@ function setupEventListeners() {
       if (elements.productModal?.classList.contains('active')) {
         elements.productModal.classList.remove('active');
       }
-    } else if (e.altKey && ['1', '2', '3', '4', '5'].includes(e.key)) {
+    } else if (e.altKey && ['1', '2', '3', '4', '5', '6'].includes(e.key)) {
       e.preventDefault();
-      const tabMap = { '1': 'catalog', '2': 'compare', '3': 'stores', '4': 'categories', '5': 'scrapers' };
+      const tabMap = { '1': 'catalog', '2': 'compare', '3': 'stores', '4': 'categories', '5': 'scrapers', '6': 'buildpc' };
       switchTab(tabMap[e.key]);
     }
   });
@@ -1462,11 +1467,416 @@ window.filterByCategory = filterByCategory;
 window.resetFilters = resetFilters;
 window.goToPage = goToPage;
 
+// ============================================================================
+// Build-a-PC Budget Configurator — Tab 6
+// 100% client-side, powered by allProducts dataset (API + static mode)
+// ============================================================================
+
+const SLOT_DEFS = [
+  {
+    key: 'cpu',
+    label: 'CPU / Processor',
+    categories: ['CPU'],
+    placeholder: 'e.g. Ryzen 7600, i5 13400...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="12" height="12" x="6" y="6" rx="2"/><path d="M2 10h4"/><path d="M2 14h4"/><path d="M18 10h4"/><path d="M18 14h4"/><path d="M10 2v4"/><path d="M14 2v4"/><path d="M10 18v4"/><path d="M14 18v4"/></svg>`
+  },
+  {
+    key: 'gpu',
+    label: 'GPU / Graphics Card',
+    categories: ['GPU'],
+    placeholder: 'e.g. RTX 4060, RX 7800 XT...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="12" x="2" y="8" rx="2"/><path d="M6 8V6"/><path d="M10 8V6"/><path d="M14 8V6"/><path d="M18 8V6"/><circle cx="8" cy="14" r="1"/><circle cx="12" cy="14" r="1"/></svg>`
+  },
+  {
+    key: 'ram',
+    label: 'RAM / Memory',
+    categories: ['RAM'],
+    placeholder: 'e.g. 16GB DDR5, 32GB DDR4...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="16" height="8" x="4" y="8" rx="1"/><path d="M8 8V6"/><path d="M12 8V6"/><path d="M16 8V6"/><path d="M4 12h16"/></svg>`
+  },
+  {
+    key: 'storage',
+    label: 'Storage / SSD',
+    categories: ['Storage'],
+    placeholder: 'e.g. 1TB NVMe, 2TB SSD...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`
+  },
+  {
+    key: 'motherboard',
+    label: 'Motherboard',
+    categories: ['Motherboard'],
+    placeholder: 'e.g. B650, Z790, X570...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="18" x="3" y="3" rx="2"/><rect width="4" height="4" x="7" y="7" rx="1"/><path d="M3 9h4"/><path d="M3 15h4"/><path d="M17 9h4"/><path d="M17 15h4"/><path d="M9 3v4"/><path d="M15 3v4"/></svg>`
+  },
+  {
+    key: 'psu',
+    label: 'PSU / Power Supply',
+    categories: ['PSU'],
+    placeholder: 'e.g. 650W, 850W Gold...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="18" height="12" x="3" y="7" rx="2"/><path d="M9 7V5a2 2 0 0 1 4 0v2"/><path d="M9 12h6"/><path d="M12 10v4"/></svg>`
+  },
+  {
+    key: 'casing',
+    label: 'Case / Casing',
+    categories: ['Casing'],
+    placeholder: 'e.g. ATX Mid Tower, ITX...',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M9 6h6"/><path d="M9 10h6"/><circle cx="12" cy="16" r="1"/></svg>`
+  }
+];
+
+// Debounced search helpers per slot (keyed by slotKey)
+const _buildSearchTimers = {};
+
+async function initBuildTab() {
+  const grid = document.getElementById('buildpcSlotGrid');
+  if (!grid) return;
+
+  // Ensure catalog data is loaded
+  if (!state.allProducts || state.allProducts.length === 0) {
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:2rem;color:var(--text-muted);">
+      <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:0.75rem;"></div>
+      <div class="skeleton" style="height:48px;border-radius:var(--radius-md);margin-bottom:0.75rem;"></div>
+      <p style="font-size:0.82rem;margin-top:0.5rem;">Loading catalog data...</p>
+    </div>`;
+    await ensureAllProductsLoaded();
+  }
+
+  state.buildInitialized = true;
+  renderBuildSlotGrid();
+  renderBuildSummary();
+}
+
+function renderBuildSlotGrid() {
+  const grid = document.getElementById('buildpcSlotGrid');
+  if (!grid) return;
+
+  grid.innerHTML = SLOT_DEFS.map(slot => {
+    const sel = state.buildSelections[slot.key];
+    const isSelected = !!sel;
+
+    return `
+      <div class="build-slot-card ${isSelected ? 'is-selected' : ''}" id="buildSlot-${slot.key}">
+        <div class="build-slot-header">
+          <div class="build-slot-icon">${slot.icon}</div>
+          <span class="build-slot-label">${slot.label}</span>
+        </div>
+
+        ${isSelected ? `
+          <div class="build-slot-selected">
+            <div class="build-slot-selected-title" title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</div>
+            <div class="build-slot-selected-meta">
+              <span class="build-slot-selected-price">${formatLKR(sel.Cleaned_Price_LKR)}</span>
+              <div style="display:flex;align-items:center;gap:0.4rem;">
+                <span class="store-badge" data-store="${escapeHtml(sel.Source_Store)}" style="font-size:0.65rem;">${escapeHtml(sel.Source_Store)}</span>
+                <button class="build-slot-clear-btn" onclick="clearBuildSlot('${slot.key}')">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                  Clear
+                </button>
+              </div>
+            </div>
+          </div>
+        ` : `
+          <div class="build-slot-search-wrap">
+            <span class="build-slot-search-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </span>
+            <input
+              id="buildSearch-${slot.key}"
+              class="build-slot-search"
+              type="text"
+              placeholder="${slot.placeholder}"
+              oninput="debouncedBuildSearch('${slot.key}', this.value)"
+            />
+          </div>
+          <div class="build-slot-results" id="buildResults-${slot.key}"></div>
+        `}
+      </div>
+    `;
+  }).join('');
+}
+
+function debouncedBuildSearch(slotKey, query) {
+  clearTimeout(_buildSearchTimers[slotKey]);
+  _buildSearchTimers[slotKey] = setTimeout(() => searchBuildSlot(slotKey, query), 250);
+}
+
+function searchBuildSlot(slotKey, query) {
+  const resultsEl = document.getElementById(`buildResults-${slotKey}`);
+  if (!resultsEl) return;
+
+  const slotDef = SLOT_DEFS.find(s => s.key === slotKey);
+  if (!slotDef) return;
+
+  const trimmed = query.trim().toLowerCase();
+
+  if (!trimmed) {
+    resultsEl.innerHTML = '';
+    return;
+  }
+
+  if (!state.allProducts || state.allProducts.length === 0) {
+    resultsEl.innerHTML = `<div class="build-slot-empty-msg">Catalog loading...</div>`;
+    return;
+  }
+
+  // Show loading skeleton
+  resultsEl.innerHTML = `
+    <div class="build-slot-skeleton">
+      ${Array(3).fill(0).map(() => `<div class="skeleton" style="height:40px;border-radius:var(--radius-sm);"></div>`).join('')}
+    </div>
+  `;
+
+  // Filter products by category + keyword + in-stock
+  const keywords = trimmed.split(/\s+/).filter(Boolean);
+  let matches = state.allProducts.filter(p => {
+    if (!p.Cleaned_Price_LKR || p.Cleaned_Price_LKR <= 0) return false;
+    if (p.Stock_Status !== 'In Stock') return false;
+
+    // Category match — check if product category matches any of the slot's categories
+    const pCat = (p.Category || '').toLowerCase();
+    const catMatch = slotDef.categories.some(c => pCat === c.toLowerCase() || pCat.includes(c.toLowerCase()));
+    if (!catMatch) return false;
+
+    // Keyword match
+    const title = (p.Title || '').toLowerCase();
+    return keywords.every(kw => title.includes(kw));
+  });
+
+  // Sort by price ascending, take top 6
+  matches.sort((a, b) => a.Cleaned_Price_LKR - b.Cleaned_Price_LKR);
+  const top = matches.slice(0, 6);
+
+  if (top.length === 0) {
+    resultsEl.innerHTML = `<div class="build-slot-empty-msg">No in-stock matches for "${escapeHtml(query)}"</div>`;
+    return;
+  }
+
+  resultsEl.innerHTML = top.map((item, i) => {
+    const isBest = i === 0;
+    return `
+      <div class="build-slot-result-item ${isBest ? 'is-best' : ''}">
+        <div class="build-result-content">
+          <div class="build-result-title" title="${escapeHtml(item.Title)}">${escapeHtml(item.Title)}</div>
+          <div class="build-result-store">${escapeHtml(item.Source_Store)}</div>
+        </div>
+        <div class="build-result-right">
+          <span class="build-result-price">${formatLKR(item.Cleaned_Price_LKR)}</span>
+          ${isBest ? `<span class="build-best-badge">Lowest</span>` : ''}
+          <button class="build-result-select-btn" onclick="selectBuildItem('${slotKey}', ${JSON.stringify(JSON.stringify(item))})">Select ▶</button>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function selectBuildItem(slotKey, itemJson) {
+  let item;
+  try { item = JSON.parse(itemJson); } catch(e) { return; }
+  state.buildSelections[slotKey] = item;
+  renderBuildSlotGrid();
+  renderBuildSummary();
+  updateBuildTabBadge();
+  showToast(`${SLOT_DEFS.find(s=>s.key===slotKey)?.label || slotKey} selected: ${item.Source_Store} — ${formatLKR(item.Cleaned_Price_LKR)}`, 'success');
+}
+
+function clearBuildSlot(slotKey) {
+  delete state.buildSelections[slotKey];
+  renderBuildSlotGrid();
+  renderBuildSummary();
+  updateBuildTabBadge();
+}
+
+function renderBuildSummary() {
+  const summaryList = document.getElementById('buildSummaryList');
+  const totalEl = document.getElementById('buildTotalValue');
+  const totalSub = document.getElementById('buildTotalSub');
+  const filledBadge = document.getElementById('buildFilledBadge');
+  const storeDistEl = document.getElementById('buildStoreDist');
+  const storeDistRows = document.getElementById('buildStoreDistRows');
+
+  const filledCount = Object.keys(state.buildSelections).length;
+  const totalSlots = SLOT_DEFS.length;
+
+  if (filledBadge) filledBadge.textContent = `${filledCount} / ${totalSlots} slots`;
+
+  // Summary rows
+  if (summaryList) {
+    summaryList.innerHTML = SLOT_DEFS.map(slot => {
+      const sel = state.buildSelections[slot.key];
+      const hasItem = !!sel;
+      return `
+        <div class="build-summary-row ${hasItem ? 'has-item' : ''}">
+          <div class="build-summary-row-icon">${slot.icon}</div>
+          <div class="build-summary-row-content">
+            <div class="build-summary-row-slot">${slot.label}</div>
+            <div class="build-summary-row-name">${hasItem ? escapeHtml(sel.Title) : '— not selected —'}</div>
+          </div>
+          ${hasItem ? `<div class="build-summary-row-price">${formatLKR(sel.Cleaned_Price_LKR)}</div>` : ''}
+        </div>
+      `;
+    }).join('');
+  }
+
+  // Total cost
+  const total = Object.values(state.buildSelections).reduce((sum, p) => sum + (p.Cleaned_Price_LKR || 0), 0);
+  if (totalEl) {
+    if (total > 0) {
+      totalEl.textContent = formatLKR(total);
+      totalEl.classList.add('has-value');
+    } else {
+      totalEl.textContent = 'Rs. \u2014';
+      totalEl.classList.remove('has-value');
+    }
+  }
+  if (totalSub) {
+    if (filledCount === 0) {
+      totalSub.textContent = 'Select components to calculate total';
+    } else if (filledCount < totalSlots) {
+      totalSub.textContent = `${filledCount} of ${totalSlots} components selected`;
+    } else {
+      totalSub.textContent = `Full build \u2014 all ${totalSlots} components selected`;
+    }
+  }
+
+  // Store distribution
+  if (storeDistEl && storeDistRows) {
+    if (filledCount === 0) {
+      storeDistEl.style.display = 'none';
+    } else {
+      storeDistEl.style.display = 'flex';
+      const storeMap = {};
+      Object.values(state.buildSelections).forEach(p => {
+        storeMap[p.Source_Store] = (storeMap[p.Source_Store] || 0) + 1;
+      });
+      const maxCount = Math.max(...Object.values(storeMap));
+      storeDistRows.innerHTML = Object.entries(storeMap)
+        .sort((a, b) => b[1] - a[1])
+        .map(([store, count]) => `
+          <div class="build-store-dist-row">
+            <div class="build-store-dist-name" title="${escapeHtml(store)}">${escapeHtml(store)}</div>
+            <div class="build-store-dist-bar-wrap">
+              <div class="build-store-dist-bar-fill" style="width:${Math.round((count/maxCount)*100)}%"></div>
+            </div>
+            <div class="build-store-dist-count">${count}</div>
+          </div>
+        `).join('');
+    }
+  }
+}
+
+function updateBuildTabBadge() {
+  const badge = document.getElementById('buildPcTabBadge');
+  if (!badge) return;
+  const filled = Object.keys(state.buildSelections).length;
+  badge.textContent = `${filled}/${SLOT_DEFS.length}`;
+  badge.style.background = filled > 0 ? 'rgba(34,197,94,0.15)' : '';
+  badge.style.color = filled > 0 ? '#4ade80' : '';
+  badge.style.borderColor = filled > 0 ? 'rgba(34,197,94,0.35)' : '';
+}
+
+async function autoFillCheapest() {
+  const products = await ensureAllProductsLoaded();
+  if (!products || products.length === 0) {
+    showToast('Catalog not loaded yet. Please wait.', 'info');
+    return;
+  }
+
+  let filled = 0;
+  SLOT_DEFS.forEach(slot => {
+    if (state.buildSelections[slot.key]) return; // skip already-filled slots
+
+    const candidates = products.filter(p => {
+      if (!p.Cleaned_Price_LKR || p.Cleaned_Price_LKR <= 0) return false;
+      if (p.Stock_Status !== 'In Stock') return false;
+      const pCat = (p.Category || '').toLowerCase();
+      return slot.categories.some(c => pCat === c.toLowerCase() || pCat.includes(c.toLowerCase()));
+    });
+
+    if (candidates.length > 0) {
+      candidates.sort((a, b) => a.Cleaned_Price_LKR - b.Cleaned_Price_LKR);
+      state.buildSelections[slot.key] = candidates[0];
+      filled++;
+    }
+  });
+
+  renderBuildSlotGrid();
+  renderBuildSummary();
+  updateBuildTabBadge();
+
+  if (filled > 0) {
+    showToast(`Auto-filled ${filled} slot${filled > 1 ? 's' : ''} with cheapest in-stock components!`, 'success');
+  } else {
+    showToast('All slots already filled!', 'info');
+  }
+}
+
+function exportBuildCsv() {
+  const items = Object.entries(state.buildSelections);
+  if (items.length === 0) {
+    showToast('No components selected to export.', 'info');
+    return;
+  }
+
+  const headers = ['Slot', 'Store', 'Title', 'Category', 'Price_LKR', 'Stock_Status', 'Product_URL'];
+  const rows = SLOT_DEFS
+    .filter(slot => state.buildSelections[slot.key])
+    .map(slot => {
+      const p = state.buildSelections[slot.key];
+      return [
+        `"${slot.label}"`,
+        `"${(p.Source_Store || '').replace(/"/g, '""')}"`,
+        `"${(p.Title || '').replace(/"/g, '""')}"`,
+        `"${(p.Category || '').replace(/"/g, '""')}"`,
+        p.Cleaned_Price_LKR || '',
+        `"${(p.Stock_Status || '').replace(/"/g, '""')}"`,
+        `"${(p.Product_URL || '').replace(/"/g, '""')}"`
+      ].join(',');
+    });
+
+  const total = Object.values(state.buildSelections).reduce((s, p) => s + (p.Cleaned_Price_LKR || 0), 0);
+  rows.push(`"TOTAL","","","","${total}","",""`);
+
+  const csv = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows].join('\n');
+  const link = document.createElement('a');
+  link.setAttribute('href', encodeURI(csv));
+  link.setAttribute('download', `rig_recon_build_${Date.now()}.csv`);
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+  showToast(`Exported build list with ${items.length} components to CSV!`, 'success');
+}
+
+// Expose to global for onclick handlers
+window.debouncedBuildSearch = debouncedBuildSearch;
+window.selectBuildItem = selectBuildItem;
+window.clearBuildSlot = clearBuildSlot;
+window.autoFillCheapest = autoFillCheapest;
+window.exportBuildCsv = exportBuildCsv;
+
+// ============================================================================
 // Application Initialization
+// ============================================================================
+
 async function initApp() {
   setupEventListeners();
+
+  // Wire Build-a-PC header buttons
+  const buildAutoFillHeaderBtn = document.getElementById('buildAutoFillHeaderBtn');
+  if (buildAutoFillHeaderBtn) buildAutoFillHeaderBtn.addEventListener('click', autoFillCheapest);
+  const buildResetBtn = document.getElementById('buildResetBtn');
+  if (buildResetBtn) buildResetBtn.addEventListener('click', () => {
+    state.buildSelections = {};
+    renderBuildSlotGrid();
+    renderBuildSummary();
+    updateBuildTabBadge();
+    showToast('Build list cleared.', 'info');
+  });
+  const buildExportBtn = document.getElementById('buildExportBtn');
+  if (buildExportBtn) buildExportBtn.addEventListener('click', exportBuildCsv);
+
   await loadMetrics();
   await loadProducts();
 }
+
 
 document.addEventListener('DOMContentLoaded', initApp);
