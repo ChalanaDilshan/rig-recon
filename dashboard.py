@@ -21,6 +21,7 @@ from merger import compile_master_dataset, DB_PATH, MASTER_CSV_PATH
 TEMPLATES_DIR = os.path.join(os.path.dirname(__file__), "templates")
 INDEX_HTML_PATH = os.path.join(TEMPLATES_DIR, "index.html")
 STATIC_DIR = os.path.join(os.path.dirname(__file__), "static")
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 
 app = FastAPI(title="Sri Lanka PC Hardware Market Intelligence")
 
@@ -286,6 +287,9 @@ async def rate_limiting_middleware(request: Request, call_next):
 
 if os.path.exists(STATIC_DIR):
     app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
+
+if os.path.exists(DATA_DIR):
+    app.mount("/data", StaticFiles(directory=DATA_DIR), name="data")
 
 
 def get_db():

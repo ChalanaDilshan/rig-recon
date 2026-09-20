@@ -1526,6 +1526,7 @@ const SLOT_DEFS = [
 
 // Debounced search helpers per slot (keyed by slotKey)
 const _buildSearchTimers = {};
+const _buildSlotResults = {};
 
 async function initBuildTab() {
   const grid = document.getElementById('buildpcSlotGrid');
@@ -1546,53 +1547,68 @@ async function initBuildTab() {
   renderBuildSummary();
 }
 
+function renderBuildSlotCard(slot) {
+  const sel = state.buildSelections[slot.key];
+  const isSelected = !!sel;
+
+  return `
+    <div class="build-slot-card ${isSelected ? 'is-selected' : ''}" id="buildSlot-${slot.key}">
+      <div class="build-slot-header">
+        <div class="build-slot-icon">${slot.icon}</div>
+        <span class="build-slot-label">${slot.label}</span>
+      </div>
+
+      ${isSelected ? `
+        <div class="build-slot-selected">
+          <div class="build-slot-selected-title" title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</div>
+          <div class="build-slot-selected-meta">
+            <span class="build-slot-selected-price">${formatLKR(sel.Cleaned_Price_LKR)}</span>
+            <div style="display:flex;align-items:center;gap:0.4rem;">
+              <span class="store-badge" data-store="${escapeHtml(sel.Source_Store)}" style="font-size:0.65rem;">${escapeHtml(sel.Source_Store)}</span>
+              <button class="build-slot-clear-btn" type="button" onclick="clearBuildSlot('${slot.key}')">
+                <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Clear
+              </button>
+            </div>
+          </div>
+        </div>
+      ` : `
+        <div class="build-slot-search-wrap">
+          <span class="build-slot-search-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          </span>
+          <input
+            id="buildSearch-${slot.key}"
+            class="build-slot-search"
+            type="text"
+            placeholder="${slot.placeholder}"
+            oninput="debouncedBuildSearch('${slot.key}', this.value)"
+          />
+        </div>
+        <div class="build-slot-results" id="buildResults-${slot.key}"></div>
+      `}
+    </div>
+  `;
+}
+
+function updateSlotCard(slotKey) {
+  const slot = SLOT_DEFS.find(s => s.key === slotKey);
+  if (!slot) return;
+  const existingEl = document.getElementById(`buildSlot-${slotKey}`);
+  if (!existingEl) {
+    renderBuildSlotGrid();
+    return;
+  }
+  const temp = document.createElement('div');
+  temp.innerHTML = renderBuildSlotCard(slot);
+  const newCard = temp.firstElementChild;
+  existingEl.replaceWith(newCard);
+}
+
 function renderBuildSlotGrid() {
   const grid = document.getElementById('buildpcSlotGrid');
   if (!grid) return;
-
-  grid.innerHTML = SLOT_DEFS.map(slot => {
-    const sel = state.buildSelections[slot.key];
-    const isSelected = !!sel;
-
-    return `
-      <div class="build-slot-card ${isSelected ? 'is-selected' : ''}" id="buildSlot-${slot.key}">
-        <div class="build-slot-header">
-          <div class="build-slot-icon">${slot.icon}</div>
-          <span class="build-slot-label">${slot.label}</span>
-        </div>
-
-        ${isSelected ? `
-          <div class="build-slot-selected">
-            <div class="build-slot-selected-title" title="${escapeHtml(sel.Title)}">${escapeHtml(sel.Title)}</div>
-            <div class="build-slot-selected-meta">
-              <span class="build-slot-selected-price">${formatLKR(sel.Cleaned_Price_LKR)}</span>
-              <div style="display:flex;align-items:center;gap:0.4rem;">
-                <span class="store-badge" data-store="${escapeHtml(sel.Source_Store)}" style="font-size:0.65rem;">${escapeHtml(sel.Source_Store)}</span>
-                <button class="build-slot-clear-btn" onclick="clearBuildSlot('${slot.key}')">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                  Clear
-                </button>
-              </div>
-            </div>
-          </div>
-        ` : `
-          <div class="build-slot-search-wrap">
-            <span class="build-slot-search-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </span>
-            <input
-              id="buildSearch-${slot.key}"
-              class="build-slot-search"
-              type="text"
-              placeholder="${slot.placeholder}"
-              oninput="debouncedBuildSearch('${slot.key}', this.value)"
-            />
-          </div>
-          <div class="build-slot-results" id="buildResults-${slot.key}"></div>
-        `}
-      </div>
-    `;
-  }).join('');
+  grid.innerHTML = SLOT_DEFS.map(slot => renderBuildSlotCard(slot)).join('');
 }
 
 function debouncedBuildSearch(slotKey, query) {
@@ -1645,6 +1661,7 @@ function searchBuildSlot(slotKey, query) {
   // Sort by price ascending, take top 6
   matches.sort((a, b) => a.Cleaned_Price_LKR - b.Cleaned_Price_LKR);
   const top = matches.slice(0, 6);
+  _buildSlotResults[slotKey] = top;
 
   if (top.length === 0) {
     resultsEl.innerHTML = `<div class="build-slot-empty-msg">No in-stock matches for "${escapeHtml(query)}"</div>`;
@@ -1654,7 +1671,7 @@ function searchBuildSlot(slotKey, query) {
   resultsEl.innerHTML = top.map((item, i) => {
     const isBest = i === 0;
     return `
-      <div class="build-slot-result-item ${isBest ? 'is-best' : ''}">
+      <div class="build-slot-result-item ${isBest ? 'is-best' : ''}" onclick="selectBuildItemByIndex('${slotKey}', ${i})" style="cursor:pointer;" title="Select this ${escapeHtml(slotDef.label)}">
         <div class="build-result-content">
           <div class="build-result-title" title="${escapeHtml(item.Title)}">${escapeHtml(item.Title)}</div>
           <div class="build-result-store">${escapeHtml(item.Source_Store)}</div>
@@ -1662,26 +1679,41 @@ function searchBuildSlot(slotKey, query) {
         <div class="build-result-right">
           <span class="build-result-price">${formatLKR(item.Cleaned_Price_LKR)}</span>
           ${isBest ? `<span class="build-best-badge">Lowest</span>` : ''}
-          <button class="build-result-select-btn" onclick="selectBuildItem('${slotKey}', ${JSON.stringify(JSON.stringify(item))})">Select ▶</button>
+          <button class="build-result-select-btn" type="button" onclick="event.stopPropagation(); selectBuildItemByIndex('${slotKey}', ${i})">Select ▶</button>
         </div>
       </div>
     `;
   }).join('');
 }
 
-function selectBuildItem(slotKey, itemJson) {
-  let item;
-  try { item = JSON.parse(itemJson); } catch(e) { return; }
+function selectBuildItemByIndex(slotKey, index) {
+  const list = _buildSlotResults[slotKey];
+  if (!list || !list[index]) return;
+  const item = list[index];
   state.buildSelections[slotKey] = item;
-  renderBuildSlotGrid();
+  updateSlotCard(slotKey);
   renderBuildSummary();
   updateBuildTabBadge();
-  showToast(`${SLOT_DEFS.find(s=>s.key===slotKey)?.label || slotKey} selected: ${item.Source_Store} — ${formatLKR(item.Cleaned_Price_LKR)}`, 'success');
+  const slotDef = SLOT_DEFS.find(s => s.key === slotKey);
+  showToast(`${slotDef ? slotDef.label : slotKey} selected: ${item.Source_Store} — ${formatLKR(item.Cleaned_Price_LKR)}`, 'success');
+}
+
+function selectBuildItem(slotKey, itemOrJson) {
+  let item = itemOrJson;
+  if (typeof item === 'string') {
+    try { item = JSON.parse(item); } catch(e) { return; }
+  }
+  if (!item) return;
+  state.buildSelections[slotKey] = item;
+  updateSlotCard(slotKey);
+  renderBuildSummary();
+  updateBuildTabBadge();
 }
 
 function clearBuildSlot(slotKey) {
   delete state.buildSelections[slotKey];
-  renderBuildSlotGrid();
+  delete _buildSlotResults[slotKey];
+  updateSlotCard(slotKey);
   renderBuildSummary();
   updateBuildTabBadge();
 }
@@ -1848,6 +1880,7 @@ function exportBuildCsv() {
 
 // Expose to global for onclick handlers
 window.debouncedBuildSearch = debouncedBuildSearch;
+window.selectBuildItemByIndex = selectBuildItemByIndex;
 window.selectBuildItem = selectBuildItem;
 window.clearBuildSlot = clearBuildSlot;
 window.autoFillCheapest = autoFillCheapest;
