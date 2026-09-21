@@ -50,7 +50,7 @@ Nanotek,Graphics Card,MSI GeForce RTX 5050 8G GAMING OC,"136,000 LKR",Out of Sto
 Nanotek,Graphics Card,NVIDIA RTX A4500 20GB,"599,000 LKR619,000 LKR",In stock,https://www.nanotek.lk/product/nvidia-rtx-a4500-20gb
 Nanotek,Graphics Card,MSI RTX 5080 Gaming Trio OC 16GB GDDR7X,"632,000 LKR",out of stock,https://www.nanotek.lk/product/msi-rtx-5080-gaming-trio-oc-16gb-gddr7x
 Nanotek,Graphics Card,ZOTAC GAMING Geforce RTX 3050 TWIN EDGE 6GB OC,"95,000 LKR",In stock,https://www.nanotek.lk/product/zotac-gaming-geforce-rtx-3050-twin-edge-6gb-oc
-Nanotek,Graphics Card,MSI GeForce RTX 5070 12G SHADOW 2X OC,"279,000 LKR",In stock,https://www.nanotek.lk/product/msi-geforce-rtx-5070-12g-shadow-2x-oc
+Nanotek,Graphics Card,MSI GeForce RTX 5070 12G SHADOW 2X OC,"279,000 LKR",Out of Stock,https://www.nanotek.lk/product/msi-geforce-rtx-5070-12g-shadow-2x-oc
 Nanotek,Graphics Card,NVIDIA RTX A400 4GB,"74,500 LKR",Out of Stock,https://www.nanotek.lk/product/nvidia-rtx-a400-4gb
 Nanotek,Graphics Card,MSI GEFORCE RTX 3050 VENTUS 2X XS 8G OC,"117,500 LKR",In Stock,https://www.nanotek.lk/product/msi-geforce-rtx-3050-ventus-2x-xs-8g-oc
 Nanotek,Graphics Card,MSI Geforce RTX 5070TI MLG EDITION 16GB OC,"429,000 LKR",Out of Stock,https://www.nanotek.lk/product/msi-geforce-rtx-5070ti-mlg-edition-16gb-oc
@@ -132,6 +132,7 @@ Nanotek,Laptop,ASUS ROG SCAR 18 (2026) G835LXG Ultra 9 RTX 5090,"2,149,000 LKR",
 Nanotek,Laptop,Asus Expertbook Ultra B9406CAA Ultra X7 358H,"1,099,000 LKR",In Stock,https://www.nanotek.lk/product/asus-expertbook-ultra-b9406caa-ultra-x7-358h
 Nanotek,Laptop,MSI Vector 16 HX AI A2XWHG Ultra 7 RTX 5070Ti,"889,000 LKR",In stock,https://www.nanotek.lk/product/msi-vector-16-hx-ai-a2xwhg-ultra-7-rtx-5070ti
 Nanotek,Laptop,MSI Katana A15 AI B8VE Ryzen 7 RTX 4050,"495,000 LKR",In Stock,https://www.nanotek.lk/product/msi-katana-a15-ai-b8ve-ryzen-7-rtx-4050
+Nanotek,Laptop,MSI Summit 16 AI Evo A2HMTG Core Ultra 7 255H,"609,000 LKR",In stock,https://www.nanotek.lk/product/msi-summit-16-ai-evo-a2hmtg-core-ultra-7-255h
 Nanotek,Laptop,ASUS VIVOBOOK 15 X1504VA CORE 7 14TH GEN,"259,000 LKR",In Stock,https://www.nanotek.lk/product/asus-vivobook-15-x1504va-core-7-14th-gen
 Nanotek,Laptop,Lenovo LOQ 15IRX9 i5 13th GEN HX + RTX 3050 6GB,"339,000 LKR",Out of Stock,https://www.nanotek.lk/product/lenovo-loq-15irx9-i5-13th-gen-hx-rtx-3050-6gb
 Nanotek,Laptop,ASUS ROG G16 G615JHR Intel Core i7 14TH RTX 5050 8GB,"629,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-g16-g615jhr-intel-core-i7-14th-rtx-5050-8gb
@@ -149,7 +150,7 @@ Nanotek,Laptop,Acer Aspire Lite 15 15-54P Intel Core Ultra 5,"269,000 LKR",In St
 Nanotek,Laptop,Lenovo V15 G4 Ryzen 3 16GB Ram,"199,000 LKR",In Stock,https://www.nanotek.lk/product/lenovo-v15-g4-ryzen-3-16gb-ram
 Nanotek,Laptop,Asus Vivobook S14 M3407GA AMD Ryzen Ai 7 OLED,"435,000 LKR",In stock,https://www.nanotek.lk/product/asus-vivobook-s14-m3407ga-amd-ryzen-ai-7-oled
 Nanotek,Laptop,Asus Vivobook 16 X1607AA Intel Ultra 5 325,"374,000 LKR",In stock,https://www.nanotek.lk/product/asus-vivobook-16-x1607aa-intel-ultra-5-325
-Nanotek,Laptop,ASUS ZENBOOK A14 UX3407QA SNAPDRAGON X X126100 1TB 16G,"399,000 LKR",In Stock,https://www.nanotek.lk/product/asus-zenbook-a14-ux3407qa-snapdragon-x-x126100-1tb-16g
+Nanotek,Laptop,ASUS ZENBOOK A14 UX3407QA SNAPDRAGON X X126100 1TB 16G,"409,000 LKR",In Stock,https://www.nanotek.lk/product/asus-zenbook-a14-ux3407qa-snapdragon-x-x126100-1tb-16g
 Nanotek,Laptop,ROG Zephyrus G16 GU605CM OLED Ultra 7 RTX 5060,"899,000 LKR",In Stock,https://www.nanotek.lk/product/rog-zephyrus-g16-gu605cm-oled-ultra-7-rtx-5060
 Nanotek,Laptop,Lenovo IdeaPad 5 2-in-1 14AGP11 Ryzen AI 5,"399,000 LKR",Out of Stock,https://www.nanotek.lk/product/lenovo-ideapad-5-2-in-1-14agp11-ryzen-ai-5
 Nanotek,Laptop,HP VICTUS 15 FB3166AX RYZEN 5 RTX 2050 4GB,"285,000 LKR",In Stock,https://www.nanotek.lk/product/hp-victus-15-fb3166ax-ryzen-5-rtx-2050-4gb
@@ -186,7 +187,6 @@ Nanotek,Laptop,MSI THIN 15 B13UC I7 13TH GEN RTX 3050,"327,000 LKR",In Stock,htt
 Nanotek,Laptop,Chuwi CoreBook AIR Ultra 5 226V,"249,000 LKR",In Stock,https://www.nanotek.lk/product/chuwi-corebook-air-ultra-5-226v
 Nanotek,Laptop,ASUS EXPERTBOOK B1503CVA CORE 5 120U,"309,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-expertbook-b1503cva-core-5-120u
 Nanotek,Laptop,Lenovo LOQ Essential 15ARP10E RYZEN 7 + RTX 4050 6GB,"385,000 LKR",In Stock,https://www.nanotek.lk/product/lenovo-loq-essential-15arp10e-ryzen-7-rtx-4050-6gb
-Nanotek,Laptop,LENOVO LEGION PRO 5 16IAX10 ULTRA 9 RTX 5060,"699,000 LKR",In stock,https://www.nanotek.lk/product/lenovo-legion-pro-5-16iax10-ultra-9-rtx-5060
 Nanotek,Power Banks Laptop Bags Accessories,FANTECH NC30 RGB LAPTOP COOLING PAD,"8,500 LKR",In Stock,https://www.nanotek.lk/product/fantech-nc30-rgb-laptop-cooling-pad
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 13 Inches Laptop Sleeve - LP187 - 60985,"4,000 LKR",In stock,https://www.nanotek.lk/product/ugreen-13-inches-laptop-sleeve-lp187-60985
 Nanotek,Power Banks Laptop Bags Accessories,"UGREEN LAPTOP SLEEVE 14"" WITH STAND -LP407 - 20432","4,500 LKR",In Stock,https://www.nanotek.lk/product/ugreen-laptop-sleeve-14-with-stand-lp407-20432
@@ -252,33 +252,33 @@ Nanotek,Television Tv,"Samsung 65"" DU7700 Crystal 4K UHD Smart TV","379,000 LKR
 Nanotek,Television Tv,"Samsung 43"" DU7500 Crystal 4K UHD Smart TV","189,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-43-du7500-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 55"" DU7500 Crystal 4K UHD Smart TV","269,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-55-du7500-crystal-4k-uhd-smart-tv
 Nanotek,Monitors Monitor Arms,"ASUS VY279HG2 27"" IPS FHD 144HZ EYE CARE MONITOR","49,000 LKR",In Stock,https://www.nanotek.lk/product/asus-vy279hg2-27-ips-fhd-144hz-eye-care-monitor
-Nanotek,Monitors Monitor Arms,"ASUS ROG Strix 27” XG27ACMES 2K USB-C 255Hz, 0.3ms, Fast IPS G-Sync","119,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-27-xg27acmes-2k-usb-c-255hz-03ms-fast-ips-g-sync
+Nanotek,Monitors Monitor Arms,"ASUS ROG Strix 27” XG27ACMES 2K USB-C 255Hz, 0.3ms, Fast IPS G-Sync","125,000 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-rog-strix-27-xg27acmes-2k-usb-c-255hz-03ms-fast-ips-g-sync
 Nanotek,Monitors Monitor Arms,"ASUS ROG Swift OLED PG34WCDM 34"" 240HZ  3440 x 1440 Type-C Monitor","499,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-swift-oled-pg34wcdm-34-240hz-3440-x-1440-type-c-monitor
 Nanotek,Monitors Monitor Arms,"ASUS PROART PA278QGV 27"" IPS 2K 120HZ HDR-10 CALMAN VERIFIED PROFESSIONAL MONITOR","125,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-proart-pa278qgv-27-ips-2k-120hz-hdr-10-calman-verified-professional-monitor
 Nanotek,Monitors Monitor Arms,"Asus ProArt 24"" PA248QFV 1080P 100Hz Professional Monitor","92,500 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-24-pa248qfv-1080p-100hz-professional-monitor
 Nanotek,Monitors Monitor Arms,"MSI PRO 16"" MP165 E6 PORTABLE ULTRA SLIM BUISNESS MONITOR","41,500 LKR",In Stock,https://www.nanotek.lk/product/msi-pro-16-mp165-e6-portable-ultra-slim-buisness-monitor
-Nanotek,Monitors Monitor Arms,"ASUS 15.6"" ZenScreen MB169CK IPS 1080P Portable Monitor","44,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-156-zenscreen-mb169ck-ips-1080p-portable-monitor
+Nanotek,Monitors Monitor Arms,"ASUS 15.6"" ZenScreen MB169CK IPS 1080P Portable Monitor","44,500 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-156-zenscreen-mb169ck-ips-1080p-portable-monitor
 Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG279QE5A 27"" FHD IPS 146HZ","46,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg279qe5a-27-fhd-ips-146hz
 Nanotek,Monitors Monitor Arms,"ASUS VY279HGR 27"" IPS FHD 120HZ EYE CARE MONITOR","45,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-vy279hgr-27-ips-fhd-120hz-eye-care-monitor
 Nanotek,Monitors Monitor Arms,"Asus ROG Strix 30"" XG309CM 2560x1080 Ultra Wide 220Hz","147,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-strix-30-xg309cm-2560x1080-ultra-wide-220hz
 Nanotek,Monitors Monitor Arms,"ASUS ProArt PA328CGV 32"" 2560 x 1440 165 Hz 100% sRGB Calman Verified, USB-C","254,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-pa328cgv-32-2560-x-1440-165-hz-100-srgb-calman-verified-usb-c
 Nanotek,Monitors Monitor Arms,"ASUS 27"" PA278QV 1440P IPS PROART DISPLAY CALMAN VERIFIED PROFESSIONAL MONITOR","121,500 LKR151,000 LKR",In Stock,https://www.nanotek.lk/product/asus-27-pa278qv-1440p-ips-proart-display-calman-verified-professional-monitor
 Nanotek,Monitors Monitor Arms,"ASUS ROG STRIX OLED XG27AQWMG 27"" 2K W-OLED 280Hz GAMING MONITOR","209,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-oled-xg27aqwmg-27-2k-w-oled-280hz-gaming-monitor
-Nanotek,Monitors Monitor Arms,"ASUS ROG STRIX OLED XG27ACDMS 27"" 2K QD-OLED 280Hz GAMING MONITOR","239,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-oled-xg27acdms-27-2k-qd-oled-280hz-gaming-monitor
+Nanotek,Monitors Monitor Arms,"ASUS ROG STRIX OLED XG27ACDMS 27"" 2K QD-OLED 280Hz GAMING MONITOR","259,000 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-rog-strix-oled-xg27acdms-27-2k-qd-oled-280hz-gaming-monitor
 Nanotek,Monitors Monitor Arms,"ASUS 27"" ProArt PA27JCV IPS 5K (5120 x 2880) 99% DCI-P3 LuxPixel Calman Verified","299,000 LKR",In Stock,https://www.nanotek.lk/product/asus-27-proart-pa27jcv-ips-5k-5120-x-2880-99-dci-p3-luxpixel-calman-verified
 Nanotek,Monitors Monitor Arms,"ACER NITRO XZ396QU P 39"" (2560 x 1440) 170HZ CURVED","156,000 LKR",In Stock,https://www.nanotek.lk/product/acer-nitro-xz396qu-p-39-2560-x-1440-170hz-curved
-Nanotek,Monitors Monitor Arms,"ASUS VA279QG 27"" FHD IPS 99%SRGB 120HZ","44,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-va279qg-27-fhd-ips-99srgb-120hz
+Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG27AQM5A 27"" QHD FAST IPS 300Hz","105,000 LKR",ETA 15th September,https://www.nanotek.lk/product/asus-tuf-gaming-vg27aqm5a-27-qhd-fast-ips-300hz
 Nanotek,Monitors Monitor Arms,"Lenovo ThinkVision P34WD-40 34"" 10bit IPS 120hz (3440 x 1440) 98% DCI-P3","219,000 LKR",In Stock,https://www.nanotek.lk/product/lenovo-thinkvision-p34wd-40-34-10bit-ips-120hz-3440-x-1440-98-dci-p3
 Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG249Q5R 24"""" FHD FAST IPS 200HZ","49,500 LKR",In Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg249q5r-24-fhd-fast-ips-200hz-1
 Nanotek,Monitors Monitor Arms,"ASUS ROG Strix 27” 2K HDR10 USB-C XG27ACS 180Hz,1ms, Fast IPS G-Sync","99,000 LKR129,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-27-2k-hdr10-usb-c-xg27acs-180hz1ms-fast-ips-g-sync
-Nanotek,Monitors Monitor Arms,"ASUS ProArt 34"" PA34VCNV Curved 3440 x 1440 100% sRGB Rec.709 Color Accuracy ΔE < 2 Calman Verified USB-C","272,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-proart-34-pa34vcnv-curved-3440-x-1440-100-srgb-rec709-color-accuracy-de-2-calman-verified-usb-c
-Nanotek,Monitors Monitor Arms,"ASUS PROART 32"" PA329CRV 4K UHD USB-C WITH PD 96W 98% DCI-P3","332,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-proart-32-pa329crv-4k-uhd-usb-c-with-pd-96w-98-dci-p3
-Nanotek,Monitors Monitor Arms,ASUS TUF GAMING VG328QA1A FHD 170HZ VA FREESYNC PREMIUM,"90,000 LKR105,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg328qa1a-fhd-170hz-va-freesync-premium
+Nanotek,Monitors Monitor Arms,"ASUS ProArt 34"" PA34VCNV Curved 3440 x 1440 100% sRGB Rec.709 Color Accuracy ΔE < 2 Calman Verified USB-C","272,000 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-proart-34-pa34vcnv-curved-3440-x-1440-100-srgb-rec709-color-accuracy-de-2-calman-verified-usb-c
+Nanotek,Monitors Monitor Arms,"ASUS PROART 32"" PA329CRV 4K UHD USB-C WITH PD 96W 98% DCI-P3","332,500 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-proart-32-pa329crv-4k-uhd-usb-c-with-pd-96w-98-dci-p3
+Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG32AQA1A 32"" HDR IPS 170Hz","109,000 LKR",ETA 15th September,https://www.nanotek.lk/product/asus-tuf-gaming-vg32aqa1a-32-hdr-ips-170hz
 Nanotek,Monitors Monitor Arms,"ASUS ROG Strix 27” 4K HDR400 USB-C XG27UCS 160Hz 1ms, Fast IPS G-Sync","155,000 LKR199,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-27-4k-hdr400-usb-c-xg27ucs-160hz-1ms-fast-ips-g-sync
-Nanotek,Monitors Monitor Arms,"ASUS ProArt PA278CGV 27"" IPS 2560 x 1440 144 Hz Calman Verified, USB-C","169,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-pa278cgv-27-ips-2560-x-1440-144-hz-calman-verified-usb-c
+Nanotek,Monitors Monitor Arms,"ASUS ProArt PA278CGV 27"" IPS 2560 x 1440 144 Hz Calman Verified, USB-C","167,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-pa278cgv-27-ips-2560-x-1440-144-hz-calman-verified-usb-c
 Nanotek,Monitors Monitor Arms,"ASUS ROG STRIX XG49VQ SUPER ULTRA-WIDE HDR GAMING MONITOR 49"" (3840 X 1080), 144HZ","359,500 LKR399,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-rog-strix-xg49vq-super-ultra-wide-hdr-gaming-monitor-49-3840-x-1080-144hz-1
 Nanotek,Monitors Monitor Arms,"ASUS TUF Gaming VG30VQL1A 30 Ultra-wide WFHD (2560X1080), 200Hz","120,500 LKR",In stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg30vql1a-30-ultra-wide-wfhd-2560x1080-200hz
-Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG27AQ5A 27"" QHD FAST IPS 210HZ","74,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg27aq5a-27-qhd-fast-ips-210hz
+Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG27AQ5A 27"" QHD FAST IPS 210HZ","77,500 LKR",ETA 22nd September,https://www.nanotek.lk/product/asus-tuf-gaming-vg27aq5a-27-qhd-fast-ips-210hz
 Nanotek,Monitors Monitor Arms,ASUS TUF Gaming 34” VG34VQL3A 1440P 1500R 180Hz Curved Monitor,"142,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-tuf-gaming-34-vg34vql3a-1440p-1500r-180hz-curved-monitor
 Nanotek,Monitors Monitor Arms,"ASUS PROART 27"" PA279CRV 4K UHD USB-C WITH PD 96W 99% DCI-P3","222,000 LKR",In stock,https://www.nanotek.lk/product/asus-proart-27-pa279crv-4k-uhd-usb-c-with-pd-96w-99-dci-p3
 Nanotek,Monitors Monitor Arms,"ASUS ProArt 34 "" PA348CGV Ultra Wide QHD (3440 x 1440) IPS USB-C 120HZ Calman Verified","299,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-34-pa348cgv-ultra-wide-qhd-3440-x-1440-ips-usb-c-120hz-calman-verified

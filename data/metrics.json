@@ -1,9 +1,9 @@
 {
-  "total_skus": 9246,
+  "total_skus": 9175,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5306,
-  "in_stock_rate": 57.4,
+  "in_stock_skus": 5235,
+  "in_stock_rate": 57.1,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -21,8 +21,8 @@
     },
     {
       "Category": "Monitor",
-      "count": 735,
-      "avg_price": 112447.0,
+      "count": 737,
+      "avg_price": 112433.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1878,
-      "in_stock": 1015,
-      "in_stock_rate": 54.0
+      "total": 1880,
+      "in_stock": 1017,
+      "in_stock_rate": 54.1
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 354,
-      "in_stock": 354,
+      "total": 341,
+      "in_stock": 341,
       "in_stock_rate": 100.0
     },
     {
@@ -126,16 +126,16 @@
       "in_stock_rate": 100.0
     },
     {
-      "Source_Store": "Game Street",
-      "total": 154,
-      "in_stock": 154,
-      "in_stock_rate": 100.0
+      "Source_Store": "Redline Technologies",
+      "total": 109,
+      "in_stock": 36,
+      "in_stock_rate": 33.0
     },
     {
-      "Source_Store": "Redline Technologies",
-      "total": 108,
-      "in_stock": 35,
-      "in_stock_rate": 32.4
+      "Source_Store": "Game Street",
+      "total": 93,
+      "in_stock": 93,
+      "in_stock_rate": 100.0
     },
     {
       "Source_Store": "MSK Computers",
