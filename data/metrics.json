@@ -1,8 +1,8 @@
 {
-  "total_skus": 9175,
+  "total_skus": 9186,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5235,
+  "in_stock_skus": 5246,
   "in_stock_rate": 57.1,
   "categories": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "Category": "Monitor",
-      "count": 737,
-      "avg_price": 112433.0,
+      "count": 738,
+      "avg_price": 113080.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1880,
-      "in_stock": 1017,
+      "total": 1881,
+      "in_stock": 1018,
       "in_stock_rate": 54.1
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 341,
-      "in_stock": 341,
+      "total": 351,
+      "in_stock": 351,
       "in_stock_rate": 100.0
     },
     {
