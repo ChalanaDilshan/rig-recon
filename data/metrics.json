@@ -1,28 +1,28 @@
 {
-  "total_skus": 9176,
+  "total_skus": 9109,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5235,
-  "in_stock_rate": 57.1,
+  "in_stock_skus": 5173,
+  "in_stock_rate": 56.8,
   "categories": [
     {
       "Category": "Accessories / Other",
       "count": 3650,
-      "avg_price": 27816.0,
+      "avg_price": 27831.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
-      "count": 1009,
-      "avg_price": 284140.0,
+      "count": 1013,
+      "avg_price": 285012.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
     {
       "Category": "Monitor",
-      "count": 738,
-      "avg_price": 113080.0,
+      "count": 739,
+      "avg_price": 113090.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1881,
-      "in_stock": 1017,
-      "in_stock_rate": 54.1
+      "total": 1886,
+      "in_stock": 1027,
+      "in_stock_rate": 54.5
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 341,
-      "in_stock": 341,
+      "total": 353,
+      "in_stock": 353,
       "in_stock_rate": 100.0
     },
     {
@@ -132,16 +132,16 @@
       "in_stock_rate": 33.0
     },
     {
-      "Source_Store": "Game Street",
-      "total": 93,
-      "in_stock": 93,
-      "in_stock_rate": 100.0
-    },
-    {
       "Source_Store": "MSK Computers",
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 9,
+      "in_stock": 9,
+      "in_stock_rate": 100.0
     }
   ]
 }
