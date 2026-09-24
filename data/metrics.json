@@ -2,27 +2,27 @@
   "total_skus": 9176,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5237,
+  "in_stock_skus": 5235,
   "in_stock_rate": 57.1,
   "categories": [
     {
       "Category": "Accessories / Other",
       "count": 3650,
-      "avg_price": 27831.0,
+      "avg_price": 27816.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
       "count": 1009,
-      "avg_price": 284091.0,
+      "avg_price": 284140.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
     {
       "Category": "Monitor",
       "count": 738,
-      "avg_price": 113154.0,
+      "avg_price": 113080.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1881,
-      "in_stock": 1019,
-      "in_stock_rate": 54.2
+      "in_stock": 1017,
+      "in_stock_rate": 54.1
     },
     {
       "Source_Store": "Red Tech",
