@@ -1,9 +1,9 @@
 {
-  "total_skus": 9109,
+  "total_skus": 9095,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5173,
-  "in_stock_rate": 56.8,
+  "in_stock_skus": 5158,
+  "in_stock_rate": 56.7,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1886,
-      "in_stock": 1027,
-      "in_stock_rate": 54.5
+      "in_stock": 1026,
+      "in_stock_rate": 54.4
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 353,
-      "in_stock": 353,
+      "total": 339,
+      "in_stock": 339,
       "in_stock_rate": 100.0
     },
     {
