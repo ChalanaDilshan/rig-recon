@@ -1,13 +1,13 @@
 ﻿Source_Store,Category,Title,Price,Stock,URL
 Nanotek,Graphics Card,ASUS Dual GeForce RTX 5070 12GB GDDR7 OC,"320,000 LKR",In Stock,https://www.nanotek.lk/product/asus-dual-geforce-rtx-5070-12gb-gddr7-oc
-Nanotek,Graphics Card,ZOTAC GAMING GeForce RTX 5060 Ti 8GB Twin Edge,"189,000 LKR",In Stock,https://www.nanotek.lk/product/zotac-gaming-geforce-rtx-5060-ti-8gb-twin-edge
+Nanotek,Graphics Card,ZOTAC GAMING GeForce RTX 5060 Ti 8GB Twin Edge,"199,000 LKR",In Stock,https://www.nanotek.lk/product/zotac-gaming-geforce-rtx-5060-ti-8gb-twin-edge
 Nanotek,Graphics Card,MSI GeForce RTX 5050 8GB SHADOW 2X OC,"139,500 LKR",In Stock,https://www.nanotek.lk/product/msi-geforce-rtx-5050-8gb-shadow-2x-oc
 Nanotek,Graphics Card,ASUS PRIME RTX 5050 8GB OC,"144,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-rtx-5050-8gb-oc
 Nanotek,Graphics Card,ASUS Dual GeForce RTX 5060 Ti 16GB GDDR7,"284,500 LKR",In Stock,https://www.nanotek.lk/product/asus-dual-geforce-rtx-5060-ti-16gb-gddr7
 Nanotek,Graphics Card,NVIDIA RTX A4500 20GB,"599,000 LKR619,000 LKR",In stock,https://www.nanotek.lk/product/nvidia-rtx-a4500-20gb
 Nanotek,Graphics Card,MSI RTX 5060 TI VENTUS 2X OC PLUS 8GB,"217,000 LKR",In Stock,https://www.nanotek.lk/product/msi-rtx-5060-ti-ventus-2x-oc-plus-8gb
 Nanotek,Graphics Card,MSI GeForce RTX 5090 32G VENTUS 3X OC,"1,975,000 LKR",In Stock,https://www.nanotek.lk/product/msi-geforce-rtx-5090-32g-ventus-3x-oc
-Nanotek,Graphics Card,ZOTAC GAMING GeForce RTX 5060 Ti 8GB AMP,"199,000 LKR",In Stock,https://www.nanotek.lk/product/zotac-gaming-geforce-rtx-5060-ti-8gb-amp
+Nanotek,Graphics Card,ZOTAC GAMING GeForce RTX 5060 Ti 8GB AMP,"209,000 LKR",In Stock,https://www.nanotek.lk/product/zotac-gaming-geforce-rtx-5060-ti-8gb-amp
 Nanotek,Graphics Card,MSI RTX 3050 VENTUS 2X E OC 6GB,"103,000 LKR",In Stock,https://www.nanotek.lk/product/msi-rtx-3050-ventus-2x-e-oc-6gb
 Nanotek,Graphics Card,ASUS Dual GeForce RTX 5050 8GB GDDR6 OC Edition,"132,000 LKR",In Stock,https://www.nanotek.lk/product/asus-dual-geforce-rtx-5050-8gb-gddr6-oc-edition-1
 Nanotek,Graphics Card,MSI GeForce RTX 5060 8G SHADOW 2X OC,"166,500 LKR",In Stock,https://www.nanotek.lk/product/msi-geforce-rtx-5060-8g-shadow-2x-oc
@@ -134,7 +134,7 @@ Nanotek,Laptop,MSI Vector 16 HX AI A2XWHG Ultra 7 RTX 5070Ti,"889,000 LKR",In st
 Nanotek,Laptop,MSI Katana A15 AI B8VE Ryzen 7 RTX 4050,"495,000 LKR",In Stock,https://www.nanotek.lk/product/msi-katana-a15-ai-b8ve-ryzen-7-rtx-4050
 Nanotek,Laptop,LENOVO YOGA SLIM 7i AURA EDITION 14IPH11 Ultra 5 322 OLED,"585,000 LKR",In Stock,https://www.nanotek.lk/product/lenovo-yoga-slim-7i-aura-edition-14iph11-ultra-5-322-oled
 Nanotek,Laptop,MSI Summit 16 AI Evo A2HMTG Core Ultra 7 255H,"609,000 LKR",In stock,https://www.nanotek.lk/product/msi-summit-16-ai-evo-a2hmtg-core-ultra-7-255h
-Nanotek,Laptop,ASUS Zenbook DUO UX8407AA Ultra 9 GEN3,"1,099,000 LKR",In Stock,https://www.nanotek.lk/product/asus-zenbook-duo-ux8407aa-ultra-9-gen3-1
+Nanotek,Laptop,ASUS Zenbook DUO UX8407AA Ultra 9 GEN3,"1,099,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-zenbook-duo-ux8407aa-ultra-9-gen3-1
 Nanotek,Laptop,ASUS VIVOBOOK 15 X1504VA CORE 7 14TH GEN,"259,000 LKR",In Stock,https://www.nanotek.lk/product/asus-vivobook-15-x1504va-core-7-14th-gen
 Nanotek,Laptop,Asus Vivobook GO 15 E1504GA i3 13th Gen,"179,000 LKR200,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-vivobook-go-15-e1504ga-i3-13th-gen
 Nanotek,Laptop,ASUS ROG G16 G615JHR Intel Core i7 14TH RTX 5050 8GB,"629,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-g16-g615jhr-intel-core-i7-14th-rtx-5050-8gb
@@ -187,6 +187,9 @@ Nanotek,Laptop,Chuwi CoreBook AIR Ultra 5 226V,"249,000 LKR",In Stock,https://ww
 Nanotek,Laptop,ASUS EXPERTBOOK B1503CVA CORE 5 120U,"309,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-expertbook-b1503cva-core-5-120u
 Nanotek,Laptop,Lenovo LOQ Essential 15ARP10E RYZEN 7 + RTX 4050 6GB,"385,000 LKR",In Stock,https://www.nanotek.lk/product/lenovo-loq-essential-15arp10e-ryzen-7-rtx-4050-6gb
 Nanotek,Laptop,ASUS VIVOBOOK 15 X1504VA CORE 5,"225,000 LKR",In Stock,https://www.nanotek.lk/product/asus-vivobook-15-x1504va-core-5
+Nanotek,Power Banks Laptop Bags Accessories,"ANKER ZOLO POWER BANK A110EH11 (20K, 22.5W, BUILT-IN USB-C CABLE)","12,500 LKR",In Stock,https://www.nanotek.lk/product/anker-zolo-power-bank-a110eh11-20k-225w-built-in-usb-c-cable
+Nanotek,Power Banks Laptop Bags Accessories,SHARGE C3 CARBONMAG 5000MAH - 20W,"9,000 LKR",In Stock,https://www.nanotek.lk/product/sharge-c3-carbonmag-5000mah-20w
+Nanotek,Power Banks Laptop Bags Accessories,SHARGE M2 ICEMAG 2 10000MAH - 30W,"10,000 LKR",In Stock,https://www.nanotek.lk/product/sharge-m2-icemag-2-10000mah-30w
 Nanotek,Power Banks Laptop Bags Accessories,SHARGE T1 FLOW MINI 2 5000MAH - 22.5W,"5,000 LKR",In Stock,https://www.nanotek.lk/product/sharge-t1-flow-mini-2-5000mah-225w
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN FOLDABLE LAPTOP STAND - 40289,"5,500 LKR",In stock,https://www.nanotek.lk/product/ugreen-foldable-laptop-stand-40289
 Nanotek,Power Banks Laptop Bags Accessories,BANGE BACKPACK 7216,"13,000 LKR",In Stock,https://www.nanotek.lk/product/bange-backpack-7216
@@ -214,7 +217,7 @@ Nanotek,Power Banks Laptop Bags Accessories,UGREEN 10000MAH 20W ZAPIX SERIES TWO
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 20000MAH 165W NEXODE SMART DISPLAY PB WITH RETRACTABLE CABLE (CCC VERSION)- PB726 – 95670B,"24,000 LKR",In Stock,https://www.nanotek.lk/product/ugreen-20000mah-165w-nexode-smart-display-pb-with-retractable-cable-ccc-version-pb726-95670b
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 25000MAH 200W NEXODE PRO PB – PB728 – 75702B,"28,000 LKR",In Stock,https://www.nanotek.lk/product/ugreen-25000mah-200w-nexode-pro-pb-pb728-75702b
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 10000MAH 30W QI2 MAGNETIC WIRELESS PB - PB761 – 45763,"14,000 LKR",In Stock,https://www.nanotek.lk/product/ugreen-10000mah-30w-qi2-magnetic-wireless-pb-pb761-45763
-Nanotek,Power Banks Laptop Bags Accessories,FANTECH NC30 RGB LAPTOP COOLING PAD,"8,500 LKR",In Stock,https://www.nanotek.lk/product/fantech-nc30-rgb-laptop-cooling-pad
+Nanotek,Power Banks Laptop Bags Accessories,FANTECH NC30 RGB LAPTOP COOLING PAD,"8,500 LKR",Out of Stock,https://www.nanotek.lk/product/fantech-nc30-rgb-laptop-cooling-pad
 Nanotek,Power Banks Laptop Bags Accessories,LENOVO DIGITAL PEN 2 WITH BATTERY,"6,500 LKR",Out of Stock,https://www.nanotek.lk/product/lenovo-digital-pen-2-with-battery
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 12000mAh 100W Nexode Fast Charging Power Bank – PB724 – 35526B,"14,000 LKR",In Stock,https://www.nanotek.lk/product/ugreen-12000mah-100w-nexode-fast-charging-power-bank-pb724-35526b
 Nanotek,Power Banks Laptop Bags Accessories,"ANKER PRIME CHARGER - 250W, 6 PORTS, GANPRIME","39,500 LKR",In Stock,https://www.nanotek.lk/product/anker-prime-charger-250w-6-ports-ganprime
@@ -244,13 +247,11 @@ Nanotek,Power Banks Laptop Bags Accessories,"Honor Ad60 15"" Back Pack","5,500 L
 Nanotek,Power Banks Laptop Bags Accessories,ANKER ZOLO 20W PD 3.0 USB-C ADAPTER - A2699K11,"3,500 LKR",Out of Stock,https://www.nanotek.lk/product/anker-zolo-20w-pd-30-usb-c-adapter-a2699k11
 Nanotek,Power Banks Laptop Bags Accessories,GAMDIAS AETHER P1 RGB LAPTOP DUAL FAN COOLING PAD,"12,000 LKR",Out of Stock,https://www.nanotek.lk/product/gamdias-aether-p1-rgb-laptop-dual-fan-cooling-pad
 Nanotek,Power Banks Laptop Bags Accessories,UGREEN 80348 LAPTOP STAND,"3,500 LKR",Out of Stock,https://www.nanotek.lk/product/ugreen-80348-laptop-stand
-Nanotek,Power Banks Laptop Bags Accessories,ANKER 100W 3 PORTS SD WITH C-C CABLE - B121BKZ1,"16,000 LKR",Out of Stock,https://www.nanotek.lk/product/anker-100w-3-ports-sd-with-c-c-cable-b121bkz1
-Nanotek,Power Banks Laptop Bags Accessories,Mi Computer Monitor Light Bar,"13,500 LKR15,000 LKR",Out of Stock,https://www.nanotek.lk/product/mi-computer-monitor-light-bar
-Nanotek,Power Banks Laptop Bags Accessories,OEM Laptop stand,"2,000 LKR",Out of Stock,https://www.nanotek.lk/product/oem-laptop-stand
 Nanotek,Television Tv,"Samsung 75"" DU7700 Crystal 4K UHD Smart TV","599,000 LKR",In Stock,https://www.nanotek.lk/product/samsung-75-du7700-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 65"" DU7700 Crystal 4K UHD Smart TV","379,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-65-du7700-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 43"" DU7500 Crystal 4K UHD Smart TV","189,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-43-du7500-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 55"" DU7500 Crystal 4K UHD Smart TV","269,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-55-du7500-crystal-4k-uhd-smart-tv
+Nanotek,Monitors Monitor Arms,"AOC 27"" 27B36XFHD IPS 144Hz MONITOR","42,500 LKR",ETA 2ND OF OCTOBER,https://www.nanotek.lk/product/aoc-27-27b36xfhd-ips-144hz-monitor
 Nanotek,Monitors Monitor Arms,"ASUS VY279HG2 27"" IPS FHD 144HZ EYE CARE MONITOR","49,000 LKR",In Stock,https://www.nanotek.lk/product/asus-vy279hg2-27-ips-fhd-144hz-eye-care-monitor
 Nanotek,Monitors Monitor Arms,"Alienware 39"" AW3926QW 5K 165Hz OLED Gaming Monitor","590,000 LKR",ETA 5th Octorber,https://www.nanotek.lk/product/alienware-39-aw3926qw-5k-165hz-oled-gaming-monitor
 Nanotek,Monitors Monitor Arms,"KOORUI 25"" G2511P 200Hz IPS FHD HDR400 Display, 90% DCI-P3","39,000 LKR",In Stock,https://www.nanotek.lk/product/koorui-25-g2511p-200hz-ips-fhd-hdr400-display-90-dci-p3
@@ -310,8 +311,7 @@ Nanotek,Monitors Monitor Arms,"VIEWSONIC 27"" XG2709A FHD IPS 240HZ","62,500 LKR
 Nanotek,Monitors Monitor Arms,"ASUS ProArt PA278CGV 27"" IPS 2560 x 1440 144 Hz Calman Verified, USB-C","167,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-pa278cgv-27-ips-2560-x-1440-144-hz-calman-verified-usb-c
 Nanotek,Monitors Monitor Arms,"NORTH BAYOU G60 SINGLE MONITOR DESK ARM 27"" - 45""","18,500 LKR",In stock,https://www.nanotek.lk/product/north-bayou-g60-single-monitor-desk-arm-27-45
 Nanotek,Monitors Monitor Arms,"ASUS TUF Gaming VG30VQL1A 30 Ultra-wide WFHD (2560X1080), 200Hz","120,500 LKR",In stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg30vql1a-30-ultra-wide-wfhd-2560x1080-200hz
-Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG27AQ5A 27"" QHD FAST IPS 210HZ","77,500 LKR",In Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg27aq5a-27-qhd-fast-ips-210hz
-Nanotek,Processor,"Intel Core Ultra 7 270K Plus (36M Cache, up to 5.50 GHz)","118,000 LKR",In Stock,https://www.nanotek.lk/product/intel-core-ultra-7-270k-plus-36m-cache-up-to-550-ghz-1
+Nanotek,Processor,"Intel Core Ultra 7 270K Plus (36M Cache, up to 5.50 GHz)","118,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-ultra-7-270k-plus-36m-cache-up-to-550-ghz-1
 Nanotek,Processor,AMD Ryzen 5 3400G (Up To 4.2GHz Cores 4 - Threads 8) 4M Cache,"27,000 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-3400g-up-to-42ghz-cores-4-threads-8-4m-cache-1
 Nanotek,Processor,AMD Ryzen 5 5500 (up to 4.2Ghz 6-cores 12-threads) 16M Cache,"36,500 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-5500-up-to-42ghz-6-cores-12-threads-16m-cache
 Nanotek,Processor,"INTEL CORE I5 12400F (18M CACHE, UP TO 4.40 GHZ)","55,000 LKR",In Stock,https://www.nanotek.lk/product/intel-core-i5-12400f-18m-cache-up-to-440-ghz-1
@@ -346,12 +346,12 @@ Nanotek,Processor,"INTEL CORE I7 14700K (33M CACHE, UP TO 5.60 GHZ) - TRAY","132
 Nanotek,Processor,AMD Ryzen 5 7600 (up to 5.1Ghz 6-cores 12-threads) 32M Cache - TRAY,"59,500 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-7600-up-to-51ghz-6-cores-12-threads-32m-cache-tray
 Nanotek,Processor,"INTEL CORE I5 14600K (24M CACHE, UP TO 5.30 GHZ)","92,500 LKR",In Stock,https://www.nanotek.lk/product/intel-core-i5-14600k-24m-cache-up-to-530-ghz
 Nanotek,Processor,AMD RYZEN 5 5600X (UP TO 4.6GHZ 6-CORES 12-THREADS) 35M CACHE - TRAY,"45,000 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-5600x-up-to-46ghz-6-cores-12-threads-35m-cache-tray
-Nanotek,Processor,"AMD Ryzen 5 5600 (6 Cores, 12 Threads) Up To 4.4 GHz","43,500 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-5600-6-cores-12-threads-up-to-44-ghz
+Nanotek,Processor,"AMD Ryzen 5 5600 (6 Cores, 12 Threads) Up To 4.4 GHz","43,500 LKR",Out of Stock,https://www.nanotek.lk/product/amd-ryzen-5-5600-6-cores-12-threads-up-to-44-ghz
 Nanotek,Processor,AMD Ryzen 5 PRO 8600G up to 5Ghz 6-cores 12-threads) 16M Cache - Tray,"77,000 LKR",In stock,https://www.nanotek.lk/product/amd-ryzen-5-pro-8600g-up-to-5ghz-6-cores-12-threads-16m-cache-tray
 Nanotek,Processor,AMD Ryzen 9 9950X3D (up to 5.7Ghz 16-cores 32-threads) 128M Cache,"226,000 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-9-9950x3d-up-to-57ghz-16-cores-32-threads-128m-cache-1
 Nanotek,Processor,"Intel Core Ultra 5 235 (24M Cache, up to 5.00 GHz)","79,500 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-ultra-5-235-24m-cache-up-to-500-ghz
 Nanotek,Processor,AMD RYZEN 5 5600G (UP TO 4.4GHZ 6-CORES 12-THREADS) 19M CACHE - TRAY,"45,000 LKR",Out of Stock,https://www.nanotek.lk/product/amd-ryzen-5-5600g-up-to-44ghz-6-cores-12-threads-19m-cache-tray
-Nanotek,Processor,AMD RYZEN 5 7500X3D,"59,000 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-7500x3d
+Nanotek,Processor,AMD RYZEN 5 7500X3D,"69,500 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-7500x3d
 Nanotek,Processor,"INTEL CORE I7 12700F (25M CACHE, UP TO 4.90 GHZ)","89,500 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-i7-12700f-25m-cache-up-to-490-ghz
 Nanotek,Processor,"Intel Core Ultra 7 265 (30M Cache, up to 5.30 GHz)","99,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-ultra-7-265-30m-cache-up-to-530-ghz
 Nanotek,Processor,"INTEL CORE I5 12400 (18M CACHE, UP TO 4.40 GHZ)","72,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-i5-12400-18m-cache-up-to-440-ghz-1
@@ -365,7 +365,7 @@ Nanotek,Processor,"INTEL CORE I7 12700 (25M CACHE, UP TO 4.90)","89,500 LKR",Out
 Nanotek,Processor,"Intel Core i7 13700F  (30M Cache, up to 5.20 GHz)","89,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-i7-13700f-30m-cache-up-to-520-ghz
 Nanotek,Motherboards,MSI A520M-A PRO,"26,500 LKR",In Stock,https://www.nanotek.lk/product/msi-a520m-a-pro
 Nanotek,Motherboards,ASUS ROG STRIX B860-F GAMING WIFI DDR5,"116,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-strix-b860-f-gaming-wifi-ddr5
-Nanotek,Motherboards,MSI B850M GAMING PLUS WIFI6E,"78,500 LKR",In Stock,https://www.nanotek.lk/product/msi-b850m-gaming-plus-wifi6e
+Nanotek,Motherboards,MSI B850M GAMING PLUS WIFI6E,"78,500 LKR",Out of Stock,https://www.nanotek.lk/product/msi-b850m-gaming-plus-wifi6e
 Nanotek,Motherboards,MSI B760M GAMING PLUS WIFI,"67,000 LKR",In Stock,https://www.nanotek.lk/product/msi-b760m-gaming-plus-wifi
 Nanotek,Motherboards,ASUS ProArt B760-CREATOR,"73,000 LKR115,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-b760-creator
 Nanotek,Motherboards,ASUS PRIME Z890M-PLUS WIFI-CSM,"109,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-z890m-plus-wifi-csm
@@ -387,7 +387,7 @@ Nanotek,Motherboards,ASROCK X870 LIVEMIXER WIFI DDR5,"129,500 LKR",In stock,http
 Nanotek,Motherboards,MSI MAG X870E GAMING MAX WIFI,"126,000 LKR",In Stock,https://www.nanotek.lk/product/msi-mag-x870e-gaming-max-wifi
 Nanotek,Motherboards,ASROCK X870 TAICHI CREATOR WIFI DDR5,"199,000 LKR",In stock,https://www.nanotek.lk/product/asrock-x870-taichi-creator-wifi-ddr5
 Nanotek,Motherboards,ASUS PRIME B760M-A WIFI D5,"63,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-b760m-a-wifi-d5
-Nanotek,Motherboards,ASROCK X870 PRO-A WIFI DDR5,"99,500 LKR",In stock,https://www.nanotek.lk/product/asrock-x870-pro-a-wifi-ddr5
+Nanotek,Motherboards,ASROCK X870 PRO-A WIFI DDR5,"99,500 LKR",Out of Stock,https://www.nanotek.lk/product/asrock-x870-pro-a-wifi-ddr5
 Nanotek,Motherboards,ASUS ROG STRIX Z890-F GAMING WIFI,"179,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-strix-z890-f-gaming-wifi
 Nanotek,Motherboards,ASROCK PHANTOM GAMING B850M RIPTIDE WIFI DDR5,"79,000 LKR",In stock,https://www.nanotek.lk/product/asrock-phantom-gaming-b850m-riptide-wifi-ddr5
 Nanotek,Motherboards,Asus Z890 AYW GAMING WIFI (3Y),"115,000 LKR",In stock,https://www.nanotek.lk/product/asus-z890-ayw-gaming-wifi-3y
@@ -409,7 +409,7 @@ Nanotek,Motherboards,MSI PRO B760M-A WIFI DDR4,"68,000 LKR",In Stock,https://www
 Nanotek,Motherboards,MSI Pro B760M-A WIFI DDR5,"59,500 LKR",In stock,https://www.nanotek.lk/product/msi-pro-b760m-a-wifi-ddr5
 Nanotek,Motherboards,ASROCK PHANTOM GAMING Z890 NOVA WIFI DDR5,"149,500 LKR",In stock,https://www.nanotek.lk/product/asrock-phantom-gaming-z890-nova-wifi-ddr5
 Nanotek,Motherboards,ASROCK H810M-X GEN5 WIFI DDR5,"59,000 LKR",In stock,https://www.nanotek.lk/product/asrock-h810m-x-gen5-wifi-ddr5
-Nanotek,Motherboards,ASUS PRIME B760M-K D4,"46,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-b760m-k-d4
+Nanotek,Motherboards,ASUS PRIME B760M-K D4,"43,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-b760m-k-d4
 Nanotek,Motherboards,Asus TUF GAMING X870-PLUS WIFI,"175,000 LKR",In Stock,https://www.nanotek.lk/product/asus-tuf-gaming-x870-plus-wifi
 Nanotek,Motherboards,MSI Z790 GAMING PLUS WIFI DDR5,"99,500 LKR",In Stock,https://www.nanotek.lk/product/msi-z790-gaming-plus-wifi-ddr5
 Nanotek,Motherboards,MSI MAG Z890 TOMAHAWK WIFI,"159,000 LKR",In Stock,https://www.nanotek.lk/product/msi-mag-z890-tomahawk-wifi
