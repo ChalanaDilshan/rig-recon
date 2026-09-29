@@ -1,9 +1,9 @@
 {
-  "total_skus": 9259,
+  "total_skus": 9119,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5316,
-  "in_stock_rate": 57.4,
+  "in_stock_skus": 5175,
+  "in_stock_rate": 56.7,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -86,7 +86,7 @@
     {
       "Source_Store": "Nanotek",
       "total": 1891,
-      "in_stock": 1025,
+      "in_stock": 1024,
       "in_stock_rate": 54.2
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 339,
-      "in_stock": 339,
+      "total": 344,
+      "in_stock": 344,
       "in_stock_rate": 100.0
     },
     {
@@ -126,12 +126,6 @@
       "in_stock_rate": 100.0
     },
     {
-      "Source_Store": "Game Street",
-      "total": 167,
-      "in_stock": 167,
-      "in_stock_rate": 100.0
-    },
-    {
       "Source_Store": "Redline Technologies",
       "total": 110,
       "in_stock": 37,
@@ -142,6 +136,12 @@
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 22,
+      "in_stock": 22,
+      "in_stock_rate": 100.0
     }
   ]
 }
