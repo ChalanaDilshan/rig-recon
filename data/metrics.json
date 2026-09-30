@@ -1,9 +1,9 @@
 {
-  "total_skus": 9118,
+  "total_skus": 9095,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5180,
-  "in_stock_rate": 56.8,
+  "in_stock_skus": 5156,
+  "in_stock_rate": 56.7,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -14,8 +14,8 @@
     },
     {
       "Category": "Laptop",
-      "count": 1017,
-      "avg_price": 284058.0,
+      "count": 992,
+      "avg_price": 285074.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -85,7 +85,7 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1892,
+      "total": 1893,
       "in_stock": 1031,
       "in_stock_rate": 54.5
     },
@@ -97,8 +97,8 @@
     },
     {
       "Source_Store": "Tulip Computers",
-      "total": 892,
-      "in_stock": 892,
+      "total": 866,
+      "in_stock": 866,
       "in_stock_rate": 100.0
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 342,
-      "in_stock": 342,
+      "total": 344,
+      "in_stock": 344,
       "in_stock_rate": 100.0
     },
     {
