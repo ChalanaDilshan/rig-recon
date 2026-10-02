@@ -1,9 +1,9 @@
 {
-  "total_skus": 9108,
+  "total_skus": 9163,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5169,
-  "in_stock_rate": 56.8,
+  "in_stock_skus": 5223,
+  "in_stock_rate": 57.0,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -22,14 +22,14 @@
     {
       "Category": "Monitor",
       "count": 742,
-      "avg_price": 112823.0,
+      "avg_price": 112826.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
     {
       "Category": "Motherboard",
       "count": 613,
-      "avg_price": 81188.0,
+      "avg_price": 81193.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
@@ -86,7 +86,7 @@
     {
       "Source_Store": "Nanotek",
       "total": 1899,
-      "in_stock": 1037,
+      "in_stock": 1036,
       "in_stock_rate": 54.6
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 351,
-      "in_stock": 351,
+      "total": 340,
+      "in_stock": 340,
       "in_stock_rate": 100.0
     },
     {
@@ -132,16 +132,16 @@
       "in_stock_rate": 33.6
     },
     {
+      "Source_Store": "Game Street",
+      "total": 88,
+      "in_stock": 88,
+      "in_stock_rate": 100.0
+    },
+    {
       "Source_Store": "MSK Computers",
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
-    },
-    {
-      "Source_Store": "Game Street",
-      "total": 22,
-      "in_stock": 22,
-      "in_stock_rate": 100.0
     }
   ]
 }
