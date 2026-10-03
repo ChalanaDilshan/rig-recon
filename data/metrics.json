@@ -1,8 +1,8 @@
 {
-  "total_skus": 9163,
+  "total_skus": 9172,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5223,
+  "in_stock_skus": 5229,
   "in_stock_rate": 57.0,
   "categories": [
     {
@@ -21,15 +21,15 @@
     },
     {
       "Category": "Monitor",
-      "count": 742,
-      "avg_price": 112826.0,
+      "count": 744,
+      "avg_price": 112898.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
     {
       "Category": "Motherboard",
-      "count": 613,
-      "avg_price": 81193.0,
+      "count": 614,
+      "avg_price": 81331.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1899,
+      "total": 1902,
       "in_stock": 1036,
-      "in_stock_rate": 54.6
+      "in_stock_rate": 54.5
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 340,
-      "in_stock": 340,
+      "total": 346,
+      "in_stock": 346,
       "in_stock_rate": 100.0
     },
     {
