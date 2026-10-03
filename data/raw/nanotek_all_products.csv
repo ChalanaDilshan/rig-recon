@@ -80,7 +80,7 @@ Nanotek,Apple,APPLE MAC MINI M4 16GB 256GB,"299,000 LKR309,000 LKR",Out of Stock
 Nanotek,Apple,"APPLE MACBOOK AIR M5 13"" 16GB 512GB","490,000 LKR",In Stock,https://www.nanotek.lk/product/apple-macbook-air-m5-13-16gb-512gb
 Nanotek,Apple,APPLE MAC MINI M4 16GB 512GB,"349,000 LKR",In Stock,https://www.nanotek.lk/product/apple-mac-mini-m4-16gb-512gb
 Nanotek,Apple,Apple Macbook Neo 8GB 256GB,"255,000 LKR",In Stock,https://www.nanotek.lk/product/apple-macbook-neo-8gb-256gb
-Nanotek,Apple,Apple Macbook Neo 8GB 512GB,"299,000 LKR",In Stock,https://www.nanotek.lk/product/apple-macbook-neo-8gb-512gb
+Nanotek,Apple,Apple Macbook Neo 8GB 512GB,"299,000 LKR",In stock,https://www.nanotek.lk/product/apple-macbook-neo-8gb-512gb
 Nanotek,Apple,ACASIS 10GBPS MAC MINI M4 DOCK & DUAL BAY SSD ENCLOSURE - M001,"36,000 LKR",In Stock,https://www.nanotek.lk/product/acasis-10gbps-mac-mini-m4-dock-dual-bay-ssd-enclosure-m001
 Nanotek,Apple,ACASIS MAC MINI M4 DOCK & STAND - NVME SSD ENCLOSURE - M003,"24,500 LKR",In Stock,https://www.nanotek.lk/product/acasis-mac-mini-m4-dock-stand-nvme-ssd-enclosure-m003
 Nanotek,Apple,UGREEN MAC MINI M4 11 IN 1 USB-C DOCKING STATION - CM841 - 65487,"22,500 LKR",In Stock,https://www.nanotek.lk/product/ugreen-mac-mini-m4-11-in-1-usb-c-docking-station-cm841-65487
@@ -253,6 +253,8 @@ Nanotek,Television Tv,"Samsung 75"" DU7700 Crystal 4K UHD Smart TV","599,000 LKR
 Nanotek,Television Tv,"Samsung 65"" DU7700 Crystal 4K UHD Smart TV","379,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-65-du7700-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 43"" DU7500 Crystal 4K UHD Smart TV","189,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-43-du7500-crystal-4k-uhd-smart-tv
 Nanotek,Television Tv,"Samsung 55"" DU7500 Crystal 4K UHD Smart TV","269,000 LKR",Out of Stock,https://www.nanotek.lk/product/samsung-55-du7500-crystal-4k-uhd-smart-tv
+Nanotek,Monitors Monitor Arms,"KOORUI 24"" E2412K FHD VA 144HZ","29,000 LKR",In Stock,https://www.nanotek.lk/product/koorui-24-e2412k-fhd-va-144hz
+Nanotek,Monitors Monitor Arms,"KOORUI E1512A (MB15B7F) 15.6"" FHD IPS 60HZ Portable Monitor","32,000 LKR",In Stock,https://www.nanotek.lk/product/koorui-e1512a-mb15b7f-156-fhd-ips-60hz-portable-monitor
 Nanotek,Monitors Monitor Arms,"ALIENWARE 27"" AW2726DM (2560 x 1440) QD-OLED 240HZ","215,000 LKR",In Stock,https://www.nanotek.lk/product/alienware-27-aw2726dm-2560-x-1440-qd-oled-240hz
 Nanotek,Monitors Monitor Arms,"KOORUI 27"" 27E6QCA QHD VA 180HZ CURVED GAMING MONITOR","62,500 LKR",In Stock,https://www.nanotek.lk/product/koorui-27-27e6qca-qhd-va-180hz-curved-gaming-monitor
 Nanotek,Monitors Monitor Arms,"AOC 27"" 27B36XFHD IPS 144Hz MONITOR","42,500 LKR",In Stock,https://www.nanotek.lk/product/aoc-27-27b36xfhd-ips-144hz-monitor
@@ -311,8 +313,6 @@ Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG249Q5R 24"""" FHD FAST IPS 200H
 Nanotek,Monitors Monitor Arms,"Dell P2725H 27"" (1920x1080) 100Hz IPS 99% sRGB","82,000 LKR86,000 LKR",In stock,https://www.nanotek.lk/product/dell-p2725h-27-1920x1080-100hz-ips-99-srgb
 Nanotek,Monitors Monitor Arms,"ASUS ProArt 34"" PA34VCNV Curved 3440 x 1440 100% sRGB Rec.709 Color Accuracy ΔE < 2 Calman Verified USB-C","272,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-34-pa34vcnv-curved-3440-x-1440-100-srgb-rec709-color-accuracy-de-2-calman-verified-usb-c
 Nanotek,Monitors Monitor Arms,"ASUS PROART 32"" PA329CRV 4K UHD USB-C WITH PD 96W 98% DCI-P3","332,500 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-32-pa329crv-4k-uhd-usb-c-with-pd-96w-98-dci-p3
-Nanotek,Monitors Monitor Arms,"ASUS TUF GAMING VG32AQA1A 32"" HDR IPS 170Hz","109,000 LKR",In Stock,https://www.nanotek.lk/product/asus-tuf-gaming-vg32aqa1a-32-hdr-ips-170hz
-Nanotek,Monitors Monitor Arms,"VIEWSONIC 27"" XG2709A FHD IPS 240HZ","62,500 LKR",In Stock,https://www.nanotek.lk/product/viewsonic-27-xg2709a-fhd-ips-240hz
 Nanotek,Processor,AMD Ryzen 5 3400G (Up To 4.2GHz Cores 4 - Threads 8) 4M Cache,"27,000 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-3400g-up-to-42ghz-cores-4-threads-8-4m-cache-1
 Nanotek,Processor,AMD Ryzen 5 5500 (up to 4.2Ghz 6-cores 12-threads) 16M Cache,"36,500 LKR",In Stock,https://www.nanotek.lk/product/amd-ryzen-5-5500-up-to-42ghz-6-cores-12-threads-16m-cache
 Nanotek,Processor,"INTEL CORE I5 12400F (18M CACHE, UP TO 4.40 GHZ)","55,000 LKR",In Stock,https://www.nanotek.lk/product/intel-core-i5-12400f-18m-cache-up-to-440-ghz-1
@@ -365,6 +365,7 @@ Nanotek,Processor,AMD Ryzen 7 5700G (up to 4.6Ghz 8-cores 16-threads) 16M Cache,
 Nanotek,Processor,"Intel Core Ultra 9 285K (36M Cache, up to 5.70 GHz)","212,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-ultra-9-285k-36m-cache-up-to-570-ghz
 Nanotek,Processor,"INTEL CORE I7 12700 (25M CACHE, UP TO 4.90)","89,500 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-i7-12700-25m-cache-up-to-490
 Nanotek,Processor,"Intel Core i7 13700F  (30M Cache, up to 5.20 GHz)","89,000 LKR",Out of Stock,https://www.nanotek.lk/product/intel-core-i7-13700f-30m-cache-up-to-520-ghz
+Nanotek,Motherboards,ASUS TUF GAMING B850M-PLUS,"95,000 LKR",In Stock,https://www.nanotek.lk/product/asus-tuf-gaming-b850m-plus
 Nanotek,Motherboards,ASUS ROG STRIX Z890-A GAMING WIFI,"169,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-strix-z890-a-gaming-wifi
 Nanotek,Motherboards,MSI A520M-A PRO,"26,500 LKR",In Stock,https://www.nanotek.lk/product/msi-a520m-a-pro
 Nanotek,Motherboards,ASUS ROG STRIX B860-F GAMING WIFI DDR5,"116,000 LKR",In Stock,https://www.nanotek.lk/product/asus-rog-strix-b860-f-gaming-wifi-ddr5
@@ -404,7 +405,7 @@ Nanotek,Motherboards,MSI PRO B760M-E DDR4,"40,000 LKR",In Stock,https://www.nano
 Nanotek,Motherboards,ASUS PRIME B550M-A WIFI II,"57,500 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-b550m-a-wifi-ii
 Nanotek,Motherboards,ASUS ProArt Z890-CREATOR WIFI,"225,000 LKR",In Stock,https://www.nanotek.lk/product/asus-proart-z890-creator-wifi
 Nanotek,Motherboards,ASUS PRIME B840-PLUS WIFI CSM,"78,000 LKR",In Stock,https://www.nanotek.lk/product/asus-prime-b840-plus-wifi-csm
-Nanotek,Motherboards,MSI PRO B760M-P DDR4,"47,000 LKR",In Stock,https://www.nanotek.lk/product/msi-pro-b760m-p-ddr4
+Nanotek,Motherboards,MSI PRO B760M-P DDR4,"47,000 LKR",Out of stock,https://www.nanotek.lk/product/msi-pro-b760m-p-ddr4
 Nanotek,Motherboards,MSI PRO B760M-A WIFI DDR4,"68,000 LKR",Out of Stock,https://www.nanotek.lk/product/msi-pro-b760m-a-wifi-ddr4
 Nanotek,Motherboards,MSI Pro B760M-A WIFI DDR5,"59,500 LKR",In stock,https://www.nanotek.lk/product/msi-pro-b760m-a-wifi-ddr5
 Nanotek,Motherboards,ASROCK PHANTOM GAMING Z890 NOVA WIFI DDR5,"149,500 LKR",In stock,https://www.nanotek.lk/product/asrock-phantom-gaming-z890-nova-wifi-ddr5
@@ -423,4 +424,3 @@ Nanotek,Motherboards,ASUS ROG STRIX Z790-A GAMING WIFI D4,"122,500 LKR",Out of S
 Nanotek,Motherboards,ASUS TUF GAMING B850M-PLUS WIFI,"104,000 LKR",Out of stock,https://www.nanotek.lk/product/asus-tuf-gaming-b850m-plus-wifi
 Nanotek,Motherboards,ASUS PRIME A620M-K,"36,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-prime-a620m-k
 Nanotek,Motherboards,Asus PRIME B860-PLUS WIFI-CSM,"76,500 LKR",Out of Stock,https://www.nanotek.lk/product/asus-prime-b860-plus-wifi-csm
-Nanotek,Motherboards,ASUS PRIME H610M-K D4-CSM,"35,000 LKR",Out of Stock,https://www.nanotek.lk/product/asus-prime-h610m-k-d4-csm
