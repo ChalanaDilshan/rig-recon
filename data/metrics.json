@@ -1,9 +1,9 @@
 {
-  "total_skus": 9179,
+  "total_skus": 9140,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5235,
-  "in_stock_rate": 57.0,
+  "in_stock_skus": 5201,
+  "in_stock_rate": 56.9,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -43,7 +43,7 @@
     {
       "Category": "CPU",
       "count": 447,
-      "avg_price": 91535.0,
+      "avg_price": 91168.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1904,
-      "in_stock": 1037,
-      "in_stock_rate": 54.5
+      "in_stock": 1042,
+      "in_stock_rate": 54.7
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 351,
-      "in_stock": 351,
+      "total": 357,
+      "in_stock": 357,
       "in_stock_rate": 100.0
     },
     {
@@ -132,16 +132,16 @@
       "in_stock_rate": 33.6
     },
     {
-      "Source_Store": "Game Street",
-      "total": 88,
-      "in_stock": 88,
-      "in_stock_rate": 100.0
-    },
-    {
       "Source_Store": "MSK Computers",
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 43,
+      "in_stock": 43,
+      "in_stock_rate": 100.0
     }
   ]
 }
