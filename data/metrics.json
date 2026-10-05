@@ -1,9 +1,9 @@
 {
-  "total_skus": 9134,
+  "total_skus": 9122,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5195,
-  "in_stock_rate": 56.9,
+  "in_stock_skus": 5183,
+  "in_stock_rate": 56.8,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 351,
-      "in_stock": 351,
+      "total": 340,
+      "in_stock": 340,
       "in_stock_rate": 100.0
     },
     {
@@ -127,9 +127,9 @@
     },
     {
       "Source_Store": "Redline Technologies",
-      "total": 110,
-      "in_stock": 37,
-      "in_stock_rate": 33.6
+      "total": 109,
+      "in_stock": 36,
+      "in_stock_rate": 33.0
     },
     {
       "Source_Store": "MSK Computers",
