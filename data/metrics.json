@@ -1,9 +1,9 @@
 {
-  "total_skus": 9245,
+  "total_skus": 9188,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5297,
-  "in_stock_rate": 57.3,
+  "in_stock_skus": 5239,
+  "in_stock_rate": 57.0,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -15,7 +15,7 @@
     {
       "Category": "Laptop",
       "count": 994,
-      "avg_price": 285507.0,
+      "avg_price": 285492.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -28,8 +28,8 @@
     },
     {
       "Category": "Motherboard",
-      "count": 615,
-      "avg_price": 81354.0,
+      "count": 616,
+      "avg_price": 81362.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
@@ -85,7 +85,7 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1910,
+      "total": 1911,
       "in_stock": 1039,
       "in_stock_rate": 54.4
     },
@@ -126,16 +126,16 @@
       "in_stock_rate": 100.0
     },
     {
-      "Source_Store": "Game Street",
-      "total": 151,
-      "in_stock": 151,
-      "in_stock_rate": 100.0
-    },
-    {
       "Source_Store": "Redline Technologies",
       "total": 110,
       "in_stock": 37,
       "in_stock_rate": 33.6
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 93,
+      "in_stock": 93,
+      "in_stock_rate": 100.0
     },
     {
       "Source_Store": "MSK Computers",
