@@ -2,7 +2,7 @@
   "total_skus": 9187,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5234,
+  "in_stock_skus": 5233,
   "in_stock_rate": 57.0,
   "categories": [
     {
@@ -22,7 +22,7 @@
     {
       "Category": "Monitor",
       "count": 749,
-      "avg_price": 112342.0,
+      "avg_price": 112329.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1911,
-      "in_stock": 1035,
-      "in_stock_rate": 54.2
+      "in_stock": 1034,
+      "in_stock_rate": 54.1
     },
     {
       "Source_Store": "Red Tech",
