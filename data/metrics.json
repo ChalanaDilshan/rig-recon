@@ -1,14 +1,14 @@
 {
-  "total_skus": 9179,
+  "total_skus": 9181,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5224,
+  "in_stock_skus": 5226,
   "in_stock_rate": 56.9,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3654,
-      "avg_price": 28366.0,
+      "count": 3655,
+      "avg_price": 28370.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1911,
-      "in_stock": 1033,
+      "total": 1912,
+      "in_stock": 1034,
       "in_stock_rate": 54.1
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 339,
-      "in_stock": 339,
+      "total": 340,
+      "in_stock": 340,
       "in_stock_rate": 100.0
     },
     {

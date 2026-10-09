@@ -1,7 +1,3 @@
 ﻿Source_Store,Category,Title,Price,Stock,URL
-PC Builders,Storage,NVMe SSD,N/A,In Stock,https://pcbuilders.lk/nvme/
-PC Builders,Storage,SATA SSD,N/A,In Stock,https://pcbuilders.lk/sata-ssd/
-PC Builders,Storage,Hard Drives,N/A,In Stock,https://pcbuilders.lk/hard-disk/
-PC Builders,Storage,External Storage,N/A,In Stock,https://pcbuilders.lk/portable-hard-sssd/
-PC Builders,Storage,USB Flash Drives,N/A,In Stock,https://pcbuilders.lk/pen-drive/
-PC Builders,Storage,Storage Enclosures,N/A,In Stock,https://pcbuilders.lk/enclosure/
+PC Builders,CPU,AMD Processors,N/A,In Stock,https://pcbuilders.lk/amd-processors/
+PC Builders,CPU,Intel Processors,N/A,In Stock,https://pcbuilders.lk/intel-processors/
