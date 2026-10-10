@@ -1,3 +1,43 @@
 ﻿Source_Store,Category,Title,Price,Stock,URL
-PC Builders,CPU,AMD Processors,N/A,In Stock,https://pcbuilders.lk/amd-processors/
-PC Builders,CPU,Intel Processors,N/A,In Stock,https://pcbuilders.lk/intel-processors/
+PC Builders,Storage,NVMe SSD,N/A,In Stock,https://pcbuilders.lk/nvme/
+PC Builders,Storage,SATA SSD,N/A,In Stock,https://pcbuilders.lk/sata-ssd/
+PC Builders,Storage,Hard Drives,N/A,In Stock,https://pcbuilders.lk/hard-disk/
+PC Builders,Storage,External Storage,N/A,In Stock,https://pcbuilders.lk/portable-hard-sssd/
+PC Builders,Storage,USB Flash Drives,N/A,In Stock,https://pcbuilders.lk/pen-drive/
+PC Builders,Storage,Storage Enclosures,N/A,In Stock,https://pcbuilders.lk/enclosure/
+PC Builders,Storage,DESKTOP HARD DRIVE - 500GB (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-hard-ssd-used-desktop-hard-drive-500gb-500gb/
+PC Builders,Storage,DESKTOP HARD DRIVE - 1TB (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-hard-ssd-used-desktop-hard-drive-1tb-1tb/
+PC Builders,Storage,SEAGATE BARRACUDA 1TB ST1000DM010 (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/seagate-gen-new-seagate-barracuda-1tb-st1000dm010-1tb/
+PC Builders,Storage,"SEAGATE IRONWOLF 2TB NAS 3.5"" INTERNAL HARD DISK (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/seagate-ironwolf-2tb-nas-3-5-internal-hard-disk-3-years-warranty/
+PC Builders,Storage,TEAM TFORCE VULCAN Z QLC 1TB SATA SSD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/team-ssd-new-team-tforce-vulcan-z-qlc-1tb-1tb/
+PC Builders,Storage,ADDLINK S70 LITE 1TB SSD NVME PCIE GEN3X4 M.2 (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/addlink-ssd-new-addlink-s70-lite-1tb-nvme-1tb/
+PC Builders,Storage,ADDLINK P30 1TB MAGNETIC PORTABLE EXTERNAL SSD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/addlink-gen-new-addlink-p30-1tb-magnetic-portable-extern-1tb/
+PC Builders,Storage,SEAGATE 6TB NAS IRONWOLF HARD DISK (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/seagate-gen-new-seagate-6tb-nas-ironwolf-hard-disk-6-tb/
+PC Builders,Storage,TEAM TFORCE M200 500GB PORTABLE SSD 2000 MB/S (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/team-ssd-new-team-tforce-m200-500gb-portable-2000-mb-500gb/
+PC Builders,Storage,ADDLINK S90 LITE 512GB SSD NVME PCIE GEN4X4 M.2 (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/addlink-ssd-new-addlink-s90-lite-512gb-nvme-gen4x4-512gb/
+PC Builders,Storage,ADDLINK S20 SSD 3D NAND 2.5 INCH - 1TB (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/addlink-ssd-new-addlink-s20-3d-nand-2-5-inch-1tb-1tb/
+PC Builders,Storage,ADDLINK S20 SSD 3D NAND 2.5 INCH - 512GB (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/addlink-ssd-new-addlink-s20-3d-nand-2-5-inch-512gb-512gb/
+PC Builders,Monitor,"AOC 27B36X 27"" FHD IPS 144Hz MONITOR (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/aoc-mon-new-aoc-27b36x-69/
+PC Builders,Monitor,"AOC 24B30H2 23.8"" FHD IPS 120Hz MONITOR (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/aoc-24b30h2-23-8-ips-120hz-fhd-monitor/
+PC Builders,Monitor,MSI MAG 341CQP 34 INCH QD-OLED UWQHD (3440 X 1440) 175HZ 0.03MS AMD FREESYNC PREMIUM PRO COMPATIBLE FRAMELESS GAMING MONITOR (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/msi-mon-new-msi-mag-341cqp-34-inch-qd-oled-uwqhd-344/
+PC Builders,Monitor,"AOC 22B30HM2 21.5"" FHD 100Hz Monitor (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/aoc-mon-new-aoc-22b30hm2-21-5-fhd-100hz/
+PC Builders,Monitor,Dell UltraSharp U2417H (used item),N/A,In Stock,https://pcbuilders.lk/used-dell-ultrasharp-u2417h/
+PC Builders,Monitor,TUF Gaming VG279QE5A 27-inch Full HD (1920x1080) 146Hz Gaming Monitor (3 YEAR WARRANTY),N/A,In Stock,https://pcbuilders.lk/tuf-mon-new-tuf-gaming-vg279qe5a-27-inch-full-hd-192/
+PC Builders,Monitor,"KOORUI 49"" S4941XO 5K (DQHD) OLED 240Hz CURVED ULTRAWIDE GAMING MONITOR (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/koorui-mon-new-koorui-49-s4941xo-5k-dqhd-oled-240hz-cur/
+PC Builders,Monitor,"KOORUI 25"" G2511E 320Hz IPS FHD HDR400 GAMING MONITOR (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/koorui-mon-new-koorui-25-g2511e-320hz-ips-fhd-hdr400/
+PC Builders,Monitor,"KOORUI G3441XC 34"" 21:9 Curved UHD 240Hz 1ms Gaming Monitor (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/koorui-g3441xc/
+PC Builders,Monitor,"MSI MAG 272F X24 27"" Inch FHD 240HZ 0.5MS Adaptive Sync Rapid IPS Gaming Monitor (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/msi-mag-272f/
+PC Builders,Monitor,KOORUI G3221SC 31.5 Inch QHD Gaming Monitor (3 years warranty),N/A,In Stock,https://pcbuilders.lk/koorui-g3221sc/
+PC Builders,Monitor,KOORUI G2722P 27 Inch QHD Gaming Monitor (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/koorui-g2722p/
+PC Builders,Monitor,KOORUI 27N5CA 27 75HZ VA FHD CURVED MONITOR (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/koorui-27n5ca/
+PC Builders,Monitor,"KOORUI E2712K 27"" FHD VA 144Hz Gaming Monitor (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/koorui-e2712k-27-fhd-va-144hz-gaming-monitor-3-years-warranty/
+PC Builders,Monitor,"MSI MPG 275CQRXF 27"" (2560 x 1440) 240Hz 0.5MS AMD FREESYNC GAMING MONITOR (3 Years Warranty)",N/A,In Stock,https://pcbuilders.lk/msi-pro-mp273-2/
+PC Builders,Monitor,"MSI Pro MP225 E12VL 21.5"" Inch 120Hz 1ms FHD Ultra Slim Frameless Monitor (3 years warranty)",N/A,In Stock,https://pcbuilders.lk/msi-pro-mp225-2/
+PC Builders,Monitor,MSI Pro MP273 E14A 27 Inch 144Hz 1ms FHD IPS Productivity Monitors Monitor (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/msi-pro-mp273/
+PC Builders,Monitor,"MSI Pro MP245PG E14 23.8"" Inch 144Hz 1ms FHD Ultra Slim Frameless Monitor With Adjustatble Stand (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/msi-pro-mp245pg-2/
+PC Builders,Monitor,MSI MAG 275UPD E14 27 Inch UHD (3840 x 2160) 144Hz 288Hz Adaptive Sync IPS Dual Mode Gaming Monitor (3 Years Warranty),N/A,In Stock,https://pcbuilders.lk/msi-mag-275upd/
+PC Builders,Monitor,"MSI MAG 274QRFW X32 27"" Inch WQHD (2560 X 1440) 320HZ IPS AMD FreeSync White Gaming Monitor (3 Years Warranty)",N/A,In Stock,https://pcbuilders.lk/msi-mag-274qrfw-white-2/
+PC Builders,Monitor,"KOORUI 27"" 27N5C Curved VA 75HZ Monitor (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/koorui-27-4/
+PC Builders,Monitor,MSI MAG 325QF E18V 31.5'' inch WQHD (2560 x 1440) 180Hz 0.5ms Adaptive-Sync Gaming Monitor (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/msi-mag-325qf/
+PC Builders,Monitor,KOORUI G2511P 25inch IPS FHD 200Hz Gaming Monitor (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/koorui-g2511p/
+PC Builders,Monitor,MSI MAG 274QPF X30MV 27'' inch WQHD (2560 x 1440) Rapid VA with Mini-LED 300Hz 0.5ms Adaptive-Sync Gaming Monitor (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/msi-mag-274qpf-2/
