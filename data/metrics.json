@@ -1,9 +1,9 @@
 {
-  "total_skus": 9192,
+  "total_skus": 9149,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5239,
-  "in_stock_rate": 57.0,
+  "in_stock_skus": 5196,
+  "in_stock_rate": 56.8,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 347,
-      "in_stock": 347,
+      "total": 354,
+      "in_stock": 354,
       "in_stock_rate": 100.0
     },
     {
@@ -132,16 +132,16 @@
       "in_stock_rate": 33.6
     },
     {
-      "Source_Store": "Game Street",
-      "total": 93,
-      "in_stock": 93,
-      "in_stock_rate": 100.0
-    },
-    {
       "Source_Store": "MSK Computers",
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 43,
+      "in_stock": 43,
+      "in_stock_rate": 100.0
     }
   ]
 }
