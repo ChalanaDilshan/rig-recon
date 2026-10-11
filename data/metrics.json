@@ -1,21 +1,21 @@
 {
-  "total_skus": 9210,
+  "total_skus": 9192,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5257,
-  "in_stock_rate": 57.1,
+  "in_stock_skus": 5239,
+  "in_stock_rate": 57.0,
   "categories": [
     {
       "Category": "Accessories / Other",
       "count": 3655,
-      "avg_price": 28370.0,
+      "avg_price": 28378.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
       "count": 998,
-      "avg_price": 287539.0,
+      "avg_price": 287525.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 365,
-      "in_stock": 365,
+      "total": 347,
+      "in_stock": 347,
       "in_stock_rate": 100.0
     },
     {
