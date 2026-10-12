@@ -1,9 +1,9 @@
 {
-  "total_skus": 9149,
+  "total_skus": 9135,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5196,
-  "in_stock_rate": 56.8,
+  "in_stock_skus": 5182,
+  "in_stock_rate": 56.7,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -35,15 +35,15 @@
     },
     {
       "Category": "GPU",
-      "count": 572,
-      "avg_price": 261196.0,
+      "count": 573,
+      "avg_price": 260933.0,
       "min_price": 2500.0,
       "max_price": 3255000.0
     },
     {
       "Category": "CPU",
       "count": 447,
-      "avg_price": 91179.0,
+      "avg_price": 91188.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1916,
-      "in_stock": 1040,
+      "total": 1917,
+      "in_stock": 1041,
       "in_stock_rate": 54.3
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 354,
-      "in_stock": 354,
+      "total": 339,
+      "in_stock": 339,
       "in_stock_rate": 100.0
     },
     {
