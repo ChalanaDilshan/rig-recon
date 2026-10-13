@@ -1,9 +1,9 @@
 {
-  "total_skus": 9118,
+  "total_skus": 9122,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5162,
-  "in_stock_rate": 56.6,
+  "in_stock_skus": 5175,
+  "in_stock_rate": 56.7,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -28,8 +28,8 @@
     },
     {
       "Category": "Motherboard",
-      "count": 616,
-      "avg_price": 81362.0,
+      "count": 613,
+      "avg_price": 81193.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1916,
-      "in_stock": 1037,
-      "in_stock_rate": 54.1
+      "total": 1919,
+      "in_stock": 1049,
+      "in_stock_rate": 54.7
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 346,
-      "in_stock": 346,
+      "total": 347,
+      "in_stock": 347,
       "in_stock_rate": 100.0
     },
     {
