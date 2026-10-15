@@ -1,8 +1,8 @@
 {
-  "total_skus": 9157,
+  "total_skus": 9161,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5206,
+  "in_stock_skus": 5210,
   "in_stock_rate": 56.9,
   "categories": [
     {
@@ -21,8 +21,8 @@
     },
     {
       "Category": "Monitor",
-      "count": 749,
-      "avg_price": 112329.0,
+      "count": 752,
+      "avg_price": 112797.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1919,
-      "in_stock": 1045,
+      "total": 1922,
+      "in_stock": 1048,
       "in_stock_rate": 54.5
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 349,
-      "in_stock": 349,
+      "total": 348,
+      "in_stock": 348,
       "in_stock_rate": 100.0
     },
     {
@@ -139,8 +139,8 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 53,
-      "in_stock": 53,
+      "total": 55,
+      "in_stock": 55,
       "in_stock_rate": 100.0
     }
   ]
