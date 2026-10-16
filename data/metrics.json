@@ -1,9 +1,9 @@
 {
-  "total_skus": 9180,
+  "total_skus": 9164,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5232,
-  "in_stock_rate": 57.0,
+  "in_stock_skus": 5216,
+  "in_stock_rate": 56.9,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 368,
-      "in_stock": 368,
+      "total": 352,
+      "in_stock": 352,
       "in_stock_rate": 100.0
     },
     {
