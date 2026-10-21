@@ -1,5 +1,5 @@
 {
-  "total_skus": 9270,
+  "total_skus": 9267,
   "active_stores": 11,
   "total_categories": 10,
   "in_stock_skus": 5318,
@@ -8,42 +8,42 @@
     {
       "Category": "Accessories / Other",
       "count": 3657,
-      "avg_price": 28431.0,
+      "avg_price": 28408.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
-      "count": 997,
-      "avg_price": 287646.0,
+      "count": 999,
+      "avg_price": 287093.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
     {
       "Category": "Monitor",
       "count": 754,
-      "avg_price": 112350.0,
+      "avg_price": 112313.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
     {
       "Category": "Motherboard",
       "count": 613,
-      "avg_price": 81193.0,
+      "avg_price": 81263.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
     {
       "Category": "GPU",
-      "count": 573,
-      "avg_price": 260933.0,
+      "count": 570,
+      "avg_price": 261294.0,
       "min_price": 2500.0,
       "max_price": 3255000.0
     },
     {
       "Category": "CPU",
       "count": 447,
-      "avg_price": 91197.0,
+      "avg_price": 91438.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1925,
-      "in_stock": 1051,
-      "in_stock_rate": 54.6
+      "total": 1926,
+      "in_stock": 1055,
+      "in_stock_rate": 54.8
     },
     {
       "Source_Store": "Red Tech",
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 351,
-      "in_stock": 351,
+      "total": 349,
+      "in_stock": 349,
       "in_stock_rate": 100.0
     },
     {
@@ -121,8 +121,8 @@
     },
     {
       "Source_Store": "Galle Laptop",
-      "total": 182,
-      "in_stock": 182,
+      "total": 180,
+      "in_stock": 180,
       "in_stock_rate": 100.0
     },
     {
