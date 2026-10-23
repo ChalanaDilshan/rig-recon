@@ -1,9 +1,9 @@
 {
-  "total_skus": 9190,
+  "total_skus": 9172,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5240,
-  "in_stock_rate": 57.0,
+  "in_stock_skus": 5222,
+  "in_stock_rate": 56.9,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -14,8 +14,8 @@
     },
     {
       "Category": "Laptop",
-      "count": 1026,
-      "avg_price": 286051.0,
+      "count": 999,
+      "avg_price": 287063.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -97,8 +97,8 @@
     },
     {
       "Source_Store": "Tulip Computers",
-      "total": 893,
-      "in_stock": 893,
+      "total": 866,
+      "in_stock": 866,
       "in_stock_rate": 100.0
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 339,
-      "in_stock": 339,
+      "total": 348,
+      "in_stock": 348,
       "in_stock_rate": 100.0
     },
     {
