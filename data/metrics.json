@@ -1,9 +1,9 @@
 {
-  "total_skus": 9158,
+  "total_skus": 9648,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5210,
-  "in_stock_rate": 56.9,
+  "in_stock_skus": 5700,
+  "in_stock_rate": 59.1,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -15,7 +15,7 @@
     {
       "Category": "Laptop",
       "count": 999,
-      "avg_price": 287063.0,
+      "avg_price": 287077.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -109,8 +109,14 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 370,
-      "in_stock": 370,
+      "total": 446,
+      "in_stock": 446,
+      "in_stock_rate": 100.0
+    },
+    {
+      "Source_Store": "Game Street",
+      "total": 442,
+      "in_stock": 442,
       "in_stock_rate": 100.0
     },
     {
@@ -136,12 +142,6 @@
       "total": 58,
       "in_stock": 52,
       "in_stock_rate": 89.7
-    },
-    {
-      "Source_Store": "Game Street",
-      "total": 28,
-      "in_stock": 28,
-      "in_stock_rate": 100.0
     }
   ]
 }
