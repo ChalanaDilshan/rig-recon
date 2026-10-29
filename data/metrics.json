@@ -1,9 +1,9 @@
 {
-  "total_skus": 9657,
+  "total_skus": 9683,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5709,
-  "in_stock_rate": 59.1,
+  "in_stock_skus": 5734,
+  "in_stock_rate": 59.2,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -14,8 +14,8 @@
     },
     {
       "Category": "Laptop",
-      "count": 1005,
-      "avg_price": 288406.0,
+      "count": 1032,
+      "avg_price": 287365.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -97,8 +97,8 @@
     },
     {
       "Source_Store": "Tulip Computers",
-      "total": 866,
-      "in_stock": 866,
+      "total": 893,
+      "in_stock": 893,
       "in_stock_rate": 100.0
     },
     {
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 446,
-      "in_stock": 446,
+      "total": 447,
+      "in_stock": 447,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Game Street",
-      "total": 443,
-      "in_stock": 443,
+      "total": 441,
+      "in_stock": 441,
       "in_stock_rate": 100.0
     },
     {
@@ -134,8 +134,8 @@
     {
       "Source_Store": "Redline Technologies",
       "total": 109,
-      "in_stock": 37,
-      "in_stock_rate": 33.9
+      "in_stock": 36,
+      "in_stock_rate": 33.0
     },
     {
       "Source_Store": "MSK Computers",
