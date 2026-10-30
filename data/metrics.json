@@ -1,8 +1,8 @@
 {
-  "total_skus": 9688,
+  "total_skus": 9687,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5739,
+  "in_stock_skus": 5737,
   "in_stock_rate": 59.2,
   "categories": [
     {
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1936,
-      "in_stock": 1064,
-      "in_stock_rate": 55.0
+      "in_stock": 1063,
+      "in_stock_rate": 54.9
     },
     {
       "Source_Store": "Red Tech",
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 447,
-      "in_stock": 447,
+      "total": 446,
+      "in_stock": 446,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 445,
-      "in_stock": 445,
+      "total": 444,
+      "in_stock": 444,
       "in_stock_rate": 100.0
     },
     {
@@ -133,9 +133,9 @@
     },
     {
       "Source_Store": "Redline Technologies",
-      "total": 109,
-      "in_stock": 36,
-      "in_stock_rate": 33.0
+      "total": 110,
+      "in_stock": 37,
+      "in_stock_rate": 33.6
     },
     {
       "Source_Store": "MSK Computers",
