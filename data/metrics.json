@@ -1,5 +1,5 @@
 {
-  "total_skus": 9680,
+  "total_skus": 9681,
   "active_stores": 11,
   "total_categories": 10,
   "in_stock_skus": 5729,
@@ -86,8 +86,8 @@
     {
       "Source_Store": "Nanotek",
       "total": 1936,
-      "in_stock": 1062,
-      "in_stock_rate": 54.9
+      "in_stock": 1061,
+      "in_stock_rate": 54.8
     },
     {
       "Source_Store": "Red Tech",
@@ -133,9 +133,9 @@
     },
     {
       "Source_Store": "Redline Technologies",
-      "total": 109,
-      "in_stock": 36,
-      "in_stock_rate": 33.0
+      "total": 110,
+      "in_stock": 37,
+      "in_stock_rate": 33.6
     },
     {
       "Source_Store": "MSK Computers",
