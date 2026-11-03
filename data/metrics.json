@@ -1,8 +1,8 @@
 {
-  "total_skus": 9684,
+  "total_skus": 9678,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5736,
+  "in_stock_skus": 5731,
   "in_stock_rate": 59.2,
   "categories": [
     {
@@ -15,7 +15,7 @@
     {
       "Category": "Laptop",
       "count": 1033,
-      "avg_price": 287541.0,
+      "avg_price": 287179.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -86,7 +86,7 @@
     {
       "Source_Store": "Nanotek",
       "total": 1938,
-      "in_stock": 1069,
+      "in_stock": 1070,
       "in_stock_rate": 55.2
     },
     {
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 446,
-      "in_stock": 446,
+      "total": 441,
+      "in_stock": 441,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 439,
-      "in_stock": 439,
+      "total": 438,
+      "in_stock": 438,
       "in_stock_rate": 100.0
     },
     {
