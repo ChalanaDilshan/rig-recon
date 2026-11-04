@@ -1,9 +1,9 @@
 {
-  "total_skus": 9684,
+  "total_skus": 9698,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5737,
-  "in_stock_rate": 59.2,
+  "in_stock_skus": 5751,
+  "in_stock_rate": 59.3,
   "categories": [
     {
       "Category": "Accessories / Other",
@@ -14,8 +14,8 @@
     },
     {
       "Category": "Laptop",
-      "count": 1033,
-      "avg_price": 287179.0,
+      "count": 1032,
+      "avg_price": 287259.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 444,
-      "in_stock": 444,
+      "total": 459,
+      "in_stock": 459,
       "in_stock_rate": 100.0
     },
     {
@@ -127,8 +127,8 @@
     },
     {
       "Source_Store": "Galle Laptop",
-      "total": 180,
-      "in_stock": 180,
+      "total": 179,
+      "in_stock": 179,
       "in_stock_rate": 100.0
     },
     {
