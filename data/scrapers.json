@@ -3,12 +3,12 @@
     "total_scrapers": 11,
     "operational_scrapers": 11,
     "operational_rate": 100.0,
-    "total_harvested_skus": 9699,
+    "total_harvested_skus": 9695,
     "total_raw_data_formatted": "1.80 MB",
     "playwright_engines": 5,
     "http_engines": 6,
     "schedule": "Twice Daily at 07:45 AM & 07:45 PM SLST (02:15 & 14:15 UTC)",
-    "last_sync": "2026-11-07 09:01:24"
+    "last_sync": "2026-11-07 18:59:35"
   },
   "scrapers": [
     {
@@ -36,7 +36,7 @@
         "raw_total_bytes": 715671,
         "raw_size_formatted": "698.9 KB",
         "primary_raw_file": "mdcomputers_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -64,7 +64,7 @@
         "raw_total_bytes": 392476,
         "raw_size_formatted": "383.3 KB",
         "primary_raw_file": "nanotek_all_products.csv",
-        "last_scraped": "2026-11-07 08:53"
+        "last_scraped": "2026-11-07 18:51"
       }
     },
     {
@@ -92,7 +92,7 @@
         "raw_total_bytes": 207301,
         "raw_size_formatted": "202.4 KB",
         "primary_raw_file": "red_tech_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -120,7 +120,7 @@
         "raw_total_bytes": 136640,
         "raw_size_formatted": "133.4 KB",
         "primary_raw_file": "tulip_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -148,7 +148,7 @@
         "raw_total_bytes": 179874,
         "raw_size_formatted": "175.7 KB",
         "primary_raw_file": "chamacomputers_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -163,8 +163,8 @@
       "health_score": 100,
       "is_playwright": false,
       "telemetry": {
-        "total_skus": 457,
-        "in_stock_skus": 457,
+        "total_skus": 455,
+        "in_stock_skus": 455,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
         "market_share_pct": 4.7,
@@ -173,10 +173,10 @@
         "max_price_lkr": 0,
         "avg_price_lkr": 0,
         "raw_file_count": 1,
-        "raw_total_bytes": 81536,
-        "raw_size_formatted": "79.6 KB",
+        "raw_total_bytes": 81093,
+        "raw_size_formatted": "79.2 KB",
         "primary_raw_file": "game_street_all_products.csv",
-        "last_scraped": "2026-11-07 08:54"
+        "last_scraped": "2026-11-07 18:52"
       }
     },
     {
@@ -191,12 +191,12 @@
       "health_score": 100,
       "is_playwright": false,
       "telemetry": {
-        "total_skus": 434,
-        "in_stock_skus": 434,
+        "total_skus": 432,
+        "in_stock_skus": 432,
         "out_of_stock_skus": 0,
         "in_stock_rate": 100.0,
         "market_share_pct": 4.5,
-        "categories_count": 8,
+        "categories_count": 7,
         "min_price_lkr": 0,
         "max_price_lkr": 0,
         "avg_price_lkr": 0,
@@ -204,7 +204,7 @@
         "raw_total_bytes": 80336,
         "raw_size_formatted": "78.5 KB",
         "primary_raw_file": "pcbuilders_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -232,7 +232,7 @@
         "raw_total_bytes": 37282,
         "raw_size_formatted": "36.4 KB",
         "primary_raw_file": "techzone_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -260,7 +260,7 @@
         "raw_total_bytes": 29401,
         "raw_size_formatted": "28.7 KB",
         "primary_raw_file": "galle_laptop_all_products.csv",
-        "last_scraped": "2026-11-07 09:01"
+        "last_scraped": "2026-11-07 18:59"
       }
     },
     {
@@ -288,7 +288,7 @@
         "raw_total_bytes": 20854,
         "raw_size_formatted": "20.4 KB",
         "primary_raw_file": "redlinetech_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     },
     {
@@ -316,7 +316,7 @@
         "raw_total_bytes": 9348,
         "raw_size_formatted": "9.1 KB",
         "primary_raw_file": "mskcomputers_all_products.csv",
-        "last_scraped": "2026-11-07 08:51"
+        "last_scraped": "2026-11-07 18:49"
       }
     }
   ]
