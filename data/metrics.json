@@ -1,8 +1,8 @@
 {
-  "total_skus": 9701,
+  "total_skus": 9699,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5755,
+  "in_stock_skus": 5752,
   "in_stock_rate": 59.3,
   "categories": [
     {
@@ -86,7 +86,7 @@
     {
       "Source_Store": "Nanotek",
       "total": 1948,
-      "in_stock": 1080,
+      "in_stock": 1079,
       "in_stock_rate": 55.4
     },
     {
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 459,
-      "in_stock": 459,
+      "total": 457,
+      "in_stock": 457,
       "in_stock_rate": 100.0
     },
     {
