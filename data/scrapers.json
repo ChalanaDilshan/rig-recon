@@ -8,7 +8,7 @@
     "playwright_engines": 5,
     "http_engines": 6,
     "schedule": "Twice Daily at 07:45 AM & 07:45 PM SLST (02:15 & 14:15 UTC)",
-    "last_sync": "2026-11-07 18:59:35"
+    "last_sync": "2026-11-08 09:13:27"
   },
   "scrapers": [
     {
@@ -36,7 +36,7 @@
         "raw_total_bytes": 715671,
         "raw_size_formatted": "698.9 KB",
         "primary_raw_file": "mdcomputers_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -64,7 +64,7 @@
         "raw_total_bytes": 392476,
         "raw_size_formatted": "383.3 KB",
         "primary_raw_file": "nanotek_all_products.csv",
-        "last_scraped": "2026-11-07 18:51"
+        "last_scraped": "2026-11-08 09:05"
       }
     },
     {
@@ -92,7 +92,7 @@
         "raw_total_bytes": 207301,
         "raw_size_formatted": "202.4 KB",
         "primary_raw_file": "red_tech_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -120,7 +120,7 @@
         "raw_total_bytes": 136640,
         "raw_size_formatted": "133.4 KB",
         "primary_raw_file": "tulip_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -148,7 +148,7 @@
         "raw_total_bytes": 179874,
         "raw_size_formatted": "175.7 KB",
         "primary_raw_file": "chamacomputers_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -176,7 +176,7 @@
         "raw_total_bytes": 81093,
         "raw_size_formatted": "79.2 KB",
         "primary_raw_file": "game_street_all_products.csv",
-        "last_scraped": "2026-11-07 18:52"
+        "last_scraped": "2026-11-08 09:06"
       }
     },
     {
@@ -204,7 +204,7 @@
         "raw_total_bytes": 80336,
         "raw_size_formatted": "78.5 KB",
         "primary_raw_file": "pcbuilders_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -232,7 +232,7 @@
         "raw_total_bytes": 37282,
         "raw_size_formatted": "36.4 KB",
         "primary_raw_file": "techzone_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -260,7 +260,7 @@
         "raw_total_bytes": 29401,
         "raw_size_formatted": "28.7 KB",
         "primary_raw_file": "galle_laptop_all_products.csv",
-        "last_scraped": "2026-11-07 18:59"
+        "last_scraped": "2026-11-08 09:13"
       }
     },
     {
@@ -288,7 +288,7 @@
         "raw_total_bytes": 20854,
         "raw_size_formatted": "20.4 KB",
         "primary_raw_file": "redlinetech_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     },
     {
@@ -316,7 +316,7 @@
         "raw_total_bytes": 9348,
         "raw_size_formatted": "9.1 KB",
         "primary_raw_file": "mskcomputers_all_products.csv",
-        "last_scraped": "2026-11-07 18:49"
+        "last_scraped": "2026-11-08 09:03"
       }
     }
   ]
