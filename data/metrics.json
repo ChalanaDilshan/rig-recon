@@ -1,8 +1,8 @@
 {
-  "total_skus": 9693,
+  "total_skus": 9692,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5746,
+  "in_stock_skus": 5745,
   "in_stock_rate": 59.3,
   "categories": [
     {
@@ -43,7 +43,7 @@
     {
       "Category": "CPU",
       "count": 447,
-      "avg_price": 91415.0,
+      "avg_price": 91427.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -109,8 +109,8 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 455,
-      "in_stock": 455,
+      "total": 454,
+      "in_stock": 454,
       "in_stock_rate": 100.0
     },
     {
