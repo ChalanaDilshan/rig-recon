@@ -1,28 +1,28 @@
 {
-  "total_skus": 9620,
+  "total_skus": 9702,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5683,
-  "in_stock_rate": 59.1,
+  "in_stock_skus": 5751,
+  "in_stock_rate": 59.3,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3651,
-      "avg_price": 28362.0,
+      "count": 3663,
+      "avg_price": 28434.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
-      "count": 1011,
-      "avg_price": 284684.0,
+      "count": 1037,
+      "avg_price": 285867.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
     {
       "Category": "Monitor",
-      "count": 734,
-      "avg_price": 112534.0,
+      "count": 757,
+      "avg_price": 113483.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -41,6 +41,13 @@
       "max_price": 3255000.0
     },
     {
+      "Category": "CPU",
+      "count": 447,
+      "avg_price": 91427.0,
+      "min_price": 1400.0,
+      "max_price": 1100000.0
+    },
+    {
       "Category": "RAM",
       "count": 438,
       "avg_price": 51136.0,
@@ -53,13 +60,6 @@
       "avg_price": 38923.0,
       "min_price": 850.0,
       "max_price": 264000.0
-    },
-    {
-      "Category": "CPU",
-      "count": 431,
-      "avg_price": 91161.0,
-      "min_price": 1400.0,
-      "max_price": 1100000.0
     },
     {
       "Category": "PSU",
@@ -85,9 +85,9 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1875,
-      "in_stock": 1017,
-      "in_stock_rate": 54.2
+      "total": 1952,
+      "in_stock": 1080,
+      "in_stock_rate": 55.3
     },
     {
       "Source_Store": "Red Tech",
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 446,
-      "in_stock": 446,
+      "total": 449,
+      "in_stock": 449,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 439,
-      "in_stock": 439,
+      "total": 441,
+      "in_stock": 441,
       "in_stock_rate": 100.0
     },
     {
