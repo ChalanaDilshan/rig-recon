@@ -1,21 +1,21 @@
 {
-  "total_skus": 9704,
+  "total_skus": 9706,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5754,
+  "in_stock_skus": 5757,
   "in_stock_rate": 59.3,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3663,
+      "count": 3664,
       "avg_price": 28434.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
     {
       "Category": "Laptop",
-      "count": 1037,
-      "avg_price": 285867.0,
+      "count": 1038,
+      "avg_price": 286396.0,
       "min_price": 800.0,
       "max_price": 2550000.0
     },
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1952,
-      "in_stock": 1081,
+      "total": 1954,
+      "in_stock": 1083,
       "in_stock_rate": 55.4
     },
     {
@@ -115,8 +115,8 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 444,
-      "in_stock": 444,
+      "total": 445,
+      "in_stock": 445,
       "in_stock_rate": 100.0
     },
     {
@@ -133,9 +133,9 @@
     },
     {
       "Source_Store": "Redline Technologies",
-      "total": 110,
+      "total": 109,
       "in_stock": 35,
-      "in_stock_rate": 31.8
+      "in_stock_rate": 32.1
     },
     {
       "Source_Store": "MSK Computers",
