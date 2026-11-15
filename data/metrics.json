@@ -1,8 +1,8 @@
 {
-  "total_skus": 9709,
+  "total_skus": 9708,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5759,
+  "in_stock_skus": 5758,
   "in_stock_rate": 59.3,
   "categories": [
     {
@@ -28,8 +28,8 @@
     },
     {
       "Category": "Motherboard",
-      "count": 613,
-      "avg_price": 81263.0,
+      "count": 612,
+      "avg_price": 81318.0,
       "min_price": 3500.0,
       "max_price": 470000.0
     },
@@ -127,8 +127,8 @@
     },
     {
       "Source_Store": "Galle Laptop",
-      "total": 181,
-      "in_stock": 181,
+      "total": 180,
+      "in_stock": 180,
       "in_stock_rate": 100.0
     },
     {
