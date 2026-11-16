@@ -1,8 +1,8 @@
 {
-  "total_skus": 9699,
+  "total_skus": 9701,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5749,
+  "in_stock_skus": 5751,
   "in_stock_rate": 59.3,
   "categories": [
     {
@@ -22,7 +22,7 @@
     {
       "Category": "Monitor",
       "count": 757,
-      "avg_price": 113483.0,
+      "avg_price": 113481.0,
       "min_price": 5500.0,
       "max_price": 811000.0
     },
@@ -115,8 +115,8 @@
     },
     {
       "Source_Store": "Game Street",
-      "total": 440,
-      "in_stock": 440,
+      "total": 442,
+      "in_stock": 442,
       "in_stock_rate": 100.0
     },
     {
