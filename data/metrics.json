@@ -1,13 +1,13 @@
 {
-  "total_skus": 9700,
+  "total_skus": 9702,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5750,
+  "in_stock_skus": 5752,
   "in_stock_rate": 59.3,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3665,
+      "count": 3666,
       "avg_price": 28462.0,
       "min_price": 150.0,
       "max_price": 1439000.0
@@ -85,8 +85,8 @@
     },
     {
       "Source_Store": "Nanotek",
-      "total": 1960,
-      "in_stock": 1088,
+      "total": 1961,
+      "in_stock": 1089,
       "in_stock_rate": 55.5
     },
     {
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 445,
-      "in_stock": 445,
+      "total": 444,
+      "in_stock": 444,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Game Street",
-      "total": 436,
-      "in_stock": 436,
+      "total": 438,
+      "in_stock": 438,
       "in_stock_rate": 100.0
     },
     {
