@@ -1,14 +1,14 @@
 {
-  "total_skus": 9705,
+  "total_skus": 9683,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5754,
-  "in_stock_rate": 59.3,
+  "in_stock_skus": 5732,
+  "in_stock_rate": 59.2,
   "categories": [
     {
       "Category": "Accessories / Other",
-      "count": 3666,
-      "avg_price": 28462.0,
+      "count": 3648,
+      "avg_price": 27216.0,
       "min_price": 150.0,
       "max_price": 1439000.0
     },
@@ -42,8 +42,8 @@
     },
     {
       "Category": "CPU",
-      "count": 447,
-      "avg_price": 91442.0,
+      "count": 446,
+      "avg_price": 91435.0,
       "min_price": 1400.0,
       "max_price": 1100000.0
     },
@@ -97,8 +97,8 @@
     },
     {
       "Source_Store": "Tulip Computers",
-      "total": 892,
-      "in_stock": 892,
+      "total": 873,
+      "in_stock": 873,
       "in_stock_rate": 100.0
     },
     {
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 444,
-      "in_stock": 444,
+      "total": 442,
+      "in_stock": 442,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Game Street",
-      "total": 440,
-      "in_stock": 440,
+      "total": 439,
+      "in_stock": 439,
       "in_stock_rate": 100.0
     },
     {
