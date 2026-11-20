@@ -1,8 +1,8 @@
 {
-  "total_skus": 9707,
+  "total_skus": 9711,
   "active_stores": 11,
   "total_categories": 10,
-  "in_stock_skus": 5756,
+  "in_stock_skus": 5760,
   "in_stock_rate": 59.3,
   "categories": [
     {
@@ -109,14 +109,14 @@
     },
     {
       "Source_Store": "Pc Builders",
-      "total": 445,
-      "in_stock": 445,
+      "total": 447,
+      "in_stock": 447,
       "in_stock_rate": 100.0
     },
     {
       "Source_Store": "Game Street",
-      "total": 439,
-      "in_stock": 439,
+      "total": 441,
+      "in_stock": 441,
       "in_stock_rate": 100.0
     },
     {
