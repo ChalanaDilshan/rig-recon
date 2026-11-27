@@ -1,6 +1,7 @@
 ﻿Source_Store,Category,Title,Price,Stock,URL
 PC Builders,GPU,Galax GTX 970 HOF Of Fame 4GB GDDR5 Graphics Card (used item),N/A,In Stock,https://pcbuilders.lk/used-galax-gtx-970-4gb/
 PC Builders,GPU,AORUS GeForce RTX 3070 Ti MASTER 8GB GRAPHIC CARD (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-aorus-rtx-3070-ti-8gb/
+PC Builders,GPU,ASUS KO RTX 3060 OC 12GB Edition GRAPHIC CARD (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-asus-rtx-3060-12gb-2/
 PC Builders,GPU,ASUS Dual Radeon RX 9050 8GB GDDR6 Graphics Card (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/asus-vga-asus-rx9050-8g-8gb/
 PC Builders,GPU,EMTEK GEFORCE GTX 1660 SUPER DUAL OC 6GB GRAPHIC CARD (USED ITEM),N/A,In Stock,https://pcbuilders.lk/emtek-geforce-gtx-1660-super-dual-oc-6gb-graphic-card-used-item/
 PC Builders,GPU,GALAX GTX 960 2GB GRAPHIC CARD (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-galax-gtx-960-2gb/
@@ -27,13 +28,11 @@ PC Builders,GPU,GIGABYTE GEFORCE RTX 5090 WINDFORCE OC 32G GRAPHICS CARD (3 YEAR
 PC Builders,GPU,GIGABYTE GEFORCE RTX 5060 TI EAGLE OC 8G GRAPHIC CARD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/gigabyte-rtx-5060-ti-2/
 PC Builders,CPU,AMD Processors,N/A,In Stock,https://pcbuilders.lk/amd-processors/
 PC Builders,CPU,Intel Processors,N/A,In Stock,https://pcbuilders.lk/intel-processors/
-PC Builders,CPU,AMD RYZEN 5 5600GT PROCESSOR (TARY) (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-5-5600gt-tary/
 PC Builders,CPU,AMD RYZEN 7 5700X PROCESSOR (TRAY) (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-7-5700x-2/
 PC Builders,CPU,AMD RYZEN 7 5700G (TRAY) PROCESSOR (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-7-5700g-2/
 PC Builders,CPU,INTEL CORE I7 – 7700 PROCESSOR (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i7-7700/
 PC Builders,CPU,INTEL CORE I5 - 8500 PROCESSOR (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i5-8500/
 PC Builders,CPU,AMD RYZEN 5 5600X PROCESSOR TRAY (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-amd-cpu-used-amd-ryzen-5-5600x/
-PC Builders,CPU,AMD RYZEN 7 9800X3D PROCESSOR TRAY (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-7-9800x3d-processor-tray/
 PC Builders,CPU,INTEL I5 – 9400 DESKTOP PROCESSOR (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-i5-9400-desktop/
 PC Builders,CPU,"Intel Core Ultra 9 Processor 285K (24 Threads , 24 Cores ) Processor (TRAY) (3 YEARS WARRANTY)",N/A,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-ultra-9-285k-24-threads-24-cores/
 PC Builders,CPU,INTEL CORE I5 – 12600KF PROCESSOR (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i5-12600kf-processor/
@@ -75,6 +74,8 @@ PC Builders,CPU,Intel Core Ultra 7 Processor 265K 36M Processor (3 YEARS WARRANT
 PC Builders,CPU,AMD RYZEN 5 8500G PROCESSOR (TRAY) (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-5-8500g/
 PC Builders,CPU,AMD RYZEN 7 8700G PROCESSOR (TRAY) (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-7-8700g/
 PC Builders,CPU,AMD RYZEN 5 4600G PROCESSOR TRAY (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-5-4600g/
+PC Builders,CPU,INTEL CORE I9-13900K PROCESSOR (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-core-i9-13900k/
+PC Builders,CPU,INTEL CORE I5-14600K PROCESSOR (TRAY) (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-core-i5-14600k/
 PC Builders,Motherboard,MSI H510M PRO-E Motherboard (USED ITEM),N/A,In Stock,https://pcbuilders.lk/used-msi-mb-used-msi-h510m-pro-e/
 PC Builders,Motherboard,ASUS ROG STRIX Z890-F GAMING WIFI MOTHERBOARD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-strix-z890-f-gaming-wifi/
 PC Builders,Motherboard,ASUS PRIME A520M-K MOTHERBOARD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/asus-mb-new-asus-prime-a520m-k/
@@ -141,8 +142,8 @@ PC Builders,Storage,Hard Drives,N/A,In Stock,https://pcbuilders.lk/hard-disk/
 PC Builders,Storage,External Storage,N/A,In Stock,https://pcbuilders.lk/portable-hard-sssd/
 PC Builders,Storage,USB Flash Drives,N/A,In Stock,https://pcbuilders.lk/pen-drive/
 PC Builders,Storage,Storage Enclosures,N/A,In Stock,https://pcbuilders.lk/enclosure/
-PC Builders,Storage,SILVERSTONE ECM21-E SCREWLESS DESIGN M.2 PCIE/NVME SSD TO PCIE X4 ADAPTER CARD,N/A,In Stock,https://pcbuilders.lk/silverstone-ssd-used-silverstone-ecm21-e-screwless-design-to/
 PC Builders,Storage,LEXAR NM620 256GB NVMe (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/lexar-ssd-new-lexar-nm620-256gb-nvme-256gb/
+PC Builders,Storage,LEXAR NS100 512GB INTERNAL SOLID STATE DRIVE SSD (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/lexar-ssd-new-lexar-ns100-512gb-internal-512gb/
 PC Builders,Storage,SEAGATE BARRACUDA 1TB ST1000DM010 (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/seagate-gen-new-seagate-barracuda-1tb-st1000dm010-1tb/
 PC Builders,Storage,CORSAIR MP700 PRO 1TB PCIE GEN5 M.2 NVME SSD (5 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/corsair-ssd-new-corsair-mp700-pro-1tb-gen5-1tb/
 PC Builders,Storage,LEXAR NM620 512GB NVMe (3 YEARS WARRANTY),N/A,In Stock,https://pcbuilders.lk/lexar-ssd-new-lexar-nm620-512gb-nvme-512gb/
