@@ -3730,7 +3730,7 @@ Nanotek,Laptop,"APPLE MACBOOK AIR M5 13"" 24GB 1TB","649,000 LKR",649000.0,In St
 Nanotek,Laptop,"APPLE MACBOOK PRO M6 14"" 24GB 1TB","859,000 LKR",859000.0,In Stock,https://www.nanotek.lk/product/apple-macbook-pro-m6-14-24gb-1tb,2026-11-27
 Nanotek,Laptop,"APPLE MACBOOK PRO M6 14"" 16GB 1TB","789,000 LKR",789000.0,In Stock,https://www.nanotek.lk/product/apple-macbook-pro-m6-14-16gb-1tb,2026-11-27
 Nanotek,Accessories / Other,70W USB-C Power Adapter,"29,500 LKR",29500.0,In Stock,https://www.nanotek.lk/product/70w-usb-c-power-adapter,2026-11-27
-Nanotek,Accessories / Other,APPLE MAC MINI M5 PRO 24GB 512GB,"669,000 LKR",669000.0,In Stock,https://www.nanotek.lk/product/apple-mac-mini-m5-pro-24gb-512gb,2026-11-27
+Nanotek,Accessories / Other,APPLE MAC MINI M5 PRO 24GB 512GB,"669,000 LKR",669000.0,Out of Stock,https://www.nanotek.lk/product/apple-mac-mini-m5-pro-24gb-512gb,2026-11-27
 Nanotek,Accessories / Other,APPLE MAC MINI M6 24GB 512GB,"609,000 LKR",609000.0,In Stock,https://www.nanotek.lk/product/apple-mac-mini-m6-24gb-512gb,2026-11-27
 Nanotek,Accessories / Other,APPLE MAC MINI M6 16GB 256GB,"329,000 LKR",329000.0,In Stock,https://www.nanotek.lk/product/apple-mac-mini-m6-16gb-256gb,2026-11-27
 Nanotek,Accessories / Other,APPLE MAC MINI M6 16GB 512GB,"459,000 LKR",459000.0,In Stock,https://www.nanotek.lk/product/apple-mac-mini-m6-16gb-512gb,2026-11-27
@@ -5475,7 +5475,6 @@ Pc Builders,CPU,INTEL CORE I7 – 7700 PROCESSOR (USED ITEM),N/A,,In Stock,https
 Pc Builders,CPU,INTEL CORE I5 - 8500 PROCESSOR (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i5-8500/,2026-11-27
 Pc Builders,CPU,AMD RYZEN 5 5600X PROCESSOR TRAY (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-amd-cpu-used-amd-ryzen-5-5600x/,2026-11-27
 Pc Builders,CPU,INTEL I5 – 9400 DESKTOP PROCESSOR (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-i5-9400-desktop/,2026-11-27
-Pc Builders,CPU,"Intel Core Ultra 9 Processor 285K (24 Threads , 24 Cores ) Processor (TRAY) (3 YEARS WARRANTY)",N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-ultra-9-285k-24-threads-24-cores/,2026-11-27
 Pc Builders,CPU,INTEL CORE I5 – 12600KF PROCESSOR (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i5-12600kf-processor/,2026-11-27
 Pc Builders,CPU,INTEL CORE I7 – 10700K AVENGERS LIMITED EDITION PROCESSOR (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i7-10700k-avengers-limited-ed/,2026-11-27
 Pc Builders,CPU,INTEL I7 6700 PROCESSOR (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-i7-6700/,2026-11-27
@@ -5509,6 +5508,7 @@ Pc Builders,CPU,AMD RYZEN 5 7500F TRAY PROCESSOR WITHOUT BOX/FAN (3 YEARS WARRAN
 Pc Builders,CPU,INTEL CORE I9 12900K PROCESSOR TRAY (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/used-intel-cpu-used-intel-core-i9-12900k/,2026-11-27
 Pc Builders,CPU,AMD RYZEN 9 9950X3D PROCESSORS (TRAY) (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-9-9950x3d-processors/,2026-11-27
 Pc Builders,CPU,AMD RYZEN 5 9600X PROCESSOR (TRAY PROCESSOR) (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-5-9600x-2/,2026-11-27
+Pc Builders,CPU,"Intel Core Ultra 9 Processor 285K (24 Threads , 24 Cores ) Processor (TRAY) (3 YEARS WARRANTY)",N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-ultra-9-285k-24-threads-24-cores/,2026-11-27
 Pc Builders,CPU,AMD RYZEN 7 9700X PROCESSOR( TRAY) (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/amd-cpu-new-amd-ryzen-7-9700x/,2026-11-27
 Pc Builders,CPU,INTEL CORE I5-14400 PROCESSOR TRAY (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-core-i5-14400-tray/,2026-11-27
 Pc Builders,CPU,Intel Core Ultra 7 Processor 265K 36M Processor (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-ultra-7-265k-36m/,2026-11-27
@@ -5518,7 +5518,6 @@ Pc Builders,CPU,AMD RYZEN 5 4600G PROCESSOR TRAY (3 YEARS WARRANTY),N/A,,In Stoc
 Pc Builders,CPU,INTEL CORE I9-13900K PROCESSOR (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-core-i9-13900k/,2026-11-27
 Pc Builders,CPU,INTEL CORE I5-14600K PROCESSOR (TRAY) (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/intel-cpu-new-intel-core-i5-14600k/,2026-11-27
 Pc Builders,Motherboard,MSI H510M PRO-E Motherboard (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-msi-mb-used-msi-h510m-pro-e/,2026-11-27
-Pc Builders,Motherboard,ASUS ROG STRIX Z890-F GAMING WIFI MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-strix-z890-f-gaming-wifi/,2026-11-27
 Pc Builders,Motherboard,ASUS PRIME A520M-K MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-prime-a520m-k/,2026-11-27
 Pc Builders,Motherboard,ASUS B650M-AYW WIFI MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-b650m-ayw-wifi/,2026-11-27
 Pc Builders,Motherboard,GIGABYTE H310M HD3 2.0 MOTHERBOARD (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/used-gigabyte-mb-used-gigabyte-h310m-hd3-2-0/,2026-11-27
@@ -5565,6 +5564,7 @@ Pc Builders,Motherboard,MSI A620M-E PRO DDR5 MOTHERBOARD (3 YEARS WARRANTY),N/A,
 Pc Builders,Motherboard,MSI A520M-A PRO MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/msi-mb-new-msi-a520m-a-pro/,2026-11-27
 Pc Builders,Motherboard,ASROCK FM2A68M-DG3 MOTHERBOARD (1 YEAR WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asrock-mb-new-asrock-fm2a68m-dg3/,2026-11-27
 Pc Builders,Motherboard,MSI B560M PRO-E MOTHERBOARD (USED ITEM),N/A,,In Stock,https://pcbuilders.lk/msi-mb-new-msi-b560m-pro-e/,2026-11-27
+Pc Builders,Motherboard,ASUS ROG STRIX Z890-F GAMING WIFI MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-strix-z890-f-gaming-wifi/,2026-11-27
 Pc Builders,Motherboard,ASUS ROG MAXIMUS Z890 APEX MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-maximus-z890-apex/,2026-11-27
 Pc Builders,Motherboard,ASUS ROG STRIX Z890-A GAMING WIFI MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-strix-z890-a-gaming-wifi/,2026-11-27
 Pc Builders,Motherboard,ASUS ROG MAXIMUS Z890 HERO LGA1851 DDR5 MOTHERBOARD (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/asus-mb-new-asus-rog-maximus-z890-hero-lga1851-ddr5/,2026-11-27
@@ -5623,6 +5623,7 @@ Pc Builders,Monitor,ASUS PROART PA278QV 27' INCH WQHD (2560X1440) IPS 75HZ 100% 
 Pc Builders,Monitor,Koorui G2511X 24.5″ FHD 240Hz Fast IPS Gaming Monitor (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/koorui-mon-new-koorui-g2511x-24-5-fhd-240hz-fast-ips/,2026-11-27
 Pc Builders,Monitor,"ASUS ROG SWIFT OLED PG27AQWP-G EDITION 20 27"" QHD 540HZ GAMING MONITOR (3 YEARS WARRANTY)",N/A,,In Stock,https://pcbuilders.lk/asus-mon-new-asus-rog-swift-oled-pg27aqwp-g-27-540hz/,2026-11-27
 Pc Builders,Monitor,MSI MAG 272QP 26.5 Inch QD-OLED X24 WQHD (2560 x 1440) 240Hz 0.03ms G-SYNC Compatible Gaming Monitor ( 3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/msi-mon-new-msi-mag-272qp-26-5-inch-qd-oled-x50-wqhd-2560/,2026-11-27
+Pc Builders,Monitor,LENOVO P27Q-40 27 Monitor (3 YEARS WARRANTY),N/A,,In Stock,https://pcbuilders.lk/lenovo-mon-new-lenovo-p27q-40-27-monitor/,2026-11-27
 Pc Builders,Monitor,"KOORUI E2712K 27"" FHD VA 144Hz Gaming Monitor (3 YEARS WARRANTY)",N/A,,In Stock,https://pcbuilders.lk/koorui-mon-new-koorui-e2712k-27-fhd-va-144hz/,2026-11-27
 Pc Builders,Monitor,Dell UltraSharp U2417H (used item),N/A,,In Stock,https://pcbuilders.lk/used-dell-ultrasharp-u2417h/,2026-11-27
 Pc Builders,Monitor,"MSI Pro MP245PG E14 23.8"" Inch 144Hz 1ms FHD Ultra Slim Frameless Monitor With Adjustatble Stand (3 YEARS WARRANTY)",N/A,,In Stock,https://pcbuilders.lk/msi-pro-mp245pg-2/,2026-11-27
